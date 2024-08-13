@@ -25,9 +25,9 @@
       inherit system;
       modules = [
         ./configuration.nix
-	home-manager.nixosModules.default
-	catppuccin.nixosModules.catppuccin
-	{
+        home-manager.nixosModules.default
+	      catppuccin.nixosModules.catppuccin
+	      {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${username} = {

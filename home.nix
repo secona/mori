@@ -89,4 +89,14 @@
     enable = true;
     catppuccin.enable = true;
   };
+
+  # VSCode
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+      vscodevim.vim
+    ];
+  };
 }
