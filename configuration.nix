@@ -8,20 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
-
-  # Home Manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users.secona = {
-      imports = [
-        ./home.nix
-	inputs.catppuccin.homeManagerModules.catppuccin
-      ];
-    };
-  };
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -110,6 +97,7 @@
     wget
     pkgs.neovim
     pkgs.discord
+    pkgs.home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
