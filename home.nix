@@ -100,11 +100,13 @@
     ];
   };
 
+  # Kitty
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
   };
 
+  # Neovim
   programs.nixvim = {
     enable = true;
 
@@ -115,5 +117,10 @@
         transparent_background = true;
       };
     };
+  };
+
+  # Google Chrome
+  programs.google-chrome = {
+    enable = true;
   };
 }
