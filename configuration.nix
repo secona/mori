@@ -71,14 +71,32 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # ZSH
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+    };
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.secona = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "secona";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kate
-    #  thunderbird
     ];
   };
 
