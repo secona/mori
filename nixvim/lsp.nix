@@ -1,8 +1,6 @@
 { ... }:
 
 {
-  # TODO
-  # crates.nvim
   plugins.lsp = {
     enable = true;
     capabilities = ''
@@ -14,6 +12,12 @@
 			)
     '';
 
+    servers.rust-analyzer = {
+      enable = true;
+      settings.cargo.features = "all";
+    };
+
+    servers.nil-ls.enable = true;
   };
 
   plugins.fidget = {
