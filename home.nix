@@ -99,4 +99,21 @@
       vscodevim.vim
     ];
   };
+
+  programs.kitty = {
+    enable = true;
+    package = pkgs.kitty;
+  };
+
+  programs.nixvim = {
+    enable = true;
+
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavor = "mocha";
+        transparent_background = true;
+      };
+    };
+  };
 }

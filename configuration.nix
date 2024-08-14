@@ -95,7 +95,6 @@
   #  wget
     git
     wget
-    neovim
     discord
     home-manager
     nil

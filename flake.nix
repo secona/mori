@@ -6,8 +6,12 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { nixpkgs, home-manager, catppuccin, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, catppuccin, nixvim, ... }@inputs: let
     system = "x86_64-linux";
     hostname = "nixos";
     username = "secona";
@@ -34,6 +38,7 @@
             imports = [
               ./home.nix
               catppuccin.homeManagerModules.catppuccin
+              nixvim.homeManagerModules.nixvim
             ];
           };
           home-manager.extraSpecialArgs = extraSpecialArgs;
