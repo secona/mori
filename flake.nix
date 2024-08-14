@@ -22,7 +22,7 @@
     };
 
     extraSpecialArgs = {
-      inherit pkgs system hostname username;
+      inherit pkgs system hostname username inputs;
     };
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -38,7 +38,6 @@
             imports = [
               ./home.nix
               catppuccin.homeManagerModules.catppuccin
-              nixvim.homeManagerModules.nixvim
             ];
           };
           home-manager.extraSpecialArgs = extraSpecialArgs;
