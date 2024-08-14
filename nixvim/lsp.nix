@@ -14,10 +14,14 @@
 
     servers.rust-analyzer = {
       enable = true;
+      installCargo = false;
+      installRustc = false;
       settings.cargo.features = "all";
     };
 
     servers.nil-ls.enable = true;
+    
+    servers.tsserver.enable = true;
 
     keymaps = {
       lspBuf = {
