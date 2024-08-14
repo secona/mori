@@ -5,11 +5,19 @@
     enable = true;
     keymaps = {
       previous = {
+        key = "<A-h>";
+        mode = "n";
+      };
+      movePrevious = {
         key = "<A-j>";
         mode = "n";
       };
-      next = {
+      moveNext = {
         key = "<A-k>";
+        mode = "n";
+      };
+      next = {
+        key = "<A-l>";
         mode = "n";
       };
       goTo1 = {

@@ -119,6 +119,7 @@
     home-manager
     nil
     zoom-us
+    ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

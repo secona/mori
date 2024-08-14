@@ -5,11 +5,11 @@
     enable = true;
     capabilities = ''
       capabilities = vim.tbl_deep_extend(
-				"force",
-				{},
-				vim.lsp.protocol.make_client_capabilities(),
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        require("cmp_nvim_lsp").default_capabilities()
+      )
     '';
 
     servers.rust-analyzer = {
@@ -18,6 +18,21 @@
     };
 
     servers.nil-ls.enable = true;
+
+    keymaps = {
+      lspBuf = {
+        "<F2>" = "rename";
+        "<C-Space>" = "hover";
+        "<Leader>df" = "definition";
+        "<Leader>dc" = "declaration";
+        "<Leader>ca" = "code_action";
+      };
+      diagnostic = {
+        "<Leader>ee" = "open_float";
+        "<Leader>ej" = "goto_next";
+        "<Leader>ek" = "goto_prev";
+      };
+    };
   };
 
   plugins.fidget = {

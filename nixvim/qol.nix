@@ -35,7 +35,22 @@
 
   plugins.telescope = {
     enable = true;
-    # TODO
-    # keybinds
+    keymaps = {
+      "<Leader>ff" = {
+        action = "find_files";
+      };
+      "<Leader>fg" = {
+        action = "live_grep";
+      };
+      "<Leader>fb" = {
+        action = "buffers";
+      };
+      "<Leader>fh" = {
+        action = "help_tags";
+      };
+      "<Leader>rf" = {
+        action = "lsp_references";
+      };
+    };
   };
 }
