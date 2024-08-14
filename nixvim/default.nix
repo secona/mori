@@ -39,5 +39,56 @@
       action = "<Esc>";
       inherit options;
     }
+
+    # LSP
+  
+    {
+      mode = "n";
+      key = "<F2>";
+      action = "vim.lsp.buf.rename";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<C-Space>";
+      action = "vim.lsp.buf.hover";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<Leader>ee";
+      action = "vim.diagnostic.open_float";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<Leader>ej";
+      action = "vim.diagnostic.goto_next";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<Leader>ek";
+      action = "vim.diagnostic.goto_prev";
+      inherit options;
+    }
+    {
+      mode = ["n" "v"];
+      key = "<Leader>ca";
+      action = "vim.lsp.buf.code_action";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<Leader>dc";
+      action = "vim.lsp.buf.declaration";
+      inherit options;
+    }
+    {
+      mode = "n";
+      key = "<Leader>df";
+      action = "vim.lsp.buf.definitions";
+      inherit options;
+    }
   ];
 }
