@@ -83,6 +83,8 @@
     };
   };
 
+  environment.etc."xdg/kitty/kitty.conf".source = ./config/kitty/kitty.conf;
+
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
