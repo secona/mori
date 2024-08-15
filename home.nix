@@ -59,6 +59,7 @@ in {
   #
 
   catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
   
   home.sessionVariables = {
     # EDITOR = "emacs";
@@ -77,7 +78,6 @@ in {
   # Btop
   programs.btop = {
     enable = true;
-    catppuccin.enable = true;
   };
 
   # VSCode
@@ -102,12 +102,5 @@ in {
   # Google Chrome
   programs.google-chrome = {
     enable = true;
-  };
-
-  # Starship
-  programs.starship = {
-    enable = true;
-    settings = pkgs.lib.importTOML ./config/starship.toml;
-    enableZshIntegration = true;
   };
 }

@@ -79,10 +79,17 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Starship
+  programs.starship = {
+    enable = true;
+    settings = pkgs.lib.importTOML ./config/starship.toml;
+  };
+
   # ZSH
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
 
