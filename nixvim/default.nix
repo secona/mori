@@ -2,7 +2,7 @@
 
 {
   globals = {
-    mapleader = "<Space>";
+    mapleader = " ";
   };
 
   opts = {
@@ -13,6 +13,7 @@
     scrolloff = 3;
     signcolumn = "yes";
     wrap = false;
+    fillchars = { eob = " "; };
   };
 
   keymaps = let

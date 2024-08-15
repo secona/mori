@@ -99,21 +99,15 @@ in {
     };
   };
 
-  # Neovim
-  # programs.nixvim = {
-  #   enable = true;
-  #
-  #   colorschemes.catppuccin = {
-  #     enable = true;
-  #     settings = {
-  #       flavor = "mocha";
-  #       transparent_background = true;
-  #     };
-  #   };
-  # };
-
   # Google Chrome
   programs.google-chrome = {
     enable = true;
+  };
+
+  # Starship
+  programs.starship = {
+    enable = true;
+    settings = pkgs.lib.importTOML ./config/starship.toml;
+    enableZshIntegration = true;
   };
 }

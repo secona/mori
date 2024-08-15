@@ -51,6 +51,14 @@
 
   services.blueman.enable = true;
 
+  services.postgresql = {
+    enable = true;
+    # authentication = pkgs.lib.mkOverride 10 ''
+    #   #type database  DBuser  auth-method
+    #   local all       all     trust
+    # '';
+  };
+
   # Enable sound with pipewire.
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
@@ -76,11 +84,6 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" ];
-    };
   };
 
   environment.etc."xdg/kitty/kitty.conf".source = ./config/kitty/kitty.conf;
@@ -91,16 +94,26 @@
     ];
   };
 
+  virtualisation.docker = {
+    enable = true;
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.secona = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "secona";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kate
     ];
   };
+
+  users.extraGroups.docker.members = [ "secona" ];
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -111,15 +124,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     git
     wget
     discord
     home-manager
     nil
     zoom-us
+    catppuccin-kde
     ripgrep
+    openssl
+    zlib
+    devenv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -148,5 +163,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

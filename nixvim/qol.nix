@@ -36,19 +36,19 @@
   plugins.telescope = {
     enable = true;
     keymaps = {
-      "<Leader>ff" = {
+      "<leader>ff" = {
         action = "find_files";
       };
-      "<Leader>fg" = {
+      "<leader>fg" = {
         action = "live_grep";
       };
-      "<Leader>fb" = {
+      "<leader>fb" = {
         action = "buffers";
       };
-      "<Leader>fh" = {
+      "<leader>fh" = {
         action = "help_tags";
       };
-      "<Leader>rf" = {
+      "<leader>rf" = {
         action = "lsp_references";
       };
     };

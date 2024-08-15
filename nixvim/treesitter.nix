@@ -10,9 +10,12 @@
     enable = true;
     settings = {
       mode = "topline";
+      on_attach = ''
+        function()
+          vim.cmd([[ hi TreesitterContextBottom gui=underline guisp=#cba6f7 ]])
+        end
+      '';
     };
-    # TODO
-    # color of line
   };
 
   plugins.rainbow-delimiters = {
