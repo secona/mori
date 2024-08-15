@@ -6,7 +6,7 @@
     settings = {
       float_opts.border = "rounded";
       direction = "float";
-      open_mapping = "[[<C-_>]]";
+      open_mapping = "[[<C-/>]]";
     };
   };
 }
