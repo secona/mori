@@ -33,11 +33,11 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
@@ -79,75 +79,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Starship
-  programs.starship = {
-    enable = true;
-    settings = pkgs.lib.importTOML ./config/starship.toml;
-  };
-
-  # TMUX
-  programs.tmux = {
-    enable = true;
-    baseIndex = 1;
-    clock24 = true;
-    keyMode = "vi";
-    terminal = "screen-256color";
-
-    extraConfigBeforePlugins = ''
-      set -g @resurrect-save-interval 15
-      set -g @continuum-restore 'on'
-
-      set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_right_separator "█"
-
-      set -g base-index 1
-      setw -g pane-base-index 1
-
-      set -g status-keys vi
-      setw -g mode-keys vi
-      setw -g mouse on
-      setw -g monitor-activity on
-
-      # Shift + Alt
-      bind-key -n M-H resize-pane -L
-      bind-key -n M-J resize-pane -D
-      bind-key -n M-K resize-pane -U
-      bind-key -n M-L resize-pane -R
-
-      # Control + Alt
-      bind-key -n C-M-l next-window
-      bind-key -n C-M-h previous-window
-
-      unbind -n M-h
-      unbind -n M-l
-
-      bind-key v split-window -v -c "#{pane_current_path}"
-      bind-key h split-window -h -c "#{pane_current_path}"
-    '';
-
-    plugins = with pkgs.tmuxPlugins; [
-      sensible
-      resurrect
-      continuum
-      vim-tmux-navigator
-      catppuccin
-    ];
-  };
-
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-  };
-
   environment.etc."xdg/kitty/kitty.conf".source = ./config/kitty/kitty.conf;
 
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
       inter
+      roboto
     ];
   };
 
@@ -192,7 +130,84 @@
     openssl
     zlib
     devenv
+    zoxide
   ];
+
+  # Starship
+  programs.starship = {
+    enable = true;
+    settings = pkgs.lib.importTOML ./config/starship.toml;
+  };
+
+  # TMUX
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    clock24 = true;
+    keyMode = "vi";
+    terminal = "screen-256color";
+
+    extraConfigBeforePlugins = ''
+      set -g @resurrect-save-interval 15
+      set -g @continuum-restore 'on'
+
+      set -g @catppuccin_window_default_text "#W"
+      set -g @catppuccin_status_left_separator "█"
+      set -g @catppuccin_status_right_separator "█"
+
+      set -g base-index 1
+      setw -g pane-base-index 1
+
+      set -g status-keys vi
+      setw -g mode-keys vi
+      setw -g mouse on
+      setw -g monitor-activity on
+
+      # Shift + Alt
+      bind-key -n M-H resize-pane -L
+      bind-key -n M-J resize-pane -D
+      bind-key -n M-K resize-pane -U
+      bind-key -n M-L resize-pane -R
+
+      # Control + Alt
+      bind-key -n C-M-l next-window
+      bind-key -n C-M-h previous-window
+
+      unbind -n M-h
+      unbind -n M-l
+
+      bind-key v split-window -v -c "#{pane_current_path}"
+      bind-key h split-window -h -c "#{pane_current_path}"
+    '';
+
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      resurrect
+      continuum
+      vim-tmux-navigator
+      catppuccin
+    ];
+  };
+
+  # ZSH
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellInit = ''
+      ZSH_TMUX_AUTOSTART=true
+      ZSH_TMUX_AUTOSTART_ONCE=false
+      ZSH_TMUX_AUTOCONNECT=true
+      ZOXIDE_CMD_OVERRIDE=cd
+    '';
+
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "tmux" "zoxide" ];
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
