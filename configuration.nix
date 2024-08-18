@@ -14,6 +14,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  zramSwap = {
+    enable = true;
+    algorithm = "lz4";
+  };
+
   # Nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
