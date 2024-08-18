@@ -33,17 +33,16 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.xserver = {
+    enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -103,9 +102,6 @@
     isNormalUser = true;
     description = "secona";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      kate
-    ];
   };
 
   users.extraGroups.docker.members = [ "secona" ];
@@ -125,13 +121,53 @@
     home-manager
     nil
     zoom-us
-    catppuccin-kde
     ripgrep
     openssl
     zlib
     devenv
     zoxide
+
+    # RICING !!!
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.media-controls
+    gnomeExtensions.logo-menu
+    gnomeExtensions.system-monitor
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.space-bar
+    gnomeExtensions.pop-shell
+
+    gnomeExtensions.just-perfection
+    gnomeExtensions.forge
   ];
+
+  environment.gnome.excludePackages = with pkgs; [
+    gedit
+    gnome-tour
+    gnome-connections
+    xterm
+
+    gnome.gnome-music
+    gnome.gnome-contacts
+    gnome.gnome-terminal
+    gnome.gnome-characters
+    gnome.gnome-shell-extensions
+    gnome.gnome-weather
+    gnome.gnome-maps
+
+    gnome.epiphany
+    gnome.geary
+    gnome.evince
+    gnome.cheese
+    gnome.totem
+    gnome.tali
+    gnome.iagno
+    gnome.hitori
+    gnome.atomix
+  ];
+
+  # dconf
+  programs.dconf.enable = true;
 
   # Starship
   programs.starship = {

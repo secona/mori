@@ -62,7 +62,7 @@ in {
   catppuccin.enable = true;
   
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    GTK_THEME = "catppuccin";
   };
 
   # Let Home Manager install and manage itself.
@@ -102,5 +102,72 @@ in {
   # Google Chrome
   programs.google-chrome = {
     enable = true;
+  };
+
+  # Ricing
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false; # enables user extensions
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          tray-icons-reloaded.extensionUuid
+          media-controls.extensionUuid
+          logo-menu.extensionUuid
+          system-monitor.extensionUuid
+          dash-to-dock.extensionUuid
+          space-bar.extensionUuid
+          pop-shell.extensionUuid
+        ];
+      };
+
+      "org/gnome/desktop/wm/keybindings" = {
+        minimize = [];
+      };
+
+      "org/gnome/shell/extensions/blur-my-shell" = {
+        brightness = 0.75;
+        noise-amount = 0;
+      };
+
+      "org/gnome/shell/extensions/Logo-menu" = {
+        menu-button-icon-image = 23;
+        menu-button-icon-size = 20;
+        symbolic-icon = true;
+        use-custom-icon = false;
+      };
+    };
+  };
+
+  gtk = {
+    enable = true;
+
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 }
