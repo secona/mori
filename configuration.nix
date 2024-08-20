@@ -5,16 +5,16 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader = {
     grub = {
       enable = true;
       device = "nodev";
       useOSProber = true;
+      efiSupport = true;
     };
 
     efi.canTouchEfiVariables = true;
@@ -101,21 +101,29 @@
 
   virtualisation.docker = {
     enable = true;
-    # rootless = {
-    #   enable = true;
-    #   setSocketVariable = true;
-    # };
   };
+
+  # virtualisation.virtualbox = {
+  #   guest = {
+  #     enable = true;
+  #     clipboard = true;
+  #   };
+  #   host = {
+  #     enable = true;
+  #     enableExtensionPack = true;
+  #   };
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.secona = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "secona";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
   };
 
   users.extraGroups.docker.members = [ "secona" ];
+  users.extraGroups.vboxusers.members = [ "secona" ];
 
   # Install firefox.
   programs.firefox.enable = true;
