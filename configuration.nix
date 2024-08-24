@@ -91,6 +91,12 @@
 
   environment.etc."xdg/kitty/kitty.conf".source = ./config/kitty/kitty.conf;
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+  };
+
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
@@ -145,6 +151,8 @@
     zlib
     devenv
     zoxide
+    vlc
+    bruno
 
     # RICING !!!
     gnomeExtensions.blur-my-shell

@@ -23,6 +23,10 @@
     
     servers.tsserver.enable = true;
 
+    servers.phpactor.enable = true;
+
+    servers.prismals.enable = true;
+
     keymaps = {
       lspBuf = {
         "<F2>" = "rename";
