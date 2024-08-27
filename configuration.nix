@@ -153,6 +153,13 @@
     zoxide
     vlc
     bruno
+    logisim-evolution
+    gnome-online-accounts
+    zathura
+
+    wine
+    winetricks
+    wineWowPackages.stable
 
     # RICING !!!
     gnomeExtensions.blur-my-shell
@@ -163,6 +170,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.space-bar
     gnomeExtensions.pop-shell
+    gnomeExtensions.clipboard-indicator
 
     gnomeExtensions.just-perfection
     gnomeExtensions.forge

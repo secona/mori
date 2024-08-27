@@ -119,6 +119,7 @@ in {
           dash-to-dock.extensionUuid
           space-bar.extensionUuid
           pop-shell.extensionUuid
+          clipboard-indicator.extensionUuid
         ];
       };
 
