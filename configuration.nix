@@ -109,16 +109,16 @@
     enable = true;
   };
 
-  # virtualisation.virtualbox = {
-  #   guest = {
-  #     enable = true;
-  #     clipboard = true;
-  #   };
-  #   host = {
-  #     enable = true;
-  #     enableExtensionPack = true;
-  #   };
-  # };
+  virtualisation.virtualbox = {
+    guest = {
+      enable = true;
+      clipboard = true;
+    };
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.secona = {
