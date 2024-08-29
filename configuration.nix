@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   imports = [
@@ -146,7 +146,6 @@
     discord
     home-manager
     nil
-    zoom-us
     ripgrep
     openssl
     zlib
@@ -175,7 +174,9 @@
 
     gnomeExtensions.just-perfection
     gnomeExtensions.forge
-  ];
+  ] ++ (with pkgs-unstable; [
+    zoom-us
+  ]);
 
   environment.gnome.excludePackages = with pkgs; [
     gedit

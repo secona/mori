@@ -43,6 +43,11 @@
     };
   };
 
+  plugins.nvim-jdtls = {
+    enable = true;
+    data = "~/.cache/jdtls/workspace";
+  };
+
   plugins.fidget = {
     enable = true;
     notification = {
