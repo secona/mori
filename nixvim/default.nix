@@ -48,4 +48,7 @@
     ./ui.nix
   ];
 
+  plugins.presence-nvim = {
+    enable = true;
+  };
 }
