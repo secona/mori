@@ -27,6 +27,9 @@
 
     servers.prismals.enable = true;
 
+    servers.ruff.enable = true;
+    servers.ruff-lsp.enable = true;
+
     keymaps = {
       lspBuf = {
         "<F2>" = "rename";
