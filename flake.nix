@@ -14,7 +14,7 @@
   };
   outputs = { nixpkgs, nixpkgs-unstable, home-manager, catppuccin, nixvim, ... }@inputs: let
     system = "x86_64-linux";
-    hostname = "nixos";
+    hostname = "osiris";
     username = "secona";
 
     pkgs = import nixpkgs {
@@ -31,7 +31,7 @@
       inherit pkgs pkgs-unstable system hostname username inputs;
     };
   in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.osiris = nixpkgs.lib.nixosSystem {
       inherit system;
 
       specialArgs = { inherit pkgs-unstable; };
