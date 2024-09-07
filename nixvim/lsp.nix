@@ -27,8 +27,9 @@
 
     servers.prismals.enable = true;
 
-    servers.ruff.enable = true;
-    servers.ruff-lsp.enable = true;
+    servers.pyright.enable = true;
+
+    servers.gopls.enable = true;
 
     keymaps = {
       lspBuf = {
