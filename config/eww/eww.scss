@@ -1,0 +1,29 @@
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+.bar {
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font";
+  background-color: #11111b;
+  color: #cdd6f4;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.clock {
+  color: #a6e3a1;
+  text-decoration: underline;
+}
+
+.battery {
+  color: #b4befe;
+}
+
+.sysinfo {
+  color: #fab387;
+}

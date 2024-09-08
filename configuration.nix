@@ -45,11 +45,20 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+
   services.xserver = {
     enable = true;
 
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    videoDrivers = [ "amdgpu" ];
 
     xkb = {
       layout = "us";
@@ -62,18 +71,17 @@
 
   services.blueman.enable = true;
 
-  services.postgresql = {
-    enable = true;
-    # authentication = pkgs.lib.mkOverride 10 ''
-    #   #type database  DBuser  auth-method
-    #   local all       all     trust
-    # '';
-  };
+  services.postgresql.enable = true;
+
+  hardware.opengl.enable = true;
 
   # Enable sound with pipewire.
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
+
   security.rtkit.enable = true;
+  security.polkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -93,7 +101,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
 
   fonts = {
@@ -133,6 +141,10 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.hyprland.enable = true;
+  
+  programs.dconf.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -147,63 +159,25 @@
     ripgrep
     openssl
     zlib
+    jq
+    socat
     devenv
     zoxide
     vlc
     bruno
     logisim-evolution
-    gnome-online-accounts
     zathura
     zoom-us
+    dolphin
+    libnotify
+    grim
+    slurp
+    wl-clipboard
 
     wine
     winetricks
     wineWowPackages.stable
-
-    # RICING !!!
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.media-controls
-    gnomeExtensions.logo-menu
-    gnomeExtensions.system-monitor
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.space-bar
-    gnomeExtensions.pop-shell
-    gnomeExtensions.clipboard-indicator
-
-    gnomeExtensions.just-perfection
-    gnomeExtensions.forge
-  ] ++ (with pkgs-unstable; [
-    # zoom-us
-  ]);
-
-  environment.gnome.excludePackages = with pkgs; [
-    gedit
-    gnome-tour
-    gnome-connections
-    xterm
-
-    gnome.gnome-music
-    gnome.gnome-contacts
-    gnome.gnome-terminal
-    gnome.gnome-characters
-    gnome.gnome-shell-extensions
-    gnome.gnome-weather
-    gnome.gnome-maps
-
-    gnome.epiphany
-    gnome.geary
-    gnome.evince
-    gnome.cheese
-    gnome.totem
-    gnome.tali
-    gnome.iagno
-    gnome.hitori
-    gnome.atomix
   ];
-
-  # dconf
-  programs.dconf.enable = true;
 
   # Starship
   programs.starship = {
