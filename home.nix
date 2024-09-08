@@ -94,8 +94,17 @@ in {
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
+    catppuccin.enable = true;
     font = {
       name = "JetBrainsMono Nerd Font";
+    };
+    settings = {
+      bold_font = "auto";
+      italic_font = "auto";
+      bold_italic_font = "auto";
+      hide_window_decorations = "yes";
+      background_opacity = "0.9";
+      background_tint = "0.99";
     };
   };
 

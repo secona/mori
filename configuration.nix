@@ -90,8 +90,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  environment.etc."xdg/kitty/kitty.conf".source = ./config/kitty/kitty.conf;
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
