@@ -3,27 +3,39 @@
 }
 
 .bar {
+  font-size: 14px;
   font-weight: bold;
   font-family: "JetBrainsMono Nerd Font";
-  background-color: #11111b;
   color: #cdd6f4;
-  padding: 5px 10px;
+}
+
+.island {
+  padding: 5px 15px;
   border-radius: 10px;
+  background-color: #11111b;
 }
 
 .logo {
-  font-size: 20px;
+  font-size: 15px;
 }
 
-.clock {
-  color: #a6e3a1;
-  text-decoration: underline;
-}
-
-.battery {
+.battery, .clock, .date {
   color: #b4befe;
 }
 
 .sysinfo {
   color: #fab387;
+}
+
+tooltip {
+     border-radius: 4px;
+     background-color: #bd93f9;
+}
+
+.workspace {
+  border-bottom: 1px solid #11111b;
+}
+
+.active {
+  border-bottom: 1px solid white;
 }

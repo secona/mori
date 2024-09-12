@@ -73,6 +73,7 @@ in {
     enable = true;
     userName = "secona";
     userEmail = "77039267+secona@users.noreply.github.com";
+    package = pkgs.gitFull;
   };
 
   # Btop
@@ -111,5 +112,10 @@ in {
   # Google Chrome
   programs.google-chrome = {
     enable = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    catppuccin.enable = true;
   };
 }

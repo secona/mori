@@ -58,8 +58,6 @@
   services.xserver = {
     enable = true;
 
-    videoDrivers = [ "amdgpu" ];
-
     xkb = {
       layout = "us";
       variant = "";
@@ -101,7 +99,10 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
   };
 
   fonts = {
@@ -151,6 +152,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    tldr
+    unzip
     git
     wget
     discord
@@ -168,11 +171,11 @@
     logisim-evolution
     zathura
     zoom-us
-    dolphin
     libnotify
     grim
     slurp
     wl-clipboard
+    postman
 
     wine
     winetricks

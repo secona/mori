@@ -1,22 +1,66 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
-  gtk.enable = true;
+  home.packages = with pkgs; [
+    dolphin
+    rofi-power-menu
+    rofi-emoji
+    playerctl
+    brightnessctl
+  ];
+
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
+    catppuccin.enable = true;
 
     settings = {
-      monitor = ",preferred,auto,1";
+      monitor = ", 1920x1080@60, auto, 1";
 
       "$mod" = "SUPER";
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi -show drun";
+      "$powerMenu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
+      "$emojiMenu" = "rofi -modi emoji:rofi-emoji -show emoji";
 
       exec-once = [
         "eww open bar"
       ];
+
+      general = {
+        gaps_out = 10;
+        resize_on_border = true;
+      };
+
+      animations = {
+        enabled = false;
+      };
 
       input = {
         touchpad = {
@@ -24,8 +68,17 @@
         };
       };
 
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_distance = 100;
+      };
+
       decoration = {
         rounding = 12;
+      };
+
+      misc = {
+        disable_hyprland_logo = true;
       };
 
       debug = {
@@ -41,14 +94,22 @@
         "$mod, R, exec, $menu"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
-
-        "$mod SHIFT, right, workspace, e+1"
-        "$mod SHIFT, left, workspace, e-1"
+        "$mod, F, fullscreen"
+        "$mod, escape, exec, $powerMenu"
+        "$mod, code:60, exec, $emojiMenu"
 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
+
+        "$mod CTRL, right, workspace, e+1"
+        "$mod CTRL, left, workspace, e-1"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
@@ -80,13 +141,24 @@
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ",XF86MonBrightnessUp, exec, brightnessctl s 5%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+      ];
+
+      bindl = [
+        ",XF86AudioNext, exec, playerctl next"
+        ",XF86AudioPause, exec, playerctl play-pause"
+        ",XF86AudioPlay, exec, playerctl play-pause"
+        ",XF86AudioPrev, exec, playerctl previous"
       ];
     };
   };
 
   programs.rofi = {
+    package = pkgs.rofi-wayland;
     enable = true;
     catppuccin.enable = true;
+    terminal = "kitty";
   };
 
   programs.eww = {
@@ -96,6 +168,19 @@
 
   programs.hyprlock = {
     enable = true;
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      splash = false;
+      preload = [
+        ("" + ./wallpapers/japan-alley.png)
+      ];
+      wallpaper = [
+        ("," + ./wallpapers/japan-alley.png)
+      ];
+    };
   };
 
   services.dunst = {

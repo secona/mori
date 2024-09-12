@@ -1,9 +1,35 @@
 (deflisten workspaces_list :initial "[]" "sh ./scripts/workspaces.sh all")
 (deflisten current_workspace :initial "1" "sh ./scripts/workspaces.sh active")
 
+(deflisten media :initial "" "sh ./scripts/media.sh")
+
+(defpoll wifi_color :interval "10s" "sh ./scripts/wifi.sh --COLOR")
+(defpoll wifi_message :interval "10s" :initial "Unknown" "sh ./scripts/wifi.sh --MESSAGE")
+(defpoll wifi_icon :interval "10s" :initial "󰤯" "sh ./scripts/wifi.sh --ICON")
+
+(defpoll battery_icon :interval "10s" "sh ./scripts/battery.sh icon")
+
+(defwidget media_control []
+  (eventbox :space-evenly false :spacing 20 :onclick "playerctl play-pause"
+    (label :class "label" :truncate true :limit-width 30 :text "${media}")))
+
+(defwidget brightness []
+  (box :style "color: #a6e3a1" "󰃟"))
+
+(defwidget microphone []
+  ;; (box :style "color: #a6e3a1" ""))
+  (box :style "color: #f38ba8" ""))
+
+(defwidget volume []
+  ;; (box :style "color: #a6e3a1" ""))
+  (box :style "color: #f38ba8" ""))
+
+(defwidget wifi []
+  (box :tooltip "${wifi_message}" :style "color: ${wifi_color}" "${wifi_icon}"))
+
 (defwidget logo []
   (button :class "logo"
-    (label :text "  ")))
+    (label :text "")))
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -11,18 +37,23 @@
        :space-evenly true
        :halign "start"
     (box :orientation "h"
+         :spacing 10
          :space-evenly false
          :class "workspaces"
          :hexpand true
       (for workspace in workspaces_list
         (button :onclick "hyprctl dispatch workspace ${workspace.id}" 
-          "${current_workspace == workspace.id ? " " : " "}")))))
+                :class "workspace ${workspace.id == current_workspace ? "active" : ""}"
+          "${workspace.id}")))))
 
 (defwidget clock []
-  (box :class "clock" "${formattime(EWW_TIME, '%a, %d %b %Y %H:%M:%S')}"))
+  (box :class "clock" " ${formattime(EWW_TIME, '󰥔 %H:%M:%S')}"))
+
+(defwidget date []
+  (box :class "date" " ${formattime(EWW_TIME, '󰃭 %d %b %Y')}"))
 
 (defwidget battery []
-  (box :class "battery" "󰁹 ${EWW_BATTERY["BAT1"].capacity}%"))
+  (box :class "battery" "${battery_icon}${EWW_BATTERY["BAT1"].capacity}%"))
 
 (defwidget memory []
   (box "󰍛 ${round(EWW_RAM.used_mem_perc, 0)}%"))
@@ -45,25 +76,31 @@
 
 (defwidget bar []
   (box :class "bar-widget" :orientation "h" :space-evenly true
-    (box :orientation "h" :space-evenly false :halign "start"
+    (box :orientation "h" :space-evenly false :halign "start" :spacing 20 :class "island"
       (logo)
-      (workspaces))
+      (clock)
+      (date)
+      (media_control))
     
-    (box :orientation "h" :space-evenly false :halign "center"
-      (clock))
+    (box :orientation "h" :space-evenly false :halign "center" :spacing 20 :class "island"
+      (workspaces))
 
-    (box :orientation "h" :space-evenly false :halign "end" :spacing 20
+    (box :orientation "h" :space-evenly false :halign "end" :spacing 20 :class "island"
       (systray)
       (sysinfo)
+      (microphone)
+      (volume)
+      (brightness)
+      (wifi)
       (battery))))
 
 (defwindow bar
   :monitor 0
   :exclusive true
   :windowtype "dock"
-  :geometry (geometry :x "0.5%"
+  :geometry (geometry :x "0%"
                       :y "0.5%"
-                      :width "100%"
+                      :width "99%"
                       :height "10px"
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")
