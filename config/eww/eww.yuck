@@ -1,28 +1,25 @@
 (deflisten workspaces_list :initial "[]" "sh ./scripts/workspaces.sh all")
-(deflisten current_workspace :initial "1" "sh ./scripts/workspaces.sh active")
 
 (deflisten media :initial "" "sh ./scripts/media.sh")
 
 (defpoll wifi_color :interval "10s" "sh ./scripts/wifi.sh --COLOR")
 (defpoll wifi_message :interval "10s" :initial "Unknown" "sh ./scripts/wifi.sh --MESSAGE")
 (defpoll wifi_icon :interval "10s" :initial "󰤯" "sh ./scripts/wifi.sh --ICON")
-
 (defpoll battery_icon :interval "10s" "sh ./scripts/battery.sh icon")
+(defpoll volume_icon :interval "2s" "sh ./scripts/audio.sh volume_icon")
+(defpoll volume_color :interval "2s" "sh ./scripts/audio.sh volume_color")
+(defpoll input_volume_icon :interval "2s" "sh ./scripts/audio.sh input_volume_icon")
+(defpoll input_volume_color :interval "2s" "sh ./scripts/audio.sh input_volume_color")
 
 (defwidget media_control []
-  (eventbox :space-evenly false :spacing 20 :onclick "playerctl play-pause"
+  (eventbox :visible {media != ""} :space-evenly false :spacing 20 :onclick "playerctl play-pause"
     (label :class "label" :truncate true :limit-width 30 :text "${media}")))
 
-(defwidget brightness []
-  (box :style "color: #a6e3a1" "󰃟"))
-
 (defwidget microphone []
-  ;; (box :style "color: #a6e3a1" ""))
-  (box :style "color: #f38ba8" ""))
+  (box :style "color: ${input_volume_color}" "${input_volume_icon}"))
 
 (defwidget volume []
-  ;; (box :style "color: #a6e3a1" ""))
-  (box :style "color: #f38ba8" ""))
+  (box :style "color: ${volume_color}" "${volume_icon}"))
 
 (defwidget wifi []
   (box :tooltip "${wifi_message}" :style "color: ${wifi_color}" "${wifi_icon}"))
@@ -37,14 +34,14 @@
        :space-evenly true
        :halign "start"
     (box :orientation "h"
-         :spacing 10
          :space-evenly false
          :class "workspaces"
          :hexpand true
       (for workspace in workspaces_list
-        (button :onclick "hyprctl dispatch workspace ${workspace.id}" 
-                :class "workspace ${workspace.id == current_workspace ? "active" : ""}"
-          "${workspace.id}")))))
+        (button :onclick "swaymsg workspace number ${workspace.num}" 
+                :width 25
+                :class "workspace ${workspace.focused ? "active" : ""}"
+          "${workspace.num}")))))
 
 (defwidget clock []
   (box :class "clock" " ${formattime(EWW_TIME, '󰥔 %H:%M:%S')}"))
@@ -76,7 +73,7 @@
 
 (defwidget bar []
   (box :class "bar-widget" :orientation "h" :space-evenly true
-    (box :orientation "h" :space-evenly false :halign "start" :spacing 20 :class "island"
+    (box :orientation "h" :space-evenly false :halign "start" :spacing 20 :class "island" :style "padding: 0 10px;"
       (logo)
       (clock)
       (date)
@@ -85,14 +82,15 @@
     (box :orientation "h" :space-evenly false :halign "center" :spacing 20 :class "island"
       (workspaces))
 
-    (box :orientation "h" :space-evenly false :halign "end" :spacing 20 :class "island"
-      (systray)
-      (sysinfo)
-      (microphone)
-      (volume)
-      (brightness)
-      (wifi)
-      (battery))))
+    (box :orientation "h" :space-evenly false :halign "end" :spacing 10
+      (box :space-evenly false :halign "end" :class "island" :spacing 20 :style "padding: 0 10px;"
+        (systray)
+        (sysinfo))
+      (box :space-evenly false :halign "end" :class "island" :spacing 10 :style "padding: 0 10px;"
+        (microphone)
+        (volume)
+        (wifi)
+        (battery)))))
 
 (defwindow bar
   :monitor 0

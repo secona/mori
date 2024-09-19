@@ -7,7 +7,8 @@ let
   };
 in {
   imports = [
-    (import ./hypr.nix { inherit pkgs; })
+    # (import ./hypr.nix { inherit pkgs; })
+    (import ./sway.nix { inherit pkgs; })
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

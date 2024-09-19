@@ -49,7 +49,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
       };
     };
@@ -57,6 +57,7 @@
 
   services.xserver = {
     enable = true;
+    videoDrivers = [ "amdgpu" ];
 
     xkb = {
       layout = "us";
@@ -79,6 +80,7 @@
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
+  security.pam.services.swaylock = {};
 
   services.pipewire = {
     enable = true;
@@ -101,7 +103,7 @@
     wlr.enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
     ];
   };
 
@@ -141,8 +143,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  programs.hyprland.enable = true;
   
   programs.dconf.enable = true;
 
@@ -152,6 +152,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pulseaudio
     tldr
     unzip
     git
@@ -170,7 +171,6 @@
     bruno
     logisim-evolution
     zathura
-    zoom-us
     libnotify
     grim
     slurp
@@ -180,7 +180,9 @@
     wine
     winetricks
     wineWowPackages.stable
-  ];
+  ] ++ (with pkgs-unstable; [
+    zoom-us
+  ]);
 
   # Starship
   programs.starship = {

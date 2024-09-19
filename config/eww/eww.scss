@@ -10,9 +10,8 @@
 }
 
 .island {
-  padding: 5px 15px;
-  border-radius: 10px;
   background-color: #11111b;
+  border: 1px solid #89b4fa;
 }
 
 .logo {
@@ -28,14 +27,15 @@
 }
 
 tooltip {
-     border-radius: 4px;
-     background-color: #bd93f9;
+  border-radius: 4px;
+  background-color: #bd93f9;
 }
 
 .workspace {
-  border-bottom: 1px solid #11111b;
+  border-bottom: 2px solid transparent;
 }
 
 .active {
-  border-bottom: 1px solid white;
+  background-color: #89b4fa;
+  color: #313244;
 }
