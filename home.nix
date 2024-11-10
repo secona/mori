@@ -29,6 +29,8 @@ in {
   # environment.
   home.packages = [
     nvim
+    pkgs.xournalpp
+    pkgs.libreoffice
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -107,6 +109,7 @@ in {
       hide_window_decorations = "yes";
       background_opacity = "0.9";
       background_tint = "0.99";
+      background_blur = "1";
     };
   };
 

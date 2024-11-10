@@ -101,9 +101,18 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    xdgOpenUsePortal = true;
+
+    config = {
+      common = {
+        default = "wlr";
+      };
+    };
+
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
+      xdg-desktop-portal-xapp
     ];
   };
 
@@ -151,6 +160,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     pulseaudio
     tldr
@@ -176,12 +186,12 @@
     slurp
     wl-clipboard
     postman
+    zoom-us
 
     wine
     winetricks
     wineWowPackages.stable
   ] ++ (with pkgs-unstable; [
-    zoom-us
   ]);
 
   # Starship

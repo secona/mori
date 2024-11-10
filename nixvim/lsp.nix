@@ -31,6 +31,12 @@
 
     servers.gopls.enable = true;
 
+    servers.volar.enable = true;
+
+    servers.astro.enable = true;
+
+    servers.ccls.enable = true;
+
     keymaps = {
       lspBuf = {
         "<F2>" = "rename";
@@ -49,7 +55,7 @@
 
   plugins.nvim-jdtls = {
     enable = true;
-    data = "~/.cache/jdtls/workspace";
+    data = "/tmp/jdtls";
   };
 
   plugins.fidget = {

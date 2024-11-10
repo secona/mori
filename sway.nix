@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    dolphin
+    cinnamon.nemo
     playerctl
     brightnessctl
     flameshot
@@ -10,6 +10,11 @@
 
   gtk = {
     enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
@@ -23,16 +28,27 @@
   wayland.windowManager.sway = {
     enable = true;
 
-    config = rec {
+    config = let
+      kitty = "${pkgs.kitty}/bin/kitty";
+      wpctl = "${pkgs.wireplumber}/bin/wpctl";
+      brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+      wlogout = "${pkgs.wlogout}/bin/wlogout";
+      flameshot = "${pkgs.flameshot}/bin/flameshot";
+    in rec {
       modifier = "Mod4";
-      terminal = "kitty"; 
+      terminal = kitty; 
 
-      bars = [];
-
-      gaps = {
-        inner = 5;
-        outer = 5;
-      };
+      bars = [
+        {
+          fonts = {
+            names = ["JetBrainsMono Nerd Font"];
+            size = 9.0;
+          };
+          position = "bottom";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
+          colors.background = "#11111b";
+        }
+      ];
 
       input = {
         "type:touchpad" = {
@@ -49,7 +65,8 @@
 
       window = {
         titlebar = false;
-        border = 1;
+        border = 2;
+        hideEdgeBorders = "smart";
       };
 
       colors = {
@@ -97,10 +114,11 @@
       };
 
       keybindings = {
-        "${modifier}+r" = "exec fuzzel";
+        "${modifier}+r" = "exec wofi";
         "${modifier}+c" = "kill";
-        "${modifier}+q" = "exec ${pkgs.kitty}/bin/kitty";
-        "${modifier}+Escape" = "exec ${pkgs.wlogout}/bin/wlogout";
+        "${modifier}+q" = "exec ${kitty}";
+        "${modifier}+Escape" = "exec ${wlogout}";
+        "${modifier}+n" = "exec swaync-client -t -sw";
 
         "${modifier}+Left" = "focus left";
         "${modifier}+Right" = "focus right";
@@ -142,44 +160,40 @@
         "${modifier}+v" = "splitv";
         "${modifier}+Shift+space" = "floating toggle";
 
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-        "XF86MonBrightnessUp" = "exec brightnessctl s 5%+";
-        "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
+        "XF86AudioRaiseVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioMute" = "exec ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioMicMute" = "exec ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "XF86MonBrightnessUp" = "exec ${brightnessctl} s 5%+";
+        "XF86MonBrightnessDown" = "exec ${brightnessctl} s 5%-";
 
-        "Print" = "exec flameshot gui";
+        "Print" = "exec ${flameshot} gui";
       };
     };
+
+    extraSessionCommands = ''
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
 
     extraConfig = ''
       bindgesture swipe:right workspace prev
       bindgesture swipe:left workspace next
-
-      exec eww open bar
     '';
   };
 
   services.swayidle = {
     enable = true;
-    # events = [
-    #   {
-    #     event = "before-sleep";
-    #     command = "${pkgs.swaylock}/bin/swaylock";
-    #   }
-    # ];
-    # timeouts = [
-    #   {
-    #     timeout = 30;
-    #     command = "${pkgs.brightnessctl}/bin/brightnessctl -s set 0%";
-    #     resumeCommand = "${pkgs.brightnessctl}/bin/brightnessctl -r";
-    #   }
-    #   {
-    #     timeout = 60;
-    #     command = "${pkgs.systemd}/bin/systemctl suspend";
-    #   }
-    # ];
+    timeouts = [
+      {
+        timeout = 30;
+        command = "${pkgs.brightnessctl}/bin/brightnessctl -s set 0%";
+        resumeCommand = "${pkgs.brightnessctl}/bin/brightnessctl -r";
+      }
+      {
+        timeout = 60;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
   };
 
   programs.swaylock = {
@@ -199,43 +213,129 @@
     enable = true;
   };
 
-  programs.fuzzel = {
+  programs.i3status-rust = {
     enable = true;
-    catppuccin.enable = true;
-
-    settings = {
-      main = {
-        terminal = "${pkgs.kitty}/bin/kitty";
-        font = "JetBrainsMono Nerd Font:size=10";
-      };
-      colors = {
-        background = "11111bff";
-      };
-      border = {
-        width = 1;
-        radius = 0;
+    bars = {
+      default = {
+        blocks = [
+          {
+            block = "music";
+            format = " $icon {$play $combo.str(max_w:20)} ";
+            theme_overrides.idle_fg = "#cdd6f4";
+          }
+          {
+            block = "sound";
+          }
+          {
+            block = "cpu";
+            interval = 1;
+            theme_overrides.idle_fg = "#fab387";
+          }
+          {
+            block = "memory";
+            format = " $icon $mem_used_percents  $icon_swap $swap_used_percents ";
+            theme_overrides.idle_fg = "#fab387";
+          }
+          {
+            block = "disk_space";
+            info_type = "available";
+            format = " $icon $percentage ";
+            path = "/";
+            interval = 60;
+            theme_overrides.idle_fg = "#fab387";
+          }
+          {
+            block = "net";
+            format = " $icon {$signal_strength $ssid} ";
+            theme_overrides.idle_fg = "#f5e0dc";
+          }
+          {
+            block = "battery";
+            format = " $icon $percentage ";
+            full_threshold = 95;
+          }
+          {
+            block = "time";
+            format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
+            interval = 60;
+            theme_overrides.idle_fg = "#89b4fa";
+          }
+        ];
+        theme = "ctp-mocha";
+        icons = "material-nf";
+        settings = {
+          theme = {
+            theme = "ctp-mocha";
+            overrides = {
+              idle_bg = "#11111b";
+              idle_fg = "#cdd6f4";
+              info_bg = "#11111b";
+              info_fg = "#89b4fa";
+              good_bg = "#11111b";
+              good_fg = "#a6e3a1";
+              warning_bg = "#11111b";
+              warning_fg = "#eba0ac";
+              critical_bg = "#11111b";
+              critical_fg = "#f38ba8";
+              separator = "";
+              separator_bg = "auto";
+              separator_fg = "auto";
+            };
+          };
+        };
       };
     };
   };
 
-  programs.eww = {
+  programs.swayr = {
     enable = true;
-    configDir = ./config/eww;
-  };
-
-  services.dunst = {
-    enable = true;
-    catppuccin.enable = true;
 
     settings = {
-      global = {
-        font = "JetBrainsMono Nerd Font 10";
-        origin = "top-center";
-        frame_width = 1;
-        mouse_left_click = "do_action, close_current";
-        mouse_middle_click = "close_current";
-        mouse_right_click = "close_all";
+      menu = {
+        executable = "${pkgs.wofi}/bin/wofi";
+        args = [
+          "--show=dmenu"
+          "--allow-markup"
+          "--allow-images"
+          "--insensitive"
+          "--cache-file=/dev/null"
+          "--parse-search"
+          "--height=40%"
+          "--prompt={prompt}"
+        ];
       };
     };
+  };
+
+  programs.wofi = {
+    enable = true;
+    style = builtins.readFile ./config/wofi/style.css;
+    settings = {
+      show = "drun";
+      width = 400;
+      height = 600;
+      always_parse_args = true;
+      show_all = true;
+      term = "kitty";
+      hide_scroll = true;
+      no_actions = true;
+      print_command = true;
+      insensitive = true;
+      prompt = "";
+      columns = 1;
+      allow_images = true;
+    };
+  };
+
+  services.swaync = {
+    enable = true;
+    style = builtins.readFile ./config/swaync/style.css;
+    settings = {
+      positionY = "bottom";
+    };
+  };
+
+  services.swayosd = {
+    enable = true;
   };
 }
