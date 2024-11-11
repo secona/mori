@@ -183,6 +183,12 @@
 
   services.swayidle = {
     enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
+      }
+    ];
     timeouts = [
       {
         timeout = 30;

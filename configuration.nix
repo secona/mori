@@ -21,11 +21,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  zramSwap = {
-    enable = true;
-    algorithm = "lz4";
-  };
-
   # Nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
