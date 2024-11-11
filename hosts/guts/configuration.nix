@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, inputs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -24,7 +24,7 @@
   # Nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "osiris"; # Define your hostname.
+  networking.hostName = "guts"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -192,7 +192,7 @@
   # Starship
   programs.starship = {
     enable = true;
-    settings = pkgs.lib.importTOML ./config/starship.toml;
+    settings = pkgs.lib.importTOML ../../config/starship.toml;
   };
 
   # TMUX
