@@ -1,13 +1,11 @@
 {
   inputs,
-  config,
   pkgs,
-  system,
   ...
 }: {
   imports = [
-    (import ./../../sway.nix {inherit pkgs;})
-    (import ./../../nixvim {inherit inputs;})
+    (import ./../../modules/home/wms/sway.nix {inherit pkgs;})
+    (import ./../../modules/home/editors/nvim {inherit inputs;})
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 

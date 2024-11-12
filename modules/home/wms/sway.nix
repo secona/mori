@@ -57,7 +57,7 @@
 
       output = {
         "*" = {
-          bg = "${./wallpapers/kurzgezagt.png} fill";
+          bg = "${../../../wallpapers/kurzgezagt.png} fill";
         };
       };
 
@@ -208,7 +208,7 @@
       font = "JetBrainsMono Nerd Font";
       font-size = 14;
       indicator-radius = 100;
-      image = "${./wallpapers/kurzgezagt.png}";
+      image = "${../../../wallpapers/kurzgezagt.png}";
       indicator-thickness = 5;
     };
   };
@@ -313,7 +313,7 @@
 
   programs.wofi = {
     enable = true;
-    style = builtins.readFile ./config/wofi/style.css;
+    style = builtins.readFile ../../../config/wofi/style.css;
     settings = {
       show = "drun";
       width = 400;
@@ -333,7 +333,7 @@
 
   services.swaync = {
     enable = true;
-    style = builtins.readFile ./config/swaync/style.css;
+    style = builtins.readFile ../../../config/swaync/style.css;
     settings = {
       positionY = "bottom";
     };
