@@ -4,14 +4,10 @@
   pkgs,
   system,
   ...
-}: let
-  nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
-    inherit pkgs;
-    module = import ./../../nixvim;
-  };
-in {
+}: {
   imports = [
     (import ./../../sway.nix {inherit pkgs;})
+    (import ./../../nixvim {inherit inputs;})
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
@@ -20,7 +16,6 @@ in {
   home.stateVersion = "24.05";
 
   home.packages = [
-    nvim
     pkgs.xournalpp
     pkgs.libreoffice
   ];
