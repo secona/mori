@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   plugins.barbar = {
     enable = true;
     keymaps = {
@@ -99,33 +97,33 @@
         buffer_number = false;
         button = "";
         diagnostics = {
-					"vim.diagnostic.severity.ERROR" = {
+          "vim.diagnostic.severity.ERROR" = {
             enabled = true;
             icon = " ";
           };
-					"vim.diagnostic.severity.WARN" = {
+          "vim.diagnostic.severity.WARN" = {
             enabled = true;
             icon = " ";
           };
-					"vim.diagnostic.severity.INFO" = {
+          "vim.diagnostic.severity.INFO" = {
             enabled = false;
             icon = " ";
           };
-					"vim.diagnostic.severity.HINT" = {
+          "vim.diagnostic.severity.HINT" = {
             enabled = true;
             icon = " ";
           };
         };
         gitsigns = {
-					added = {
+          added = {
             enabled = true;
             icon = " ";
           };
-					changed = {
+          changed = {
             enabled = true;
             icon = " ";
           };
-					deleted = {
+          deleted = {
             enabled = true;
             icon = " ";
           };
@@ -147,9 +145,9 @@
         };
         preset = "default";
         alternate.filetype.enabled = false;
-				current.buffer_index = true;
-				inactive.button = "×";
-				visible.modified.buffer_number = false;
+        current.buffer_index = true;
+        inactive.button = "×";
+        visible.modified.buffer_number = false;
       };
     };
   };

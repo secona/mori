@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   globals = {
     mapleader = " ";
   };
@@ -13,7 +11,7 @@
     scrolloff = 3;
     signcolumn = "yes";
     wrap = false;
-    fillchars = { eob = " "; };
+    fillchars = {eob = " ";};
   };
 
   keymaps = let

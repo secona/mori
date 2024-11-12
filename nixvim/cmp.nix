@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   plugins.cmp-buffer.enable = true;
   plugins.cmp-path.enable = true;
   plugins.cmp_luasnip.enable = true;
@@ -50,10 +48,10 @@
         })
       '';
       sources = [
-        { name = "cmp_luasnip"; }
-        { name = "nvim_lsp"; }
-        { name = "buffer"; }
-        { name = "path"; }
+        {name = "cmp_luasnip";}
+        {name = "nvim_lsp";}
+        {name = "buffer";}
+        {name = "path";}
       ];
       snippet = {
         expand = ''

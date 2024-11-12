@@ -1,10 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, pkgs-unstable, ... }:
-
 {
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -13,7 +14,7 @@
     grub = {
       enable = true;
       useOSProber = true;
-      devices = [ "nodev" ];
+      devices = ["nodev"];
       efiSupport = true;
       configurationLimit = 5;
     };
@@ -22,7 +23,7 @@
   };
 
   # Nix
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "guts"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -52,7 +53,7 @@
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = ["amdgpu"];
 
     xkb = {
       layout = "us";
@@ -113,7 +114,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
       inter
       roboto
     ];
@@ -139,15 +140,15 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "secona";
-    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
+    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
   };
 
-  users.extraGroups.docker.members = [ "secona" ];
-  users.extraGroups.vboxusers.members = [ "secona" ];
+  users.extraGroups.docker.members = ["secona"];
+  users.extraGroups.vboxusers.members = ["secona"];
 
   # Install firefox.
   programs.firefox.enable = true;
-  
+
   programs.dconf.enable = true;
 
   # Allow unfree packages
@@ -156,38 +157,40 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs; [
-    pulseaudio
-    tldr
-    unzip
-    git
-    wget
-    discord
-    home-manager
-    nil
-    ripgrep
-    openssl
-    zlib
-    jq
-    socat
-    devenv
-    zoxide
-    vlc
-    bruno
-    logisim-evolution
-    zathura
-    libnotify
-    grim
-    slurp
-    wl-clipboard
-    postman
-    zoom-us
+  environment.systemPackages = with pkgs;
+    [
+      pulseaudio
+      tldr
+      unzip
+      git
+      wget
+      discord
+      home-manager
+      nil
+      ripgrep
+      openssl
+      zlib
+      jq
+      socat
+      devenv
+      zoxide
+      vlc
+      bruno
+      logisim-evolution
+      zathura
+      libnotify
+      grim
+      slurp
+      wl-clipboard
+      postman
+      zoom-us
 
-    wine
-    winetricks
-    wineWowPackages.stable
-  ] ++ (with pkgs-unstable; [
-  ]);
+      wine
+      winetricks
+      wineWowPackages.stable
+    ]
+    ++ (with pkgs-unstable; [
+      ]);
 
   # Starship
   programs.starship = {
@@ -264,7 +267,7 @@
 
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "tmux" "zoxide" ];
+      plugins = ["git" "tmux" "zoxide"];
     };
   };
 

@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   plugins.lsp = {
     enable = true;
     capabilities = ''
@@ -20,7 +18,7 @@
     };
 
     servers.nil-ls.enable = true;
-    
+
     servers.tsserver.enable = true;
 
     servers.phpactor.enable = true;
@@ -72,14 +70,14 @@
   plugins.conform-nvim = {
     enable = true;
     formattersByFt = {
-      javascript = [ "prettier" ];
-      javascriptreact = [ "prettier" ];
-      typescript = [ "prettier" ];
-      typescriptreact = [ "prettier" ];
-      go = [ "goimports" "gofmt" ];
-      rust = [ "rustfmt" ];
-      json = [ "jq" ];
-      lua = [ "stylua" ];
+      javascript = ["prettier"];
+      javascriptreact = ["prettier"];
+      typescript = ["prettier"];
+      typescriptreact = ["prettier"];
+      go = ["goimports" "gofmt"];
+      rust = ["rustfmt"];
+      json = ["jq"];
+      lua = ["stylua"];
     };
 
     # TODO

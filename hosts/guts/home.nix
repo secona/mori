@@ -1,13 +1,17 @@
-{ inputs, config, pkgs, system, ... }:
-
-let
+{
+  inputs,
+  config,
+  pkgs,
+  system,
+  ...
+}: let
   nvim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
     inherit pkgs;
     module = import ./../../nixvim;
   };
 in {
   imports = [
-    (import ./../../sway.nix { inherit pkgs; })
+    (import ./../../sway.nix {inherit pkgs;})
   ];
 
   home.username = "secona";
@@ -20,7 +24,7 @@ in {
     pkgs.libreoffice
   ];
 
-  home.file = { };
+  home.file = {};
 
   catppuccin.flavor = "mocha";
   catppuccin.enable = true;

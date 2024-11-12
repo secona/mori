@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     cinnamon.nemo
     playerctl
@@ -36,7 +34,7 @@
       flameshot = "${pkgs.flameshot}/bin/flameshot";
     in rec {
       modifier = "Mod4";
-      terminal = kitty; 
+      terminal = kitty;
 
       bars = [
         {

@@ -12,29 +12,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, catppuccin, nixvim, ... }@inputs: let
+  outputs = {
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    catppuccin,
+    nixvim,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     hostname = "guts";
     username = "secona";
 
     pkgs = import nixpkgs {
       config.allowUnfree = true;
-      localSystem = { inherit system; };
+      localSystem = {inherit system;};
     };
 
     pkgs-unstable = import nixpkgs-unstable {
       config.allowUnfree = true;
-      localSystem = { inherit system; };
+      localSystem = {inherit system;};
     };
 
     extraSpecialArgs = {
       inherit pkgs pkgs-unstable system hostname username inputs;
     };
   in {
+    formatter.${system} = pkgs.alejandra;
+
     nixosConfigurations.guts = nixpkgs.lib.nixosSystem {
       inherit system;
 
-      specialArgs = { inherit pkgs-unstable; };
+      specialArgs = {inherit pkgs-unstable;};
 
       modules = [
         ./hosts/guts/configuration.nix

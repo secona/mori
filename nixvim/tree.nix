@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   plugins.neo-tree = {
     enable = true;
     enableGitStatus = true;
@@ -24,7 +22,7 @@
       filteredItems = {
         hideDotfiles = false;
         hideGitignored = false;
-        hideByName = [ ".git" ];
+        hideByName = [".git"];
       };
     };
   };
