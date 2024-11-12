@@ -204,6 +204,9 @@
     terminal = "screen-256color";
 
     extraConfigBeforePlugins = ''
+      set -gq allow-passthrough on
+      set -g visual-activity off
+
       set -g @resurrect-save-interval 15
       set -g @continuum-restore 'on'
 

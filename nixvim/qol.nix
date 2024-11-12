@@ -53,4 +53,8 @@
       };
     };
   };
+
+  plugins.image = {
+    enable = true;
+  };
 }
