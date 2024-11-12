@@ -12,6 +12,7 @@
 in {
   imports = [
     (import ./../../sway.nix {inherit pkgs;})
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
   home.username = "secona";

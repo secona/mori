@@ -48,16 +48,10 @@
       modules = [
         ./hosts/guts/configuration.nix
         home-manager.nixosModules.default
-        catppuccin.nixosModules.catppuccin
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${username} = {
-            imports = [
-              ./hosts/guts/home.nix
-              catppuccin.homeManagerModules.catppuccin
-            ];
-          };
+          home-manager.users.${username} = import ./hosts/guts/home.nix;
           home-manager.extraSpecialArgs = extraSpecialArgs;
         }
       ];
