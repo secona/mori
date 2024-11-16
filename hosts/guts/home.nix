@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./../../modules/home/apps
     ./../../modules/home/cli
@@ -19,5 +19,6 @@
     username = "secona";
     homeDirectory = "/home/secona";
     stateVersion = "24.05";
+    packages = with pkgs; [prismlauncher];
   };
 }

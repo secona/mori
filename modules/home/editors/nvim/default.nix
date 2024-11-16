@@ -1,4 +1,4 @@
-{lib, config, inputs, ...}: {
+{pkgs, lib, config, inputs, ...}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./bufferline.nix
@@ -61,6 +61,10 @@
       plugins.presence-nvim = {
         enable = true;
       };
+
+      extraPlugins = with pkgs.vimPlugins; [
+        flutter-tools-nvim
+      ];
     };
   };
 }

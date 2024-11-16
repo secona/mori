@@ -4,5 +4,6 @@
     ./libreoffice.nix
     ./xournalpp.nix
     ./yazi.nix
+    ./zathura.nix
   ];
 }
