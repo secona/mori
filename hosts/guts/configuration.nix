@@ -157,39 +157,22 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs;
-    [
-      pulseaudio
-      tldr
-      unzip
-      git
-      wget
-      discord
-      home-manager
-      nil
-      ripgrep
-      openssl
-      zlib
-      jq
-      socat
-      devenv
-      zoxide
-      vlc
-      bruno
-      logisim-evolution
-      libnotify
-      grim
-      slurp
-      wl-clipboard
-      postman
-      zoom-us
-
-      wine
-      winetricks
-      wineWowPackages.stable
-    ]
-    ++ (with pkgs-unstable; [
-      ]);
+  environment.systemPackages = with pkgs; [
+    pulseaudio
+    tldr
+    unzip
+    wget
+    ripgrep
+    openssl
+    zlib
+    jq
+    socat
+    devenv
+    zoxide
+    logisim-evolution
+    libnotify
+    wl-clipboard
+  ];
 
   # Starship
   programs.starship = {
