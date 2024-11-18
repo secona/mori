@@ -1,5 +1,10 @@
-{...}: {
+{pkgs-unstable, ...}: {
   programs.nixvim = {
+    plugins.rustaceanvim = {
+      enable = true;
+      rustAnalyzerPackage = pkgs-unstable.rust-analyzer;
+    };
+
     plugins.lsp = {
       enable = true;
       capabilities = ''
@@ -11,12 +16,12 @@
         )
       '';
 
-      servers.rust-analyzer = {
-        enable = true;
-        installCargo = false;
-        installRustc = false;
-        settings.cargo.features = "all";
-      };
+      # servers.rust-analyzer = {
+      #   enable = true;
+      #   installCargo = false;
+      #   installRustc = false;
+      #   settings.cargo.features = "all";
+      # };
 
       servers.nil-ls.enable = true;
 
