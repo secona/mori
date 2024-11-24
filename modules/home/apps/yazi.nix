@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options.apps.yazi = {
     enable = lib.mkOption {
       type = lib.types.bool;

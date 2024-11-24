@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options.dev.bruno = {
     enable = lib.mkOption {
       type = lib.types.bool;

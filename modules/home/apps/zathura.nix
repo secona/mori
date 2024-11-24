@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options.apps.zathura = {
     enable = lib.mkOption {
       type = lib.types.bool;

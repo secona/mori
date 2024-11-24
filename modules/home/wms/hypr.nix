@@ -1,4 +1,9 @@
-{lib, config, pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options.wms.hypr = {
     enable = lib.mkOption {
       type = lib.types.bool;

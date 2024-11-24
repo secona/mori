@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options.editors.vscode = {
     enable = lib.mkOption {
       type = lib.types.bool;

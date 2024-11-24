@@ -1,4 +1,9 @@
-{lib, config, pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options.wms.river = {
     enable = lib.mkOption {
       type = lib.types.bool;

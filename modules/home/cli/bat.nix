@@ -1,5 +1,9 @@
-{lib, config, ...}: {
-  options.cli.bat  = {
+{
+  lib,
+  config,
+  ...
+}: {
+  options.cli.bat = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = true;

@@ -1,4 +1,9 @@
-{lib, config, pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options.wms.sway = {
     enable = lib.mkOption {
       type = lib.types.bool;
