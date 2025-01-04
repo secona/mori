@@ -172,7 +172,11 @@
     logisim-evolution
     libnotify
     wl-clipboard
+    man-pages
+    man-pages-posix
   ];
+
+  documentation.dev.enable = true;
 
   # Starship
   programs.starship = {

@@ -41,6 +41,8 @@
 
       servers.ccls.enable = true;
 
+      servers.zls.enable = true;
+
       keymaps = {
         lspBuf = {
           "<F2>" = "rename";

@@ -70,7 +70,7 @@
 
         output = {
           "*" = {
-            bg = "${../../../wallpapers/kurzgezagt.png} fill";
+            bg = "${../../../wallpapers/japan-alley.png} fill";
           };
         };
 
@@ -221,7 +221,7 @@
         font = "JetBrainsMono Nerd Font";
         font-size = 14;
         indicator-radius = 100;
-        image = "${../../../wallpapers/kurzgezagt.png}";
+        image = "${../../../wallpapers/japan-alley.png}";
         indicator-thickness = 5;
       };
     };

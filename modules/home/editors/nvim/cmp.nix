@@ -3,6 +3,7 @@
     plugins.cmp-buffer.enable = true;
     plugins.cmp-path.enable = true;
     plugins.cmp_luasnip.enable = true;
+    plugins.luasnip.enable = true;
     plugins.lspkind.enable = true;
     plugins.nvim-autopairs.enable = true;
 
