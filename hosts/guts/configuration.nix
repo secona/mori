@@ -1,9 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
-  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -22,77 +18,62 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # Nix
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "guts"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Asia/Jakarta";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
+  networking = {
+    hostName = "guts";
+    networkmanager.enable = true;
+  };
+
+  services = {
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+          user = "greeter";
+        };
       };
     };
-  };
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = ["amdgpu"];
+    xserver = {
+      enable = true;
+      videoDrivers = ["amdgpu"];
 
-    xkb = {
-      layout = "us";
-      variant = "";
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+    printing.enable = true;
+    blueman.enable = true;
+    postgresql.enable = true;
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  services.blueman.enable = true;
-
-  services.postgresql.enable = true;
-
-  hardware.opengl.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = false;
-
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  security.pam.services.swaylock = {};
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+  hardware = {
+    opengl.enable = true;
+    bluetooth.enable = true;
+    pulseaudio.enable = false;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+    pam.services.swaylock = {};
+  };
 
   xdg.portal = {
     enable = true;
@@ -120,168 +101,144 @@
     ];
   };
 
-  virtualisation.docker = {
-    enable = true;
-  };
-
-  virtualisation.virtualbox = {
-    guest = {
+  virtualisation = {
+    docker = {
       enable = true;
-      clipboard = true;
     };
-    host = {
-      enable = true;
-      enableExtensionPack = true;
+
+    virtualbox = {
+      guest = {
+        enable = true;
+        clipboard = true;
+      };
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.secona = {
-    shell = pkgs.zsh;
-    isNormalUser = true;
-    description = "secona";
-    extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+  users = {
+    users.secona = {
+      shell = pkgs.zsh;
+      isNormalUser = true;
+      description = "secona";
+      extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+    };
   };
 
-  users.extraGroups.docker.members = ["secona"];
-  users.extraGroups.vboxusers.members = ["secona"];
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  programs.dconf.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.systemPackages = with pkgs; [
-    pulseaudio
-    tldr
-    unzip
-    wget
-    ripgrep
-    openssl
-    zlib
-    jq
-    socat
-    devenv
-    zoxide
-    logisim-evolution
-    libnotify
-    wl-clipboard
-    man-pages
-    man-pages-posix
-  ];
-
-  documentation.dev.enable = true;
-
-  # Starship
-  programs.starship = {
-    enable = true;
-    settings = pkgs.lib.importTOML ../../config/starship.toml;
-  };
-
-  # TMUX
-  programs.tmux = {
-    enable = true;
-    baseIndex = 1;
-    clock24 = true;
-    keyMode = "vi";
-    terminal = "screen-256color";
-
-    extraConfigBeforePlugins = ''
-      set -gq allow-passthrough on
-      set -g visual-activity off
-
-      set -g @resurrect-save-interval 15
-      set -g @continuum-restore 'on'
-
-      set -g @catppuccin_window_default_text "#W"
-      set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_right_separator "█"
-
-      set -g base-index 1
-      setw -g pane-base-index 1
-
-      set -g status-keys vi
-      setw -g mode-keys vi
-      setw -g mouse on
-      setw -g monitor-activity on
-
-      # Shift + Alt
-      bind-key -n M-H resize-pane -L
-      bind-key -n M-J resize-pane -D
-      bind-key -n M-K resize-pane -U
-      bind-key -n M-L resize-pane -R
-
-      # Control + Alt
-      bind-key -n C-M-l next-window
-      bind-key -n C-M-h previous-window
-
-      unbind -n M-h
-      unbind -n M-l
-
-      bind-key v split-window -v -c "#{pane_current_path}"
-      bind-key h split-window -h -c "#{pane_current_path}"
-    '';
-
-    plugins = with pkgs.tmuxPlugins; [
-      sensible
-      resurrect
-      continuum
-      vim-tmux-navigator
-      catppuccin
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [
+      pulseaudio
+      tldr
+      unzip
+      wget
+      ripgrep
+      openssl
+      zlib
+      jq
+      socat
+      devenv
+      zoxide
+      logisim-evolution
+      libnotify
+      wl-clipboard
+      man-pages
+      man-pages-posix
     ];
   };
 
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
+  documentation.dev.enable = true;
 
-    shellInit = ''
-      ZSH_TMUX_AUTOSTART=true
-      ZSH_TMUX_AUTOSTART_ONCE=false
-      ZSH_TMUX_AUTOCONNECT=true
-      ZOXIDE_CMD_OVERRIDE=cd
-    '';
+  programs = {
+    firefox.enable = true;
 
-    ohMyZsh = {
+    starship = {
       enable = true;
-      plugins = ["git" "tmux" "zoxide"];
+      settings = pkgs.lib.importTOML ../../config/starship.toml;
+    };
+
+    # TMUX
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      clock24 = true;
+      keyMode = "vi";
+      terminal = "screen-256color";
+
+      extraConfigBeforePlugins = ''
+        set -gq allow-passthrough on
+        set -g visual-activity off
+
+        set -g @resurrect-save-interval 15
+        set -g @continuum-restore 'on'
+
+        set -g @catppuccin_window_default_text "#W"
+        set -g @catppuccin_status_left_separator "█"
+        set -g @catppuccin_status_right_separator "█"
+
+        set -g base-index 1
+        setw -g pane-base-index 1
+
+        set -g status-keys vi
+        setw -g mode-keys vi
+        setw -g mouse on
+        setw -g monitor-activity on
+
+        # Shift + Alt
+        bind-key -n M-H resize-pane -L
+        bind-key -n M-J resize-pane -D
+        bind-key -n M-K resize-pane -U
+        bind-key -n M-L resize-pane -R
+
+        # Control + Alt
+        bind-key -n C-M-l next-window
+        bind-key -n C-M-h previous-window
+
+        unbind -n M-h
+        unbind -n M-l
+
+        bind-key v split-window -v -c "#{pane_current_path}"
+        bind-key h split-window -h -c "#{pane_current_path}"
+      '';
+
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+        resurrect
+        continuum
+        vim-tmux-navigator
+        catppuccin
+      ];
+    };
+
+    # ZSH
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+
+      shellInit = ''
+        ZSH_TMUX_AUTOSTART=true
+        ZSH_TMUX_AUTOSTART_ONCE=false
+        ZSH_TMUX_AUTOCONNECT=true
+        ZOXIDE_CMD_OVERRIDE=cd
+      '';
+
+      ohMyZsh = {
+        enable = true;
+        plugins = ["git" "tmux" "zoxide"];
+      };
+    };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
     };
   };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
