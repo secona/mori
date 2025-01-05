@@ -140,7 +140,6 @@
       jq
       socat
       devenv
-      zoxide
       logisim-evolution
       libnotify
       wl-clipboard
@@ -154,84 +153,10 @@
   programs = {
     firefox.enable = true;
 
-    starship = {
-      enable = true;
-      settings = pkgs.lib.importTOML ../../config/starship.toml;
-    };
-
-    # TMUX
-    tmux = {
-      enable = true;
-      baseIndex = 1;
-      clock24 = true;
-      keyMode = "vi";
-      terminal = "screen-256color";
-
-      extraConfigBeforePlugins = ''
-        set -gq allow-passthrough on
-        set -g visual-activity off
-
-        set -g @resurrect-save-interval 15
-        set -g @continuum-restore 'on'
-
-        set -g @catppuccin_window_default_text "#W"
-        set -g @catppuccin_status_left_separator "█"
-        set -g @catppuccin_status_right_separator "█"
-
-        set -g base-index 1
-        setw -g pane-base-index 1
-
-        set -g status-keys vi
-        setw -g mode-keys vi
-        setw -g mouse on
-        setw -g monitor-activity on
-
-        # Shift + Alt
-        bind-key -n M-H resize-pane -L
-        bind-key -n M-J resize-pane -D
-        bind-key -n M-K resize-pane -U
-        bind-key -n M-L resize-pane -R
-
-        # Control + Alt
-        bind-key -n C-M-l next-window
-        bind-key -n C-M-h previous-window
-
-        unbind -n M-h
-        unbind -n M-l
-
-        bind-key v split-window -v -c "#{pane_current_path}"
-        bind-key h split-window -h -c "#{pane_current_path}"
-      '';
-
-      plugins = with pkgs.tmuxPlugins; [
-        sensible
-        resurrect
-        continuum
-        vim-tmux-navigator
-        catppuccin
-      ];
-    };
-
-    # ZSH
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-
-      shellInit = ''
-        ZSH_TMUX_AUTOSTART=true
-        ZSH_TMUX_AUTOSTART_ONCE=false
-        ZSH_TMUX_AUTOCONNECT=true
-        ZOXIDE_CMD_OVERRIDE=cd
-      '';
-
-      ohMyZsh = {
-        enable = true;
-        plugins = ["git" "tmux" "zoxide"];
-      };
-    };
-
+    dconf.enable = true;
+    
+    zsh.enable = true;
+    
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
