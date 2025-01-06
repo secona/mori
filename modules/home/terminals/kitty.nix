@@ -15,7 +15,6 @@
     programs.kitty = {
       enable = true;
       package = pkgs.kitty;
-      catppuccin.enable = true;
       font = {
         name = "JetBrainsMono Nerd Font";
       };

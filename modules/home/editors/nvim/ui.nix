@@ -62,6 +62,10 @@
       enable = true;
     };
 
+    plugins.web-devicons = {
+      enable = true;
+    };
+
     # TODO
     # nvim-scrollbar
     # nvim-hlslens

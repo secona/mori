@@ -23,13 +23,13 @@
       enable = true;
     };
 
-    plugins.surround = {
+    plugins.vim-surround = {
       enable = true;
     };
 
     plugins.which-key = {
       enable = true;
-      window.border = "single";
+      settings.win.border = "single";
     };
 
     plugins.telescope = {

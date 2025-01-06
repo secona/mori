@@ -34,7 +34,6 @@
     programs.rofi = {
       package = pkgs.rofi-wayland;
       enable = true;
-      catppuccin.enable = true;
       terminal = "kitty";
     };
 
@@ -45,7 +44,6 @@
 
     services.dunst = {
       enable = true;
-      catppuccin.enable = true;
 
       settings = {
         global = {

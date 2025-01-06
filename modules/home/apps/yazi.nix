@@ -13,7 +13,6 @@
   config = lib.mkIf config.apps.yazi.enable {
     programs.yazi = {
       enable = true;
-      catppuccin.enable = true;
     };
   };
 }

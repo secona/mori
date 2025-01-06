@@ -14,7 +14,6 @@
   config = lib.mkIf config.cli.tmux.enable {
     programs.tmux = {
       enable = true;
-      catppuccin.enable = true;
 
       baseIndex = 1;
       clock24 = true;

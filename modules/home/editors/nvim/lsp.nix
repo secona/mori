@@ -23,13 +23,13 @@
       #   settings.cargo.features = "all";
       # };
 
-      servers.nil-ls.enable = true;
+      servers.nil_ls.enable = true;
 
-      servers.tsserver.enable = true;
+      servers.ts_ls.enable = true;
 
       servers.phpactor.enable = true;
 
-      servers.prismals.enable = true;
+      # servers.prismals.enable = true;
 
       servers.pyright.enable = true;
 
@@ -77,7 +77,7 @@
 
     plugins.conform-nvim = {
       enable = true;
-      formattersByFt = {
+      settings.formatters_by_ft = {
         javascript = ["prettier"];
         javascriptreact = ["prettier"];
         typescript = ["prettier"];

@@ -27,5 +27,9 @@
         };
       };
     };
+
+    plugins.yazi = {
+      enable = true;
+    };
   };
 }

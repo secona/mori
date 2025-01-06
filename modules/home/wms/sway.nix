@@ -13,7 +13,7 @@
 
   config = lib.mkIf config.wms.sway.enable {
     home.packages = with pkgs; [
-      cinnamon.nemo
+      nemo
       playerctl
       brightnessctl
       flameshot
@@ -215,7 +215,6 @@
 
     programs.swaylock = {
       enable = true;
-      catppuccin.enable = true;
 
       settings = {
         font = "JetBrainsMono Nerd Font";
