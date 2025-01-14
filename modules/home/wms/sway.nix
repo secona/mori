@@ -65,6 +65,7 @@
           "type:touchpad" = {
             tap = "enabled";
             natural_scroll = "enabled";
+            scroll_factor = "0.2";
           };
         };
 
