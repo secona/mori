@@ -59,5 +59,23 @@
         }
       ];
     };
+
+    devShells.${system}.nodejs-pnpm = pkgs-unstable.mkShell {
+      buildInputs = with pkgs-unstable; [nodejs nodePackages.pnpm];
+    };
+
+    devShells.${system}.prisma = pkgs-unstable.mkShell {
+      buildInputs = with pkgs; [
+        nodePackages.prisma
+        nodePackages.pnpm
+        nodejs
+      ];
+      shellHook = with pkgs; ''
+        export PRISMA_SCHEMA_ENGINE_BINARY="${prisma-engines}/bin/schema-engine"
+        export PRISMA_QUERY_ENGINE_BINARY="${prisma-engines}/bin/query-engine"
+        export PRISMA_QUERY_ENGINE_LIBRARY="${prisma-engines}/lib/libquery_engine.node"
+        export PRISMA_FMT_BINARY="${prisma-engines}/bin/prisma-fmt"
+      '';
+    };
   };
 }
