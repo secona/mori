@@ -12,6 +12,7 @@
 
   programs.home-manager.enable = true;
 
+  apps.zoom-us.enable = true;
   dev.git.userName = "secona";
   dev.git.userEmail = "77039267+secona@users.noreply.github.com";
   wms.sway.enable = true;

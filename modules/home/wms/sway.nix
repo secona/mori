@@ -79,6 +79,13 @@
           titlebar = false;
           border = 2;
           hideEdgeBorders = "smart";
+
+          commands = [
+            {
+              criteria.class = ".*";
+              command = "inhibit_idle fullscreen";
+            }
+          ];
         };
 
         colors = {
@@ -195,12 +202,7 @@
 
     services.swayidle = {
       enable = true;
-      events = [
-        # {
-        #   event = "before-sleep";
-        #   command = "${pkgs.swaylock}/bin/swaylock -fF";
-        # }
-      ];
+      events = [];
       timeouts = [
         {
           timeout = 30;
