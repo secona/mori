@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -155,9 +152,9 @@
     firefox.enable = true;
 
     dconf.enable = true;
-    
+
     zsh.enable = true;
-    
+
     steam = {
       enable = true;
       remotePlay.openFirewall = true;

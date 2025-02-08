@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options.dev.lazygit = {
     enable = lib.mkOption {
       type = lib.types.bool;
