@@ -67,6 +67,12 @@
             natural_scroll = "enabled";
             scroll_factor = "0.2";
           };
+
+          "type:keyboard" = {
+            xkb_layout = "us,jp";
+            xkb_variant = ",";
+            xkb_options = "grp:win_space_toggle";
+          };
         };
 
         output = {

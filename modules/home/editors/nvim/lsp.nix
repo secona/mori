@@ -29,6 +29,8 @@
 
       servers.phpactor.enable = true;
 
+      servers.ols.enable = true;
+
       # servers.prismals.enable = true;
 
       servers.pyright.enable = true;

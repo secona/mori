@@ -20,7 +20,14 @@
 
   time.timeZone = "Asia/Jakarta";
 
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enable = true;
+      type = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ mozc ];
+    };
+  };
 
   networking = {
     hostName = "guts";
@@ -43,7 +50,8 @@
       videoDrivers = ["amdgpu"];
 
       xkb = {
-        layout = "us";
+        layout = "us,jp";
+        model = "pc105";
         variant = "";
       };
     };
@@ -64,6 +72,7 @@
     graphics.enable = true;
     bluetooth.enable = true;
     pulseaudio.enable = false;
+    opengl.enable = true;
   };
 
   security = {
@@ -94,6 +103,8 @@
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      noto-fonts
+      noto-fonts-cjk-sans
       inter
       roboto
     ];
@@ -143,6 +154,10 @@
       wl-clipboard
       man-pages
       man-pages-posix
+
+      mangohud
+      protonup-qt
+      lutris
     ];
   };
 

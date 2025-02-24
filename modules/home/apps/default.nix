@@ -3,6 +3,7 @@
     ./discord.nix
     ./google-chrome.nix
     ./httpie-desktop.nix
+    ./jflap.nix
     ./libreoffice.nix
     ./miru.nix
     ./vlc.nix
