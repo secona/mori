@@ -3,44 +3,84 @@
 
   programs.home-manager.enable = true;
 
-  apps.discord.enable = true;
-  apps.google-chrome.enable = true;
-  apps.jflap.enable = true;
-  apps.libreoffice.enable = true;
-  apps.miru.enable = true;
-  apps.vlc.enable = true;
-  apps.xournalpp.enable = true;
-  apps.yazi.enable = true;
-  apps.zathura.enable = true;
-  apps.zoom-us.enable = true;
+  desktop = {
+    wms = {
+      sway.enable = true;
+    };
 
-  cli.bat.enable = true;
-  cli.btop.enable = true;
-  cli.eza.enable = true;
-  cli.gh-dash.enable = true;
-  cli.starship.enable = true;
-  cli.tmux.enable = true;
-  cli.zoxide.enable = true;
-  cli.zsh.enable = true;
+    ui = {
+      catppuccin.enable = true;
+    };
 
-  dev.git.userName = "secona";
-  dev.git.userEmail = "77039267+secona@users.noreply.github.com";
-  dev.git.enable = true;
-  dev.direnv.enable = true;
-  dev.lazygit.enable = true;
-  dev.postman.enable = true;
+    apps = {
+      terminals = {
+        kitty.enable = true;
+      };
 
-  editors.nvim.enable = true;
-  editors.idea-ultimate.enable = true;
-  editors.vscode.enable = true;
+      browsers = {
+        google-chrome.enable = true;
+      };
 
-  games.minecraft.enable = true;
+      socials = {
+        discord.enable = true;
+        zoom-us.enable = true;
+      };
 
-  terminals.kitty.enable = true;
+      docs = {
+        libreoffice.enable = true;
+        xournalpp.enable = true;
+        zathura.enable = true;
+      };
 
-  ui.catppuccin.enable = true;
+      media = {
+        vlc.enable = true;
+        miru.enable = true;
+      };
 
-  wms.sway.enable = true;
+      misc = {
+        jflap.enable = true;
+      };
+    };
+
+    games = {
+      minecraft.enable = true;
+    };
+  };
+
+  cli = {
+    shells = {
+      zsh.enable = true;
+    };
+
+    tools = {
+      bat.enable = true;
+      btop.enable = true;
+      eza.enable = true;
+      gh-dash.enable = true;
+      starship.enable = true;
+      tmux.enable = true;
+      yazi.enable = true;
+      zoxide.enable = true;
+    };
+  };
+
+  dev = {
+    editors = {
+      nvim.enable = true;
+      idea-ultimate.enable = true;
+      vscode.enable = true;
+    };
+
+    tools = {
+      direnv.enable = true;
+      lazygit.enable = true;
+      postman.enable = true;
+
+      git.userName = "secona";
+      git.userEmail = "77039267+secona@users.noreply.github.com";
+      git.enable = true;
+    };
+  };
 
   home = {
     username = "secona";
