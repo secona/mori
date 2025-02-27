@@ -1,17 +1,22 @@
 {...}: {
   imports = [
-    ./apps/browsers/google-chrome.nix
-    ./apps/docs/libreoffice.nix
-    ./apps/docs/xournalpp.nix
-    ./apps/docs/zathura.nix
-    ./apps/media/miru.nix
-    ./apps/media/vlc.nix
-    ./apps/misc/jflap.nix
-    ./apps/misc/octave.nix
-    ./apps/socials/discord.nix
-    ./apps/socials/zoom-us.nix
-    ./apps/terminals/kitty.nix
-    ./apps/terminals/ghostty.nix
+    ./browsers/google-chrome.nix
+
+    ./docs/libreoffice.nix
+    ./docs/xournalpp.nix
+    ./docs/zathura.nix
+
+    ./media/miru.nix
+    ./media/vlc.nix
+
+    ./misc/jflap.nix
+    ./misc/octave.nix
+
+    ./socials/discord.nix
+    ./socials/zoom-us.nix
+
+    ./terminals/kitty.nix
+    ./terminals/ghostty.nix
 
     ./games/minecraft.nix
 

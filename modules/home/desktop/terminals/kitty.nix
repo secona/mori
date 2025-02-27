@@ -4,14 +4,14 @@
   config,
   ...
 }: {
-  options.desktop.apps.terminals.kitty = {
+  options.desktop.terminals.kitty = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.apps.terminals.kitty.enable {
+  config = lib.mkIf config.desktop.terminals.kitty.enable {
     programs.kitty = {
       enable = true;
       package = pkgs.kitty;

@@ -12,35 +12,33 @@
       catppuccin.enable = true;
     };
 
-    apps = {
-      terminals = {
-        kitty.enable = true;
-      };
+    terminals = {
+      kitty.enable = true;
+    };
 
-      browsers = {
-        google-chrome.enable = true;
-      };
+    browsers = {
+      google-chrome.enable = true;
+    };
 
-      socials = {
-        discord.enable = true;
-        zoom-us.enable = true;
-      };
+    socials = {
+      discord.enable = true;
+      zoom-us.enable = true;
+    };
 
-      docs = {
-        libreoffice.enable = true;
-        xournalpp.enable = true;
-        zathura.enable = true;
-      };
+    docs = {
+      libreoffice.enable = true;
+      xournalpp.enable = true;
+      zathura.enable = true;
+    };
 
-      media = {
-        vlc.enable = true;
-        miru.enable = true;
-      };
+    media = {
+      vlc.enable = true;
+      miru.enable = true;
+    };
 
-      misc = {
-        octave.enable = true;
-        jflap.enable = true;
-      };
+    misc = {
+      octave.enable = true;
+      jflap.enable = true;
     };
 
     games = {

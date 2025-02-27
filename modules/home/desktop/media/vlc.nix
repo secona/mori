@@ -4,14 +4,14 @@
   config,
   ...
 }: {
-  options.desktop.apps.media.miru = {
+  options.desktop.media.vlc = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.apps.media.miru.enable {
-    home.packages = with pkgs; [miru];
+  config = lib.mkIf config.desktop.media.vlc.enable {
+    home.packages = [pkgs.vlc];
   };
 }

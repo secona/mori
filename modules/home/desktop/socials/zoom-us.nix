@@ -4,14 +4,14 @@
   config,
   ...
 }: {
-  options.desktop.apps.media.vlc = {
+  options.desktop.socials.zoom-us = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.apps.media.vlc.enable {
-    home.packages = [pkgs.vlc];
+  config = lib.mkIf config.desktop.socials.zoom-us.enable {
+    home.packages = [pkgs.zoom-us];
   };
 }
