@@ -38,6 +38,7 @@
       };
 
       misc = {
+        octave.enable = true;
         jflap.enable = true;
       };
     };
