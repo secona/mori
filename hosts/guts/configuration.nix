@@ -47,7 +47,7 @@
 
     xserver = {
       enable = true;
-      videoDrivers = ["amdgpu"];
+      videoDrivers = ["nvidia"];
 
       xkb = {
         layout = "us,jp";
@@ -72,7 +72,12 @@
     graphics.enable = true;
     bluetooth.enable = true;
     pulseaudio.enable = false;
-    opengl.enable = true;
+
+    nvidia.modesetting.enable = true;
+    nvidia.powerManagement.enable = true;
+    nvidia.powerManagement.finegrained = true;
+    nvidia.open = true;
+    nvidia.nvidiaSettings = true;
   };
 
   security = {
@@ -169,6 +174,8 @@
     dconf.enable = true;
 
     zsh.enable = true;
+
+    nix-ld.enable = true;
 
     steam = {
       enable = true;
