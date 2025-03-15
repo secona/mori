@@ -22,11 +22,6 @@
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    inputMethod = {
-      enable = true;
-      type = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [mozc];
-    };
   };
 
   networking = {
@@ -50,7 +45,7 @@
       videoDrivers = ["nvidia"];
 
       xkb = {
-        layout = "us,jp";
+        layout = "us";
         model = "pc105";
         variant = "";
       };
@@ -119,17 +114,6 @@
     docker = {
       enable = true;
     };
-
-    virtualbox = {
-      guest = {
-        enable = true;
-        clipboard = true;
-      };
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
-    };
   };
 
   users = {
@@ -137,12 +121,15 @@
       shell = pkgs.zsh;
       isNormalUser = true;
       description = "secona";
-      extraGroups = ["networkmanager" "wheel" "docker" "vboxusers"];
+      extraGroups = ["networkmanager" "wheel" "docker" "wireshark"];
     };
   };
 
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+
     systemPackages = with pkgs; [
       pulseaudio
       tldr
@@ -153,8 +140,6 @@
       zlib
       jq
       socat
-      devenv
-      logisim-evolution
       libnotify
       wl-clipboard
       man-pages

@@ -13,6 +13,7 @@
     ./misc/octave.nix
 
     ./socials/discord.nix
+    ./socials/beeper.nix
     ./socials/zoom-us.nix
 
     ./terminals/kitty.nix

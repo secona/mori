@@ -21,6 +21,7 @@
     };
 
     socials = {
+      beeper.enable = true;
       discord.enable = true;
       zoom-us.enable = true;
     };
@@ -71,9 +72,12 @@
     };
 
     tools = {
+      burpsuite.enable = true;
+      devenv.enable = true;
       direnv.enable = true;
       lazygit.enable = true;
       postman.enable = true;
+      wireshark.enable = true;
 
       git.userName = "secona";
       git.userEmail = "77039267+secona@users.noreply.github.com";

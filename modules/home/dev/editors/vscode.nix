@@ -21,9 +21,15 @@
       enable = true;
       package = pkgs.vscode.fhs;
       extensions = with pkgs.vscode-extensions; [
+        catppuccin.catppuccin-vsc-icons
+        catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
         vscodevim.vim
       ];
+      userSettings = {
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "workbench.iconTheme" = "catppuccin-mocha";
+      };
     };
   };
 }
