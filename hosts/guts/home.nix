@@ -67,6 +67,7 @@
   dev = {
     editors = {
       nvim.enable = true;
+      helix.enable = true;
       idea-ultimate.enable = true;
       vscode.enable = true;
     };
