@@ -11,6 +11,8 @@
   };
 
   config = lib.mkIf config.dev.tools.lazygit.enable {
+    home.shellAliases.lg = "lazygit";
+
     programs.lazygit = {
       enable = true;
     };
