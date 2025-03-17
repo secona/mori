@@ -42,7 +42,6 @@
 
     xserver = {
       enable = true;
-      videoDrivers = ["nvidia"];
 
       xkb = {
         layout = "us";
@@ -67,12 +66,6 @@
     graphics.enable = true;
     bluetooth.enable = true;
     pulseaudio.enable = false;
-
-    nvidia.modesetting.enable = true;
-    nvidia.powerManagement.enable = true;
-    nvidia.powerManagement.finegrained = true;
-    nvidia.open = true;
-    nvidia.nvidiaSettings = true;
   };
 
   security = {
