@@ -34,6 +34,7 @@
 
     media = {
       vlc.enable = true;
+      obs-studio.enable = true;
       miru.enable = true;
     };
 

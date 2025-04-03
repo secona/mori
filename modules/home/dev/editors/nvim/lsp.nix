@@ -23,7 +23,8 @@
       #   settings.cargo.features = "all";
       # };
 
-      servers.nil_ls.enable = true;
+      servers.nil_ls.enable = false;
+      servers.nixd.enable = true;
 
       servers.ts_ls.enable = true;
 
@@ -41,7 +42,8 @@
 
       servers.astro.enable = true;
 
-      servers.ccls.enable = true;
+      # servers.ccls.enable = true;
+      servers.clangd.enable = true;
 
       servers.zls.enable = true;
 

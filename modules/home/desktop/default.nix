@@ -7,6 +7,7 @@
     ./docs/zathura.nix
 
     ./media/miru.nix
+    ./media/obs-studio.nix
     ./media/vlc.nix
 
     ./misc/jflap.nix
