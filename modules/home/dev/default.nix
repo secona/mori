@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./editors/nvim
+    ./editors/cursor.nix
     ./editors/helix.nix
     ./editors/vscode.nix
     ./editors/idea-ultimate.nix

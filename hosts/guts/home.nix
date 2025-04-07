@@ -21,7 +21,6 @@
     };
 
     socials = {
-      beeper.enable = true;
       discord.enable = true;
       zoom-us.enable = true;
     };
@@ -68,7 +67,7 @@
   dev = {
     editors = {
       nvim.enable = true;
-      helix.enable = true;
+      cursor.enable = true;
       idea-ultimate.enable = true;
       vscode.enable = true;
     };

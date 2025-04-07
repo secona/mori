@@ -23,7 +23,7 @@
       #   settings.cargo.features = "all";
       # };
 
-      servers.nil_ls.enable = false;
+      servers.nil_ls.enable = true;
       servers.nixd.enable = true;
 
       servers.ts_ls.enable = true;

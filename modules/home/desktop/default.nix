@@ -6,6 +6,8 @@
     ./docs/xournalpp.nix
     ./docs/zathura.nix
 
+    ./files/nemo.nix
+
     ./media/miru.nix
     ./media/obs-studio.nix
     ./media/vlc.nix

@@ -31,13 +31,23 @@
 
   services = {
     greetd = {
-      enable = true;
+      enable = false;
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
           user = "greeter";
         };
       };
+    };
+
+    displayManager = {
+      enable = true;
+      ly.enable = true;
+      sessionPackages = with pkgs; [ sway ];
+    };
+
+    desktopManager = {
+      plasma6.enable = true;
     };
 
     xserver = {
@@ -138,9 +148,28 @@
       man-pages
       man-pages-posix
 
-      mangohud
-      protonup-qt
-      lutris
+      # mangohud
+      # protonup-qt
+      # lutris
+    ];
+
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-browser-integration
+      konsole
+      oxygen
+      okular
+      kwrited
+      elisa
+      ark
+      gwenview
+      spectacle
+      kate
+      khelpcenter
+      dolphin
+      dolphin-plugins
+      kwallet
+      kwallet-pam
+      kwalletmanager
     ];
   };
 
@@ -156,7 +185,7 @@
     nix-ld.enable = true;
 
     steam = {
-      enable = true;
+      enable = false;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
