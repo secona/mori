@@ -43,7 +43,7 @@
     displayManager = {
       enable = true;
       ly.enable = true;
-      sessionPackages = with pkgs; [ sway ];
+      sessionPackages = with pkgs; [ sway hyprland river ];
     };
 
     desktopManager = {

@@ -25,7 +25,7 @@
     ./socials/beeper.nix
     ./socials/zoom-us.nix
 
-    ./status-bar/eeww.nix
+    ./status-bar/eww.nix
     ./status-bar/i3status-rust.nix
 
     ./terminals/kitty.nix

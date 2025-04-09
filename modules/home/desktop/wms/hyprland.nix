@@ -27,11 +27,11 @@
         "$mod" = "SUPER";
         "$terminal" = "kitty";
         "$fileManager" = "nemo";
-        "$menu" = "wofi -show drun";
+        "$menu" = "wofi";
         "$powerMenu" = "wlogout";
 
         exec-once = [
-          "eww open bar"
+          "hyprpaper"
         ];
 
         general = {
@@ -40,7 +40,7 @@
         };
 
         animations = {
-          enabled = false;
+          enabled = true;
         };
 
         input = {
@@ -143,10 +143,10 @@
       settings = {
         splash = false;
         preload = [
-          ("" + ../../../../wallpapers/japan-alley.png)
+          "${../../../../wallpapers/japan-alley.png}"
         ];
         wallpaper = [
-          ("," + ../../../../wallpapers/japan-alley.png)
+          ", ${../../../../wallpapers/japan-alley.png}"
         ];
       };
     };
