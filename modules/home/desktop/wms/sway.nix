@@ -12,29 +12,14 @@
   };
 
   config = lib.mkIf config.desktop.wms.sway.enable {
-    home.packages = with pkgs; [
-      nemo
-      playerctl
-      brightnessctl
-      flameshot
-    ];
-
-    gtk = {
-      enable = true;
-
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
-
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
-    };
+    desktop.media.flameshot.enable = true;
+    desktop.files.nemo.enable = true;
+    desktop.status-bar.i3status-rust.enable = true;
+    desktop.launcher.wofi.enable = true;
+    desktop.notifications.swaync.enable = true;
+    desktop.ui.gtk.enable = true;
+    desktop.utils.wlogout.enable = true;
+    desktop.utils.ctl.enable = true;
 
     wayland.windowManager.sway = {
       enable = true;
@@ -234,84 +219,6 @@
       };
     };
 
-    programs.wlogout = {
-      enable = true;
-    };
-
-    programs.i3status-rust = {
-      enable = true;
-      bars = {
-        default = {
-          blocks = [
-            {
-              block = "music";
-              format = " $icon {$play $combo.str(max_w:20)} ";
-              theme_overrides.idle_fg = "#cdd6f4";
-            }
-            {
-              block = "sound";
-            }
-            {
-              block = "cpu";
-              interval = 1;
-              theme_overrides.idle_fg = "#fab387";
-            }
-            {
-              block = "memory";
-              format = " $icon $mem_used_percents  $icon_swap $swap_used_percents ";
-              theme_overrides.idle_fg = "#fab387";
-            }
-            {
-              block = "disk_space";
-              info_type = "available";
-              format = " $icon $percentage ";
-              path = "/";
-              interval = 60;
-              theme_overrides.idle_fg = "#fab387";
-            }
-            {
-              block = "net";
-              format = " $icon {$signal_strength $ssid} ";
-              theme_overrides.idle_fg = "#f5e0dc";
-            }
-            {
-              block = "battery";
-              format = " $icon $percentage ";
-              full_threshold = 95;
-            }
-            {
-              block = "time";
-              format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
-              interval = 60;
-              theme_overrides.idle_fg = "#89b4fa";
-            }
-          ];
-          theme = "ctp-mocha";
-          icons = "material-nf";
-          settings = {
-            theme = {
-              theme = "ctp-mocha";
-              overrides = {
-                idle_bg = "#11111b";
-                idle_fg = "#cdd6f4";
-                info_bg = "#11111b";
-                info_fg = "#89b4fa";
-                good_bg = "#11111b";
-                good_fg = "#a6e3a1";
-                warning_bg = "#11111b";
-                warning_fg = "#eba0ac";
-                critical_bg = "#11111b";
-                critical_fg = "#f38ba8";
-                separator = "";
-                separator_bg = "auto";
-                separator_fg = "auto";
-              };
-            };
-          };
-        };
-      };
-    };
-
     programs.swayr = {
       enable = true;
 
@@ -329,34 +236,6 @@
             "--prompt={prompt}"
           ];
         };
-      };
-    };
-
-    programs.wofi = {
-      enable = true;
-      style = builtins.readFile ../../../../config/wofi/style.css;
-      settings = {
-        show = "drun";
-        width = 400;
-        height = 600;
-        always_parse_args = true;
-        show_all = true;
-        term = "kitty";
-        hide_scroll = true;
-        no_actions = true;
-        print_command = true;
-        insensitive = true;
-        prompt = "";
-        columns = 1;
-        allow_images = true;
-      };
-    };
-
-    services.swaync = {
-      enable = true;
-      style = builtins.readFile ../../../../config/swaync/style.css;
-      settings = {
-        positionY = "bottom";
       };
     };
 

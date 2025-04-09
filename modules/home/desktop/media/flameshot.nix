@@ -4,14 +4,14 @@
   config,
   ...
 }: {
-  options.desktop.files.nemo = {
+  options.desktop.media.flameshot = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.files.nemo.enable {
-    home.packages = with pkgs; [nemo];
+  config = lib.mkIf config.desktop.media.flameshot.enable {
+    home.packages = [pkgs.flameshot];
   };
 }

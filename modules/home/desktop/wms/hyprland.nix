@@ -1,50 +1,22 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: {
-  options.desktop.wms.hypr = {
+  options.desktop.wms.hyprland = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.wms.hypr.enable {
-    home.packages = with pkgs; [
-      dolphin
-      rofi-power-menu
-      rofi-emoji
-      playerctl
-      brightnessctl
-    ];
-
-    gtk = {
-      enable = true;
-
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
-
-      cursorTheme = {
-        name = "Numix-Cursor";
-        package = pkgs.numix-cursor-theme;
-      };
-
-      gtk3.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=1
-        '';
-      };
-
-      gtk4.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=1
-        '';
-      };
-    };
+  config = lib.mkIf config.desktop.wms.hyprland.enable {
+    desktop.utils.ctl.enable = true;
+    desktop.files.nemo.enable = true;
+    desktop.launcher.wofi.enable = true;
+    desktop.notifications.swaync.enable = true;
+    desktop.ui.gtk.enable = true;
+    desktop.utils.wlogout.enable = true;
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -54,10 +26,9 @@
 
         "$mod" = "SUPER";
         "$terminal" = "kitty";
-        "$fileManager" = "dolphin";
-        "$menu" = "rofi -show drun";
-        "$powerMenu" = "rofi -show power-menu -modi power-menu:rofi-power-menu";
-        "$emojiMenu" = "rofi -modi emoji:rofi-emoji -show emoji";
+        "$fileManager" = "nemo";
+        "$menu" = "wofi -show drun";
+        "$powerMenu" = "wlogout";
 
         exec-once = [
           "eww open bar"
@@ -106,7 +77,6 @@
           "$mod, J, togglesplit"
           "$mod, F, fullscreen"
           "$mod, escape, exec, $powerMenu"
-          "$mod, code:60, exec, $emojiMenu"
 
           "$mod, left, movefocus, l"
           "$mod, right, movefocus, r"
@@ -164,17 +134,6 @@
       };
     };
 
-    programs.rofi = {
-      package = pkgs.rofi-wayland;
-      enable = true;
-      terminal = "kitty";
-    };
-
-    programs.eww = {
-      enable = true;
-      configDir = ./config/eww;
-    };
-
     programs.hyprlock = {
       enable = true;
     };
@@ -189,17 +148,6 @@
         wallpaper = [
           ("," + ../../../../wallpapers/japan-alley.png)
         ];
-      };
-    };
-
-    services.dunst = {
-      enable = true;
-
-      settings = {
-        global = {
-          origin = "top-center";
-          corner_radius = 12;
-        };
       };
     };
   };
