@@ -65,24 +65,8 @@
 
     catppuccin.tmux = {
       extraConfig = ''
-        set -g @catppuccin_window_number_position "left"
-        set -g @catppuccin_window_current_number_color "#{@thm_green}"
-        set -g @catppuccin_window_text ""
-        set -g @catppuccin_window_number "#[bold]Tab ###I "
-        set -g @catppuccin_window_current_text ""
-        set -g @catppuccin_window_current_number "#[bold]Tab ###I "
-        set -g @catppuccin_window_status_style "custom"
-        set -g @catppuccin_window_right_separator "#[fg=#{@_ctp_status_bg},reverse]#[none]"
-
-        set -g @catppuccin_window_left_separator "#[fg=#{@_ctp_status_bg}] #[none]"
-        set -g @catppuccin_window_middle_separator "#[bg=#{@catppuccin_window_text_color},fg=#{@catppuccin_window_number_color}]"
-        set -g @catppuccin_window_current_middle_separator "#[bg=#{@catppuccin_window_current_text_color},fg=#{@catppuccin_window_current_number_color}]"
-
-        set -g window-status-separator ""
-        set -g status-left-length 0
-        set -g status-left "#[fg=#{@thm_fg} bold]TMUX (#S) "
-        set -ga status-left "#{?client_prefix,#[fg=#{@thm_red} bold]PREFIX ,#{?#{==:#{pane_mode},copy-mode},#[fg=#{@thm_yellow} bold]COPY ,#[fg=#{@thm_green} bold]NORMAL }}"
-        set -g status-right ""
+        set -g window-status-format '#[fg=#6c7086]#I #[default]#{pane_current_command}'
+        set -g window-status-current-format '#[bold]#[fg=#f5e0dc]#I:#W #[fg=#94e2d5]#{pane_current_command}'
       '';
     };
   };
