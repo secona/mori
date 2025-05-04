@@ -13,7 +13,7 @@
   config = lib.mkIf config.desktop.notifications.swaync.enable {
     services.swaync = {
       enable = true;
-      style = builtins.readFile ../../../../config/swaync/style.css;
+      # style = builtins.readFile ../../../../config/swaync/style.css;
       settings = {
         positionY = "bottom";
       };

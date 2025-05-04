@@ -62,12 +62,12 @@
 
         output = {
           "*" = {
-            bg = "${../../../../wallpapers/japan-alley.png} fill";
+            bg = "${../../../../wallpapers/pixel-car.png} fill";
           };
         };
 
         window = {
-          titlebar = false;
+          titlebar = true;
           border = 2;
           hideEdgeBorders = "smart";
 
@@ -76,47 +76,53 @@
               criteria.class = ".*";
               command = "inhibit_idle fullscreen";
             }
+            {
+              criteria.shell = "xwayland";
+              command = "title_format [XWayland] %title";
+            }
           ];
         };
 
-        colors = {
-          focused = {
-            border = "#89b4fa";
-            background = "#11111b";
-            text = "#ffffff";
-            indicator = "#2e9ef4";
-            childBorder = "#89b4fa";
-          };
-          focusedInactive = {
-            border = "#333333";
-            background = "#5f676a";
-            text = "#ffffff";
-            indicator = "#484e50";
-            childBorder = "#5f676a";
-          };
-          unfocused = {
-            border = "#333333";
-            background = "#222222";
-            text = "#888888";
-            indicator = "#292d2e";
-            childBorder = "#222222";
-          };
-          urgent = {
-            border = "#2f343a";
-            background = "#900000";
-            text = "#ffffff";
-            indicator = "#900000";
-            childBorder = "#900000";
-          };
-          placeholder = {
-            border = "#000000";
-            background = "#0c0c0c";
-            text = "#ffffff";
-            indicator = "#000000";
-            childBorder = "#0c0c0c";
-          };
-          background = "#ffffff";
-        };
+        workspaceLayout = "tabbed";
+
+        # colors = {
+        #   focused = {
+        #     border = "#89b4fa";
+        #     background = "#11111b";
+        #     text = "#ffffff";
+        #     indicator = "#2e9ef4";
+        #     childBorder = "#89b4fa";
+        #   };
+        #   focusedInactive = {
+        #     border = "#333333";
+        #     background = "#5f676a";
+        #     text = "#ffffff";
+        #     indicator = "#484e50";
+        #     childBorder = "#5f676a";
+        #   };
+        #   unfocused = {
+        #     border = "#333333";
+        #     background = "#222222";
+        #     text = "#888888";
+        #     indicator = "#292d2e";
+        #     childBorder = "#222222";
+        #   };
+        #   urgent = {
+        #     border = "#2f343a";
+        #     background = "#900000";
+        #     text = "#ffffff";
+        #     indicator = "#900000";
+        #     childBorder = "#900000";
+        #   };
+        #   placeholder = {
+        #     border = "#000000";
+        #     background = "#0c0c0c";
+        #     text = "#ffffff";
+        #     indicator = "#000000";
+        #     childBorder = "#0c0c0c";
+        #   };
+        #   background = "#ffffff";
+        # };
 
         fonts = {
           names = ["JetBrainsMono Nerd Font"];
@@ -168,6 +174,7 @@
           "${modifier}+f" = "fullscreen";
           "${modifier}+h" = "splith";
           "${modifier}+v" = "splitv";
+          "${modifier}+w" = "layout tabbed";
           "${modifier}+Shift+space" = "floating toggle";
 
           "XF86AudioRaiseVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+";
@@ -192,7 +199,7 @@
     };
 
     services.swayidle = {
-      enable = true;
+      enable = false;
       events = [];
       timeouts = [
         {
@@ -208,7 +215,7 @@
     };
 
     programs.swaylock = {
-      enable = true;
+      enable = false;
 
       settings = {
         font = "JetBrainsMono Nerd Font";
@@ -220,7 +227,7 @@
     };
 
     programs.swayr = {
-      enable = true;
+      enable = false;
 
       settings = {
         menu = {
@@ -240,7 +247,7 @@
     };
 
     services.swayosd = {
-      enable = true;
+      enable = false;
     };
   };
 }
