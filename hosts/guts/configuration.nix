@@ -16,6 +16,7 @@
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Asia/Jakarta";
@@ -43,11 +44,7 @@
     displayManager = {
       enable = true;
       ly.enable = true;
-      sessionPackages = with pkgs; [ sway hyprland river ];
-    };
-
-    desktopManager = {
-      plasma6.enable = true;
+      sessionPackages = with pkgs; [ sway ];
     };
 
     xserver = {
@@ -97,7 +94,6 @@
 
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
       xdg-desktop-portal-xapp
       xdg-desktop-portal-kde
     ];

@@ -6,8 +6,6 @@
   desktop = {
     wms = {
       sway.enable = true;
-      hyprland.enable = true;
-      river.enable = true;
     };
 
     ui = {
