@@ -19,12 +19,14 @@
   config = lib.mkIf config.dev.editors.vscode.enable {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.fhs;
+      package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc-icons
         catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
         vscodevim.vim
+        vscjava.vscode-java-pack
+        redhat.java
       ];
       userSettings = {
         "workbench.colorTheme" = "Catppuccin Mocha";
