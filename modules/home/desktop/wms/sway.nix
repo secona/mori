@@ -136,16 +136,6 @@
           "${modifier}+Escape" = "exec ${wlogout}";
           "${modifier}+n" = "exec swaync-client -t -sw";
 
-          "${modifier}+Left" = "focus left";
-          "${modifier}+Right" = "focus right";
-          "${modifier}+Down" = "focus down";
-          "${modifier}+Up" = "focus up";
-
-          "${modifier}+Shift+Left" = "move left";
-          "${modifier}+Shift+Down" = "move down";
-          "${modifier}+Shift+Up" = "move up";
-          "${modifier}+Shift+Right" = "move right";
-
           "${modifier}+1" = "workspace number 1";
           "${modifier}+2" = "workspace number 2";
           "${modifier}+3" = "workspace number 3";
@@ -159,6 +149,8 @@
 
           "${modifier}+Ctrl+Left" = "workspace prev";
           "${modifier}+Ctrl+Right" = "workspace next";
+          "${modifier}+Ctrl+h" = "workspace prev";
+          "${modifier}+Ctrl+l" = "workspace next";
 
           "${modifier}+Shift+1" = "move container to workspace number 1";
           "${modifier}+Shift+2" = "move container to workspace number 2";
@@ -171,9 +163,25 @@
           "${modifier}+Shift+9" = "move container to workspace number 9";
           "${modifier}+Shift+0" = "move container to workspace number 10";
 
+          "${modifier}+Shift+Left" = "move left";
+          "${modifier}+Shift+Down" = "move down";
+          "${modifier}+Shift+Up" = "move up";
+          "${modifier}+Shift+Right" = "move right";
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+l" = "move right";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+
+          "${modifier}+Left" = "focus left";
+          "${modifier}+Right" = "focus right";
+          "${modifier}+Down" = "focus down";
+          "${modifier}+Up" = "focus up";
+          "${modifier}+h" = "focus left";
+          "${modifier}+l" = "focus right";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+
           "${modifier}+f" = "fullscreen";
-          "${modifier}+h" = "splith";
-          "${modifier}+v" = "splitv";
           "${modifier}+w" = "layout tabbed";
           "${modifier}+Shift+space" = "floating toggle";
 
