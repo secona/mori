@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
   boot.loader = {
     grub = {
       enable = true;
