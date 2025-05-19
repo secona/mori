@@ -43,6 +43,13 @@
               theme_overrides.idle_fg = "#fab387";
             }
             {
+              block = "nvidia_gpu";
+              format = " $icon $utilization $temperature $clocks ";
+            }
+            {
+              block = "temperature";
+            }
+            {
               block = "net";
               format = " $icon {$signal_strength $ssid} ";
               theme_overrides.idle_fg = "#f5e0dc";
