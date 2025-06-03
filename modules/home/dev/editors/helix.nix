@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.editors.helix = {
     enable = lib.mkOption {
       type = lib.types.bool;

@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.games.minecraft = {
     enable = lib.mkOption {
       type = lib.types.bool;

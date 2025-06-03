@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.socials.discord = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.socials.discord.enable {
-    home.packages = [pkgs.discord];
+    home.packages = [ pkgs.discord ];
   };
 }

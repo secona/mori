@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.tools.burpsuite = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.dev.tools.burpsuite.enable {
-    home.packages = [pkgs.burpsuite];
+    home.packages = [ pkgs.burpsuite ];
   };
 }

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./editors/nvim
     ./editors/cursor.nix

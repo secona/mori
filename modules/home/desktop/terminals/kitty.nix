@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.terminals.kitty = {
     enable = lib.mkOption {
       type = lib.types.bool;

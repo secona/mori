@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   options.cli.tools.bat = {
     enable = lib.mkOption {
       type = lib.types.bool;

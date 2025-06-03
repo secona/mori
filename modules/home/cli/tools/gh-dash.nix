@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.cli.tools.gh-dash = {
     enable = lib.mkOption {
       type = lib.types.bool;

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.launcher.wofi = {
     enable = lib.mkOption {
       type = lib.types.bool;

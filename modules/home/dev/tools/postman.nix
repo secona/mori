@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.tools.postman = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.dev.tools.postman.enable {
-    home.packages = [pkgs.postman];
+    home.packages = [ pkgs.postman ];
   };
 }

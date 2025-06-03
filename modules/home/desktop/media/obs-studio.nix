@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.media.obs-studio = {
     enable = lib.mkOption {
       type = lib.types.bool;

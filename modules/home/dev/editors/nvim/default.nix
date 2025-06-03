@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./bufferline.nix
@@ -43,28 +44,32 @@
         scrolloff = 3;
         signcolumn = "yes";
         wrap = false;
-        fillchars = {eob = " ";};
+        fillchars = {
+          eob = " ";
+        };
       };
 
-      keymaps = let
-        options = {
-          noremap = true;
-          silent = true;
-        };
-      in [
-        {
-          mode = "i";
-          key = "jj";
-          action = "<Esc>";
-          inherit options;
-        }
-        {
-          mode = "";
-          key = "<Space>";
-          action = "<Nop>";
-          inherit options;
-        }
-      ];
+      keymaps =
+        let
+          options = {
+            noremap = true;
+            silent = true;
+          };
+        in
+        [
+          {
+            mode = "i";
+            key = "jj";
+            action = "<Esc>";
+            inherit options;
+          }
+          {
+            mode = "";
+            key = "<Space>";
+            action = "<Nop>";
+            inherit options;
+          }
+        ];
 
       plugins.presence-nvim = {
         enable = true;

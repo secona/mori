@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.socials.zoom-us = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.socials.zoom-us.enable {
-    home.packages = [pkgs.zoom-us];
+    home.packages = [ pkgs.zoom-us ];
   };
 }

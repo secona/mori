@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.status-bar.i3status-rust = {
     enable = lib.mkOption {
       type = lib.types.bool;

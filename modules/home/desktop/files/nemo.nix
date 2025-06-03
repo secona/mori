@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.files.nemo = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.files.nemo.enable {
-    home.packages = with pkgs; [nemo-with-extensions];
+    home.packages = with pkgs; [ nemo-with-extensions ];
   };
 }

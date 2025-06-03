@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.notifications.swaync = {
     enable = lib.mkOption {
       type = lib.types.bool;

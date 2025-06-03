@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.wms.hyprland = {
     enable = lib.mkOption {
       type = lib.types.bool;

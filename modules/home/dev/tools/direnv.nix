@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.tools.direnv = {
     enable = lib.mkOption {
       type = lib.types.bool;

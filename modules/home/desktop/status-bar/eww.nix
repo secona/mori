@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.status-bar.eww = {
     enable = lib.mkOption {
       type = lib.types.bool;

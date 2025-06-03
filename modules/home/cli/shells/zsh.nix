@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.cli.shells.zsh = {
     enable = lib.mkOption {
       type = lib.types.bool;

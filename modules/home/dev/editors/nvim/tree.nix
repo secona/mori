@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;
@@ -23,7 +24,7 @@
         filteredItems = {
           hideDotfiles = false;
           hideGitignored = false;
-          hideByName = [".git"];
+          hideByName = [ ".git" ];
         };
       };
     };

@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.docs.zathura = {
     enable = lib.mkOption {
       type = lib.types.bool;

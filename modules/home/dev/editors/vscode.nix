@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.editors.vscode = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,7 +13,7 @@
 
     extraExtensions = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [];
+      default = [ ];
     };
   };
 

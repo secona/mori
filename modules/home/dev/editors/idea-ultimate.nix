@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.editors.idea-ultimate = {
     enable = lib.mkOption {
       type = lib.types.bool;

@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.ui.gtk = {
     enable = lib.mkOption {
       type = lib.types.bool;

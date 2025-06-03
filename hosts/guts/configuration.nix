@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, hostName, ... }:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -14,7 +15,7 @@
     grub = {
       enable = true;
       useOSProber = true;
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       efiSupport = true;
       configurationLimit = 5;
     };
@@ -22,7 +23,11 @@
     efi.canTouchEfiVariables = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    "pipe-operators"
+  ];
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
 
@@ -33,7 +38,7 @@
   };
 
   networking = {
-    hostName = "guts";
+    inherit hostName;
     networkmanager.enable = true;
   };
 
@@ -51,7 +56,7 @@
     displayManager = {
       enable = true;
       ly.enable = true;
-      sessionPackages = with pkgs; [sway];
+      sessionPackages = with pkgs; [ sway ];
     };
 
     xserver = {
@@ -85,7 +90,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
   };
 
   xdg.portal = {
@@ -108,7 +113,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       noto-fonts
       noto-fonts-cjk-sans
       inter
@@ -127,7 +132,12 @@
       shell = pkgs.zsh;
       isNormalUser = true;
       description = "secona";
-      extraGroups = ["networkmanager" "wheel" "docker" "wireshark"];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+        "wireshark"
+      ];
     };
   };
 

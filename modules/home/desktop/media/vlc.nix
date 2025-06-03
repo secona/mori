@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.media.vlc = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.media.vlc.enable {
-    home.packages = [pkgs.vlc];
+    home.packages = [ pkgs.vlc ];
   };
 }

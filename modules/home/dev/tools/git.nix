@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.dev.tools.git = {
     enable = lib.mkOption {
       type = lib.types.bool;

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.nixvim = {
     plugins.rustaceanvim = {
       enable = false;
@@ -22,8 +23,8 @@
         settings.cargo.features = "all";
       };
 
-      servers.nil_ls.enable = true;
-      servers.nixd.enable = true;
+      # servers.nil_ls.enable = true;
+      # servers.nixd.enable = true;
 
       servers.ts_ls.enable = true;
 
@@ -80,14 +81,17 @@
     plugins.conform-nvim = {
       enable = true;
       settings.formatters_by_ft = {
-        javascript = ["prettier"];
-        javascriptreact = ["prettier"];
-        typescript = ["prettier"];
-        typescriptreact = ["prettier"];
-        go = ["goimports" "gofmt"];
-        rust = ["rustfmt"];
-        json = ["jq"];
-        lua = ["stylua"];
+        javascript = [ "prettier" ];
+        javascriptreact = [ "prettier" ];
+        typescript = [ "prettier" ];
+        typescriptreact = [ "prettier" ];
+        go = [
+          "goimports"
+          "gofmt"
+        ];
+        rust = [ "rustfmt" ];
+        json = [ "jq" ];
+        lua = [ "stylua" ];
       };
 
       # TODO

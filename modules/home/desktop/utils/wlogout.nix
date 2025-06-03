@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.utils.wlogout = {
     enable = lib.mkOption {
       type = lib.types.bool;

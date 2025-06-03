@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.cli.tools.tmux = {
     enable = lib.mkOption {
       type = lib.types.bool;

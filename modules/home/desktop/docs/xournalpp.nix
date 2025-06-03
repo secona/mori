@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.docs.xournalpp = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.docs.xournalpp.enable {
-    home.packages = [pkgs.xournalpp];
+    home.packages = [ pkgs.xournalpp ];
   };
 }

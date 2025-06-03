@@ -19,24 +19,40 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... } @ inputs: let
-    system = "x86_64-linux";
+  outputs =
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            unstable = import nixpkgs-unstable {
+              system = prev.system;
+              config.allowUnfree = true;
+            };
+          })
+        ];
+      };
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-        (final: prev: {
-          unstable = import nixpkgs-unstable {
-            system = prev.system;
-            config.allowUnfree = true;
-          };
+      hosts = let
+        hostEntries = builtins.readDir ./hosts;
+      in hostEntries
+        |> builtins.attrNames
+        |> builtins.filter (name: hostEntries.${name} == "directory")
+        |> map (hostName: {
+          name = hostName;
+          value = nixpkgs.lib.nixosSystem (
+            import (./hosts + "/${hostName}/default.nix") {
+              inherit inputs pkgs;
+              hostName = hostName;
+            }
+          );
         })
-      ];
+        |> builtins.listToAttrs;
+    in
+    {
+      formatter.x86_64-linux = pkgs.nixfmt-rfc-style;
+      nixosConfigurations = hosts;
     };
-  in {
-    formatter.${system} = pkgs.alejandra;
-
-    nixosConfigurations.guts = nixpkgs.lib.nixosSystem (import ./hosts/guts/default.nix { inherit inputs pkgs; });
-  };
 }

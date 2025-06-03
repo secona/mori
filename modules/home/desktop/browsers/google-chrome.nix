@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.browsers.google-chrome = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.browsers.google-chrome.enable {
-    home.packages = [pkgs.google-chrome];
+    home.packages = [ pkgs.google-chrome ];
   };
 }

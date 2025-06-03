@@ -1,5 +1,15 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  hostName,
+  ...
+}:
+{
   system = "x86_64-linux";
+
+  specialArgs = {
+    inherit pkgs hostName;
+  };
 
   modules = [
     ./configuration.nix
@@ -14,4 +24,3 @@
     }
   ];
 }
-

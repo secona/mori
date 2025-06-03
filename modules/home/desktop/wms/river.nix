@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.wms.river = {
     enable = lib.mkOption {
       type = lib.types.bool;

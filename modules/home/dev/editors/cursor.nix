@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options.dev.editors.cursor = {
     enable = lib.mkOption {
       type = lib.types.bool;

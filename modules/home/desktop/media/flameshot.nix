@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.media.flameshot = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.media.flameshot.enable {
-    home.packages = [pkgs.flameshot];
+    home.packages = [ pkgs.flameshot ];
   };
 }

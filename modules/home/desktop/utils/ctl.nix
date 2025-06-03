@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.utils.ctl = {
     enable = lib.mkOption {
       type = lib.types.bool;

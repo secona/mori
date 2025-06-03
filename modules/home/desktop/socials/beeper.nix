@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.desktop.socials.beeper = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -12,6 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.socials.beeper.enable {
-    home.packages = [pkgs.beeper];
+    home.packages = [ pkgs.beeper ];
   };
 }

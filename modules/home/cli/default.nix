@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./shells/zsh.nix
 

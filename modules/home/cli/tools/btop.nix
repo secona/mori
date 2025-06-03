@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options.cli.tools.btop = {
     enable = lib.mkOption {
       type = lib.types.bool;
