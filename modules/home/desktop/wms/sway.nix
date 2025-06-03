@@ -54,7 +54,7 @@
           };
 
           "type:keyboard" = {
-            xkb_layout = "us,jp";
+            xkb_layout = "us";
             xkb_variant = ",";
             xkb_options = "grp:win_space_toggle";
           };
