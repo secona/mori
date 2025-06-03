@@ -12,6 +12,6 @@
   };
 
   config = lib.mkIf config.desktop.files.nemo.enable {
-    home.packages = with pkgs; [nemo];
+    home.packages = with pkgs; [nemo-with-extensions];
   };
 }
