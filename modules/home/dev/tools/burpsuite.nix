@@ -15,4 +15,3 @@
     home.packages = [pkgs.burpsuite];
   };
 }
-

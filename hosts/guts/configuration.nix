@@ -3,6 +3,12 @@
     ./hardware-configuration.nix
   ];
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.secona = import ./home.nix;
+  };
+
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
   boot.loader = {
     grub = {
@@ -45,7 +51,7 @@
     displayManager = {
       enable = true;
       ly.enable = true;
-      sessionPackages = with pkgs; [ sway ];
+      sessionPackages = with pkgs; [sway];
     };
 
     xserver = {

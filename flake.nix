@@ -18,6 +18,7 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
+
   outputs = {
     nixpkgs,
     nixpkgs-unstable,
@@ -26,8 +27,6 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    hostname = "guts";
-    username = "secona";
 
     pkgs = import nixpkgs {
       config.allowUnfree = true;
@@ -40,7 +39,7 @@
     };
 
     extraSpecialArgs = {
-      inherit pkgs pkgs-unstable system hostname username inputs;
+      inherit pkgs pkgs-unstable system inputs;
     };
   in {
     formatter.${system} = pkgs.alejandra;
@@ -54,12 +53,7 @@
         ./hosts/guts/configuration.nix
         home-manager.nixosModules.default
         nixos-hardware.nixosModules.lenovo-ideapad-15ach6
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${username} = import ./hosts/guts/home.nix;
-          home-manager.extraSpecialArgs = extraSpecialArgs;
-        }
+        {home-manager.extraSpecialArgs = extraSpecialArgs;}
       ];
     };
   };
