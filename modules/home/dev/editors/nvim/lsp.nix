@@ -1,8 +1,7 @@
 {pkgs-unstable, ...}: {
   programs.nixvim = {
     plugins.rustaceanvim = {
-      enable = true;
-      rustAnalyzerPackage = pkgs-unstable.rust-analyzer;
+      enable = false;
     };
 
     plugins.lsp = {
@@ -16,12 +15,12 @@
         )
       '';
 
-      # servers.rust-analyzer = {
-      #   enable = true;
-      #   installCargo = false;
-      #   installRustc = false;
-      #   settings.cargo.features = "all";
-      # };
+      servers.rust-analyzer = {
+        enable = true;
+        installCargo = false;
+        installRustc = false;
+        settings.cargo.features = "all";
+      };
 
       servers.nil_ls.enable = true;
       servers.nixd.enable = true;
@@ -65,7 +64,6 @@
 
     plugins.nvim-jdtls = {
       enable = true;
-      data = "/tmp/jdtls";
     };
 
     plugins.fidget = {
