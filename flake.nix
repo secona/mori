@@ -43,24 +43,27 @@
         ];
       };
 
-      hosts = let
-        hostEntries = builtins.readDir ./hosts;
-      in hostEntries
+      hosts =
+        ./hosts
+        |> builtins.readDir
         |> builtins.attrNames
-        |> builtins.filter (name: hostEntries.${name} == "directory")
-        |> map (hostName: {
-          name = hostName;
-          value = nixpkgs.lib.nixosSystem (
-            import (./hosts + "/${hostName}/default.nix") {
-              inherit inputs pkgs;
-              hostName = hostName;
-            }
-          );
-        })
-        |> builtins.listToAttrs;
+        |> builtins.foldl' (
+          acc: hostName:
+          acc
+          // {
+            nixosConfigurations = acc.nixosConfigurations // {
+              ${hostName} = nixpkgs.lib.nixosSystem (
+                import (./hosts + "/${hostName}/default.nix") {
+                  inherit inputs pkgs;
+                  hostName = hostName;
+                }
+              );
+            };
+          }
+        ) { nixosConfigurations = { }; };
     in
-    {
+    hosts
+    // {
       formatter.x86_64-linux = pkgs.nixfmt-rfc-style;
-      nixosConfigurations = hosts;
     };
 }
