@@ -19,13 +19,7 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-unstable,
-    nixos-hardware,
-    home-manager,
-    ...
-  } @ inputs: let
+  outputs = { nixpkgs, nixpkgs-unstable, ... } @ inputs: let
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
@@ -43,15 +37,6 @@
   in {
     formatter.${system} = pkgs.alejandra;
 
-    nixosConfigurations.guts = nixpkgs.lib.nixosSystem {
-      inherit system;
-
-      modules = [
-        ./hosts/guts/configuration.nix
-        home-manager.nixosModules.default
-        nixos-hardware.nixosModules.lenovo-ideapad-15ach6
-        {home-manager.extraSpecialArgs = {inherit pkgs inputs;};}
-      ];
-    };
+    nixosConfigurations.guts = nixpkgs.lib.nixosSystem (import ./hosts/guts/default.nix { inherit inputs pkgs; });
   };
 }
