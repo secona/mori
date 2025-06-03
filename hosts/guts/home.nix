@@ -81,7 +81,7 @@
       wireshark.enable = true;
 
       git.userName = "secona";
-      git.userEmail = "77039267+secona@users.noreply.github.com";
+      git.userEmail = "secona00@gmail.com";
       git.enable = true;
     };
   };
