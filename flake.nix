@@ -1,4 +1,12 @@
 {
+  nixConfig = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+  };
+
   inputs = {
     # both stable branch and unstable branch
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
