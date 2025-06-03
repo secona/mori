@@ -29,17 +29,16 @@
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
+      inherit system;
       config.allowUnfree = true;
-      localSystem = {inherit system;};
-    };
-
-    pkgs-unstable = import nixpkgs-unstable {
-      config.allowUnfree = true;
-      localSystem = {inherit system;};
-    };
-
-    extraSpecialArgs = {
-      inherit pkgs pkgs-unstable system inputs;
+      overlays = [
+        (final: prev: {
+          unstable = import nixpkgs-unstable {
+            system = prev.system;
+            config.allowUnfree = true;
+          };
+        })
+      ];
     };
   in {
     formatter.${system} = pkgs.alejandra;
@@ -47,13 +46,11 @@
     nixosConfigurations.guts = nixpkgs.lib.nixosSystem {
       inherit system;
 
-      specialArgs = {inherit pkgs-unstable;};
-
       modules = [
         ./hosts/guts/configuration.nix
         home-manager.nixosModules.default
         nixos-hardware.nixosModules.lenovo-ideapad-15ach6
-        {home-manager.extraSpecialArgs = extraSpecialArgs;}
+        {home-manager.extraSpecialArgs = {inherit pkgs inputs;};}
       ];
     };
   };

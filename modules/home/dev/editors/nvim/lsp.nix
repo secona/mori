@@ -1,4 +1,4 @@
-{pkgs-unstable, ...}: {
+{...}: {
   programs.nixvim = {
     plugins.rustaceanvim = {
       enable = false;

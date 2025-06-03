@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }: {
   options.dev.editors.cursor = {
@@ -13,7 +13,7 @@
 
   config = lib.mkIf config.dev.editors.cursor.enable {
     home.packages = [
-      pkgs-unstable.code-cursor
+      pkgs.unstable.code-cursor
     ];
   };
 }
