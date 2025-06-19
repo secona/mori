@@ -23,7 +23,7 @@
 
     socials = {
       discord.enable = true;
-      zoom-us.enable = true;
+      zoom-us.enable = false;
     };
 
     docs = {
@@ -39,8 +39,8 @@
     };
 
     misc = {
-      octave.enable = true;
-      jflap.enable = true;
+      octave.enable = false;
+      jflap.enable = false;
     };
 
     games = {
@@ -69,17 +69,17 @@
     editors = {
       nvim.enable = true;
       cursor.enable = true;
-      idea-ultimate.enable = true;
+      idea-ultimate.enable = false;
       vscode.enable = true;
     };
 
     tools = {
-      burpsuite.enable = true;
+      burpsuite.enable = false;
       devenv.enable = true;
       direnv.enable = true;
       lazygit.enable = true;
       postman.enable = true;
-      wireshark.enable = true;
+      wireshark.enable = false;
 
       git.userName = "secona";
       git.userEmail = "secona00@gmail.com";
