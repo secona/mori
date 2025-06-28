@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nixvim = {
     plugins.rustaceanvim = {
@@ -20,7 +20,12 @@
         enable = true;
         installCargo = false;
         installRustc = false;
-        settings.cargo.features = "all";
+        package = pkgs.unstable.rust-analyzer;
+
+        settings = {
+          cargo.features = "all";
+          diagnostics.disabled = [ "unlinked-file" ];
+        };
       };
 
       # servers.nil_ls.enable = true;
@@ -29,6 +34,8 @@
       servers.ts_ls.enable = true;
 
       servers.phpactor.enable = true;
+
+      servers.nushell.enable = true;
 
       servers.ols.enable = true;
 
