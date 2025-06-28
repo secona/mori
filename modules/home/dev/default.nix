@@ -12,6 +12,7 @@
     ./tools/devenv.nix
     ./tools/direnv.nix
     ./tools/git.nix
+    ./tools/jujutsu.nix
     ./tools/lazygit.nix
     ./tools/postman.nix
     ./tools/wireshark.nix
