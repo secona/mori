@@ -16,6 +16,7 @@
     ./media/obs-studio.nix
     ./media/vlc.nix
 
+    ./misc/anki.nix
     ./misc/jflap.nix
     ./misc/octave.nix
 
