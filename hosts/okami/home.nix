@@ -39,6 +39,7 @@
     };
 
     misc = {
+      anki.enable = true;
       octave.enable = false;
       jflap.enable = false;
     };
@@ -71,9 +72,13 @@
       cursor.enable = true;
       idea-ultimate.enable = false;
       vscode.enable = true;
+      zed-editor.enable = true;
     };
 
-    tools = {
+    tools = let
+      userName = "secona";
+      userEmail = "secona00@gmail.com";
+    in {
       burpsuite.enable = false;
       devenv.enable = true;
       direnv.enable = true;
@@ -81,9 +86,15 @@
       postman.enable = true;
       wireshark.enable = false;
 
-      git.userName = "secona";
-      git.userEmail = "secona00@gmail.com";
-      git.enable = true;
+      git = {
+        enable = true;
+        inherit userName userEmail;
+      };
+
+      jujutsu = {
+        enable = true;
+        inherit userName userEmail;
+      };
     };
   };
 

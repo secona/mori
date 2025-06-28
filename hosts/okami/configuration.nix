@@ -55,7 +55,12 @@
 
     displayManager = {
       enable = true;
-      ly.enable = true;
+      ly = {
+        enable = true;
+        settings = {
+          animation = "matrix";
+        };
+      };
       sessionPackages = with pkgs; [ sway ];
     };
 
