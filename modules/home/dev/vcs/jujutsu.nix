@@ -1,11 +1,10 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }:
 {
-  options.dev.tools.jujutsu = {
+  options.dev.vcs.jujutsu = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -20,12 +19,12 @@
     };
   };
 
-  config = lib.mkIf config.dev.tools.jujutsu.enable {
+  config = lib.mkIf config.dev.vcs.jujutsu.enable {
     programs.jujutsu = {
       enable = true;
       settings = {
-        user.name = config.dev.tools.jujutsu.userName;
-        user.email = config.dev.tools.jujutsu.userEmail;
+        user.name = config.dev.vcs.jujutsu.userName;
+        user.email = config.dev.vcs.jujutsu.userEmail;
       };
     };
   };

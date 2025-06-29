@@ -12,10 +12,12 @@
     ./tools/burpsuite.nix
     ./tools/devenv.nix
     ./tools/direnv.nix
-    ./tools/git.nix
-    ./tools/jujutsu.nix
+    ./tools/gh-dash.nix
     ./tools/lazygit.nix
     ./tools/postman.nix
     ./tools/wireshark.nix
+
+    ./vcs/git.nix
+    ./vcs/jujutsu.nix
   ];
 }

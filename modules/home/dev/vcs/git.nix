@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.dev.tools.git = {
+  options.dev.vcs.git = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -20,11 +20,11 @@
     };
   };
 
-  config = lib.mkIf config.dev.tools.git.enable {
+  config = lib.mkIf config.dev.vcs.git.enable {
     programs.git = {
       enable = true;
-      userName = config.dev.tools.git.userName;
-      userEmail = config.dev.tools.git.userEmail;
+      userName = config.dev.vcs.git.userName;
+      userEmail = config.dev.vcs.git.userEmail;
       package = pkgs.gitFull;
     };
   };

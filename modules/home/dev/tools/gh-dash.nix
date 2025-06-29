@@ -4,14 +4,14 @@
   ...
 }:
 {
-  options.cli.tools.gh-dash = {
+  options.dev.tools.gh-dash = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.cli.tools.gh-dash.enable {
+  config = lib.mkIf config.dev.tools.gh-dash.enable {
     programs.gh = {
       enable = true;
     };

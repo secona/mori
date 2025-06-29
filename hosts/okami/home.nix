@@ -55,11 +55,13 @@
       zsh.enable = true;
     };
 
+    monitoring = {
+      btop.enable = true;
+    };
+
     tools = {
       bat.enable = true;
-      btop.enable = true;
       eza.enable = true;
-      gh-dash.enable = true;
       starship.enable = true;
       tmux.enable = true;
       yazi.enable = true;
@@ -76,17 +78,20 @@
       zed-editor.enable = true;
     };
 
-    tools = let
-      userName = "secona";
-      userEmail = "secona00@gmail.com";
-    in {
+    tools =  {
       burpsuite.enable = false;
       devenv.enable = true;
       direnv.enable = true;
+      gh-dash.enable = true;
       lazygit.enable = true;
       postman.enable = true;
       wireshark.enable = false;
+    };
 
+    vcs = let
+      userName = "secona";
+      userEmail = "secona00@gmail.com";
+    in {
       git = {
         enable = true;
         inherit userName userEmail;
