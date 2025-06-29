@@ -64,10 +64,6 @@
         enable = true;
       };
 
-      extraPlugins = with pkgs.vimPlugins; [
-        flutter-tools-nvim
-      ];
-
       plugins.barbar = {
         enable = true;
         keymaps = {
@@ -321,10 +317,6 @@
         };
       };
 
-      plugins.rustaceanvim = {
-        enable = false;
-      };
-
       plugins.lsp = {
         enable = true;
         capabilities = ''
@@ -336,7 +328,28 @@
           )
         '';
 
-        servers.rust-analyzer = {
+        preConfig = ''
+          vim.diagnostic.config({
+            virtual_text = false,
+            severity_sort = true,
+            float = {
+              border = 'rounded',
+              source = 'always',
+            },
+          })
+
+          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+            vim.lsp.handlers.hover,
+            {border = 'rounded'}
+          )
+
+          vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+            vim.lsp.handlers.signature_help,
+            {border = 'rounded'}
+          )
+        '';
+
+        servers.rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
@@ -347,32 +360,6 @@
             diagnostics.disabled = [ "unlinked-file" ];
           };
         };
-
-        # servers.nil_ls.enable = true;
-        # servers.nixd.enable = true;
-
-        servers.ts_ls.enable = true;
-
-        servers.phpactor.enable = true;
-
-        servers.nushell.enable = true;
-
-        servers.ols.enable = true;
-
-        # servers.prismals.enable = true;
-
-        servers.pyright.enable = true;
-
-        servers.gopls.enable = true;
-
-        servers.volar.enable = true;
-
-        servers.astro.enable = true;
-
-        # servers.ccls.enable = true;
-        servers.clangd.enable = true;
-
-        servers.zls.enable = true;
 
         keymaps = {
           lspBuf = {
@@ -390,39 +377,15 @@
         };
       };
 
-      plugins.nvim-jdtls = {
-        enable = true;
-      };
-
       plugins.fidget = {
         enable = true;
-        notification = {
+        settings.notification = {
           window = {
             maxWidth = 50;
             winblend = 0;
             border = "rounded";
           };
         };
-      };
-
-      plugins.conform-nvim = {
-        enable = true;
-        settings.formatters_by_ft = {
-          javascript = [ "prettier" ];
-          javascriptreact = [ "prettier" ];
-          typescript = [ "prettier" ];
-          typescriptreact = [ "prettier" ];
-          go = [
-            "goimports"
-            "gofmt"
-          ];
-          rust = [ "rustfmt" ];
-          json = [ "jq" ];
-          lua = [ "stylua" ];
-        };
-
-        # TODO
-        # <leader> fm
       };
 
       plugins.comment = {
@@ -432,9 +395,6 @@
       plugins.barbecue = {
         enable = true;
       };
-
-      # TODO
-      # vim-visual-multi
 
       plugins.tmux-navigator = {
         enable = true;
@@ -516,10 +476,6 @@
         };
       };
 
-      plugins.yazi = {
-        enable = true;
-      };
-
       plugins.treesitter = {
         enable = true;
         settings.indent.enable = true;
@@ -550,11 +506,6 @@
         settings = {
           flavor = "mocha";
           transparent_background = true;
-          color_overrides = {
-            mocha = {
-              base = "#000000";
-            };
-          };
           integrations = {
             barbar = true;
             gitsigns = true;
@@ -599,7 +550,7 @@
         };
       };
 
-      plugins.dressing = {
+      plugins.snacks = {
         enable = true;
       };
 
@@ -610,11 +561,6 @@
       plugins.web-devicons = {
         enable = true;
       };
-
-      # TODO
-      # nvim-scrollbar
-      # nvim-hlslens
-      # reactive.nvim
     };
   };
 }
