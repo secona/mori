@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./editors/nvim
+    ./editors/nvim.nix
     ./editors/cursor.nix
     ./editors/helix.nix
     ./editors/vscode.nix
