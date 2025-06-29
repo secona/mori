@@ -51,6 +51,7 @@
 
   cli = {
     shells = {
+      nushell.enable = true;
       zsh.enable = true;
     };
 

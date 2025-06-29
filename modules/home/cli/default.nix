@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./shells/nushell.nix
     ./shells/zsh.nix
 
     ./tools/bat.nix
