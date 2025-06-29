@@ -61,6 +61,7 @@
 
     tools = {
       bat.enable = true;
+      carapace.enable = true;
       eza.enable = true;
       starship.enable = true;
       tmux.enable = true;

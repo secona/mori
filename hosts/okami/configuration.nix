@@ -10,7 +10,8 @@
     users.secona = import ./home.nix;
   };
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_6_15;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.loader = {
     grub = {
       enable = true;
