@@ -5,17 +5,16 @@
   ...
 }:
 {
-  options.desktop.terminals.ghostty = {
+  options.desktop.media.spotify-player = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
   };
 
-  config = lib.mkIf config.desktop.terminals.ghostty.enable {
-    programs.ghostty = {
+  config = lib.mkIf config.desktop.media.spotify-player.enable {
+    programs.spotify-player = {
       enable = true;
-      settings.font-size = 10;
     };
   };
 }

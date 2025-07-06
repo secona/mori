@@ -21,11 +21,20 @@
   };
 
   config = lib.mkIf config.dev.vcs.git.enable {
+    home.shellAliases = {
+      g = "git";
+    };
+
     programs.git = {
       enable = true;
       userName = config.dev.vcs.git.userName;
       userEmail = config.dev.vcs.git.userEmail;
       package = pkgs.gitFull;
+
+      aliases = {
+        a = "add";
+        c = "commit";
+      };
     };
   };
 }

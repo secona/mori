@@ -210,16 +210,16 @@
     };
 
     services.swayidle = {
-      enable = false;
+      enable = true;
       events = [ ];
       timeouts = [
         {
-          timeout = 30;
+          timeout = 240;
           command = "${pkgs.brightnessctl}/bin/brightnessctl -s set 0%";
           resumeCommand = "${pkgs.brightnessctl}/bin/brightnessctl -r";
         }
         {
-          timeout = 60;
+          timeout = 300;
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];

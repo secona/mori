@@ -14,6 +14,7 @@
     ./media/flameshot.nix
     ./media/miru.nix
     ./media/obs-studio.nix
+    ./media/spotify-player.nix
     ./media/vlc.nix
 
     ./misc/anki.nix
