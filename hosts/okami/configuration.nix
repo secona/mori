@@ -2,12 +2,12 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./users/secona.nix
   ];
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.secona = import ./home.nix;
   };
 
   # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_6_15;
@@ -144,20 +144,6 @@
   virtualisation = {
     docker = {
       enable = true;
-    };
-  };
-
-  users = {
-    users.secona = {
-      shell = pkgs.zsh;
-      isNormalUser = true;
-      description = "secona";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-        "wireshark"
-      ];
     };
   };
 
