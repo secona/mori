@@ -8,10 +8,14 @@
   system = "x86_64-linux";
 
   specialArgs = {
-    inherit pkgs hostName;
+    inherit hostName;
   };
 
   modules = [
+    ({ _module, ... }: {
+      nixpkgs.pkgs = pkgs;
+    })
+
     ./configuration.nix
 
     inputs.home-manager.nixosModules.home-manager

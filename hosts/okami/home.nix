@@ -15,6 +15,7 @@
 
     terminals = {
       kitty.enable = true;
+      ghostty.enable = true;
     };
 
     browsers = {
@@ -36,6 +37,7 @@
       vlc.enable = true;
       obs-studio.enable = true;
       miru.enable = true;
+      spotify-player.enable = true;
     };
 
     misc = {

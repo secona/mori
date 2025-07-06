@@ -30,7 +30,6 @@
     "pipe-operators"
   ];
   nix.settings.auto-optimise-store = true;
-  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Asia/Jakarta";
 
@@ -118,13 +117,28 @@
   };
 
   fonts = {
+    enableDefaultPackages = true;
+
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
-      noto-fonts
+      nerd-fonts.zed-mono
+
       noto-fonts-cjk-sans
-      inter
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+      noto-fonts
+
+      ubuntu-sans
+
       roboto
     ];
+
+    fontconfig = {
+      enable = true;
+      defaultFonts.monospace = ["Zed Mono" "JetBrainsMono Nerd Font"];
+      defaultFonts.sansSerif = ["Ubuntu Sans" "Noto Sans"];
+      defaultFonts.serif = ["Ubuntu Serif" "Noto Serif"];
+    };
   };
 
   virtualisation = {
