@@ -147,6 +147,9 @@
     };
   };
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -195,8 +198,6 @@
   documentation.dev.enable = true;
 
   programs = {
-    firefox.enable = true;
-
     dconf.enable = true;
 
     zsh.enable = true;
@@ -208,6 +209,22 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
+    };
+  };
+
+  powerManagement = {
+    enable = true;
+  };
+
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    charger = {
+      governor = "powersave";
+      turbo = "never";
     };
   };
 

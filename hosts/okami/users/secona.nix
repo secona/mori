@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   users.users.secona = {
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
     isNormalUser = true;
     description = "secona";
     extraGroups = [
@@ -21,6 +21,12 @@
       username = "secona";
       homeDirectory = "/home/secona";
       stateVersion = "24.05";
+
+      shellAliases = {
+        l = "ls -al";
+        ll = "ls -al";
+        la = "ls -a";
+      };
     };
 
     desktop = {
@@ -29,6 +35,7 @@
       };
 
       ui = {
+        gtk.enable = true;
         catppuccin.enable = true;
       };
 
@@ -38,6 +45,7 @@
       };
 
       browsers = {
+        firefox.enable = true;
         google-chrome.enable = true;
       };
 
