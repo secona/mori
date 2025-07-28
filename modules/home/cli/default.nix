@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./misc/fastfetch.nix
+
     ./shells/nushell.nix
     ./shells/zsh.nix
 
