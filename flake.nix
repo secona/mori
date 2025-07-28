@@ -17,6 +17,7 @@
 
     # catppuccin for ricing
     catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # home manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
@@ -24,11 +25,15 @@
 
     # nixvim for configuring neovim
     nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    # NUR
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    { nixpkgs, nixpkgs-unstable, nur, ... }@inputs:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -40,6 +45,7 @@
               config.allowUnfree = true;
             };
           })
+          nur.overlays.default
         ];
       };
 

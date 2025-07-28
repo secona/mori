@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./browsers/firefox.nix
     ./browsers/google-chrome.nix
 
     ./docs/libreoffice.nix
