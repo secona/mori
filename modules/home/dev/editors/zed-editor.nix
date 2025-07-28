@@ -15,11 +15,10 @@
   config = lib.mkIf config.dev.editors.zed-editor.enable {
     programs.zed-editor = {
       enable = true;
-      extensions = [ "nix" "astro" "haskell" "nushell" ];
+      extensions = [ "nix" "astro" "haskell" "nushell" "discord-presence" ];
       userSettings = {
         vim_mode = true;
       };
-      extraPackages = with pkgs; [ nil nixd astro-language-server ];
     };
   };
 }
