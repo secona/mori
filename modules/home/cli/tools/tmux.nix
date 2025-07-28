@@ -20,11 +20,10 @@
       clock24 = true;
       keyMode = "vi";
       terminal = "tmux-256color";
-      shell = "${pkgs.zsh}/bin/zsh";
       mouse = true;
 
       extraConfig = ''
-        set -gq allow-passthrough on
+        set -g allow-passthrough on
         set -g visual-activity off
 
         setw -g monitor-activity on

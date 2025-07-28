@@ -5,6 +5,9 @@
   inputs,
   ...
 }:
+let
+  nixvim = config.lib.nixvim;
+in
 {
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
@@ -164,33 +167,26 @@
             diagnostics = {
               "vim.diagnostic.severity.ERROR" = {
                 enabled = true;
-                icon = " ";
               };
               "vim.diagnostic.severity.WARN" = {
                 enabled = true;
-                icon = " ";
               };
               "vim.diagnostic.severity.INFO" = {
                 enabled = false;
-                icon = " ";
               };
               "vim.diagnostic.severity.HINT" = {
                 enabled = true;
-                icon = " ";
               };
             };
             gitsigns = {
               added = {
                 enabled = true;
-                icon = " ";
               };
               changed = {
                 enabled = true;
-                icon = " ";
               };
               deleted = {
                 enabled = true;
-                icon = " ";
               };
             };
             filetype = {
@@ -217,9 +213,6 @@
         };
       };
 
-      plugins.cmp-buffer.enable = true;
-      plugins.cmp-path.enable = true;
-      plugins.cmp_luasnip.enable = true;
       plugins.luasnip.enable = true;
       plugins.lspkind.enable = true;
       plugins.nvim-autopairs.enable = true;
@@ -227,6 +220,13 @@
       plugins.cmp = {
         enable = true;
         settings = {
+          autoEnableSources = true;
+          sources = [
+            { name = "cmp_luasnip"; }
+            { name = "nvim_lsp"; }
+            { name = "buffer"; }
+            { name = "path"; }
+          ];
           window = {
             completion = {
               border = "rounded";
@@ -266,12 +266,6 @@
               ["<C-Space>"] = cmp.mapping.complete(),
             })
           '';
-          sources = [
-            { name = "cmp_luasnip"; }
-            { name = "nvim_lsp"; }
-            { name = "buffer"; }
-            { name = "path"; }
-          ];
           snippet = {
             expand = ''
               function(args)
@@ -319,35 +313,6 @@
 
       plugins.lsp = {
         enable = true;
-        capabilities = ''
-          capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-          )
-        '';
-
-        preConfig = ''
-          vim.diagnostic.config({
-            virtual_text = false,
-            severity_sort = true,
-            float = {
-              border = 'rounded',
-              source = 'always',
-            },
-          })
-
-          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-            vim.lsp.handlers.hover,
-            {border = 'rounded'}
-          )
-
-          vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-            vim.lsp.handlers.signature_help,
-            {border = 'rounded'}
-          )
-        '';
 
         servers.rust_analyzer = {
           enable = true;
@@ -361,27 +326,59 @@
           };
         };
 
-        keymaps = {
-          lspBuf = {
-            "<F2>" = "rename";
-            "<C-Space>" = "hover";
-            "<Leader>df" = "definition";
-            "<Leader>dc" = "declaration";
-            "<Leader>ca" = "code_action";
-          };
-          diagnostic = {
-            "<Leader>ee" = "open_float";
-            "<Leader>ej" = "goto_next";
-            "<Leader>ek" = "goto_prev";
-          };
-        };
+        keymaps.extra = [
+          {
+            key = "<F2>";
+            action = "<CMD>Lspsaga rename<Enter>";
+          }
+          {
+            key = "<C-Space>";
+            action = "<CMD>Lspsaga hover_doc<Enter>";
+          }
+          {
+            key = "<Leader>df";
+            action = "<CMD>Lspsaga goto_definition<Enter>";
+          }
+          {
+            key = "<Leader>dt";
+            action = "<CMD>Lspsaga goto_type_definition<Enter>";
+          }
+          {
+            key = "<Leader>pf";
+            action = "<CMD>Lspsaga peek_definition<Enter>";
+          }
+          {
+            key = "<Leader>pt";
+            action = "<CMD>Lspsaga peek_type_definition<Enter>";
+          }
+          {
+            key = "<Leader>ca";
+            action = "<CMD>Lspsaga code_action<Enter>";
+          }
+          {
+            key = "<Leader>ek";
+            action = "<CMD>Lspsaga diagnostic_jump_prev<Enter>";
+          }
+          {
+            key = "<Leader>ej";
+            action = "<CMD>Lspsaga diagnostic_jump_next<Enter>";
+          }
+        ];
+      };
+
+      plugins.lspsaga = {
+        enable = true;
+        ui.border = "rounded";
+        ui.codeAction = null;
+        ui.actionfix = null;
+        lightbulb.enable = false;
       };
 
       plugins.fidget = {
         enable = true;
         settings.notification = {
           window = {
-            maxWidth = 50;
+            max_width = 50;
             winblend = 0;
             border = "rounded";
           };
@@ -389,10 +386,6 @@
       };
 
       plugins.comment = {
-        enable = true;
-      };
-
-      plugins.barbecue = {
         enable = true;
       };
 
@@ -413,38 +406,13 @@
         settings.win.border = "single";
       };
 
-      plugins.telescope = {
-        enable = true;
-        keymaps = {
-          "<leader>ff" = {
-            action = "find_files";
-          };
-          "<leader>fg" = {
-            action = "live_grep";
-          };
-          "<leader>fb" = {
-            action = "buffers";
-          };
-          "<leader>fh" = {
-            action = "help_tags";
-          };
-          "<leader>rf" = {
-            action = "lsp_references";
-          };
-        };
-      };
-
-      plugins.image = {
-        enable = true;
-      };
-
       plugins.toggleterm = {
         enable = true;
         settings = {
           float_opts.border = "rounded";
           direction = "float";
           open_mapping = "[[<C-_>]]";
-          shell = "zsh";
+          shell = "${pkgs.nushell}/bin/nu";
         };
       };
 
@@ -552,6 +520,32 @@
 
       plugins.snacks = {
         enable = true;
+        luaConfig.post = ''
+          -- Telescope functionality
+          vim.keymap.set("n", "<Leader>ff", Snacks.picker.files)
+          vim.keymap.set("n", "<Leader>fg", Snacks.picker.grep)
+          vim.keymap.set("n", "<Leader>fb", Snacks.picker.buffers)
+          vim.keymap.set("n", "<Leader>fh", Snacks.picker.help)
+          vim.keymap.set("n", "<Leader>rf", Snacks.picker.lsp_references)
+
+          -- Pickers
+          vim.keymap.set("n", '<Leader>s"', Snacks.picker.registers)
+          vim.keymap.set("n", '<Leader>s/', Snacks.picker.search_history)
+          vim.keymap.set("n", '<Leader>sc', Snacks.picker.commands)
+          vim.keymap.set("n", '<Leader>sd', Snacks.picker.diagnostics)
+          vim.keymap.set("n", '<Leader>su', Snacks.picker.undo)
+          vim.keymap.set("n", '<Leader>sj', Snacks.picker.jumps)
+          vim.keymap.set("n", "<Leader>:",  Snacks.picker.command_history)
+
+          -- Git stuff
+          vim.keymap.set("n", "<Leader>gb", Snacks.picker.git_branches)
+          vim.keymap.set("n", "<Leader>gl", Snacks.picker.git_log)
+          vim.keymap.set("n", "<Leader>gs", Snacks.picker.git_status)
+          vim.keymap.set("n", "<Leader>gd", Snacks.picker.git_diff)
+
+          -- Others
+          vim.keymap.set("n", "<Leader>lg", Snacks.lazygit.open)
+        '';
       };
 
       plugins.illuminate = {
