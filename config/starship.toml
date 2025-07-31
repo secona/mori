@@ -1,19 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$nix_shell\
-$fill\
-$cmd_duration\
-$time\
-$line_break\
-$character"""
+[╭──](bold black) $username$hostname$directory$git_branch$git_commit$git_state$git_status$nix_shell$cmd_duration$fill $line_break\
+[╰](bold black) $character"""
 
 add_newline = true
 
@@ -37,7 +26,7 @@ style = "bold lavender"
 read_only = ""
 
 [git_branch]
-format = " [$symbol $branch(:$remote_branch)]($style)"
+format = " [$symbol $branch(:$remote_branch)]($style) "
 symbol = ""
 
 [nix_shell]
@@ -48,7 +37,7 @@ symbol = " "
 symbol = '―'
 
 [cmd_duration]
-format = "took [$duration]($style) "
+format = " [ $duration]($style) "
 
 [nodejs]
 symbol = ""
@@ -68,9 +57,9 @@ time_format = "%R" # Hour:Minute Format
 format = '[  $time](subtext2)'
 
 [character]
-success_symbol = "[❯](maroon)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+success_symbol = "[\\$](maroon)"
+error_symbol = "[\\$](red)"
+vimcmd_symbol = "[\\$](green)"
 
 [package]
 symbol = ""
@@ -103,3 +92,5 @@ surface0 = "#313244"
 base = "#1e1e2e"
 crust = "#11111b"
 mantle = "#181825"
+
+
