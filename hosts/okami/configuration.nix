@@ -32,7 +32,10 @@
       "pipe-operators"
     ];
     auto-optimise-store = true;
-    trusted-users = [ "root" "secona" ];
+    trusted-users = [
+      "root"
+      "secona"
+    ];
   };
 
   time.timeZone = "Asia/Jakarta";
@@ -146,9 +149,15 @@
 
     fontconfig = {
       enable = true;
-      defaultFonts.monospace = ["Ubuntu Mono"];
-      defaultFonts.sansSerif = ["Ubuntu Sans" "Noto Sans"];
-      defaultFonts.serif = ["Ubuntu Serif" "Noto Serif"];
+      defaultFonts.monospace = [ "Ubuntu Mono" ];
+      defaultFonts.sansSerif = [
+        "Ubuntu Sans"
+        "Noto Sans"
+      ];
+      defaultFonts.serif = [
+        "Ubuntu Serif"
+        "Noto Serif"
+      ];
     };
   };
 

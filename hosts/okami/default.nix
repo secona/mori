@@ -12,9 +12,12 @@
   };
 
   modules = [
-    ({ _module, ... }: {
-      nixpkgs.pkgs = pkgs;
-    })
+    (
+      { _module, ... }:
+      {
+        nixpkgs.pkgs = pkgs;
+      }
+    )
 
     ./configuration.nix
 

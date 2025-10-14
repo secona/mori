@@ -15,7 +15,14 @@
   config = lib.mkIf config.dev.editors.zed-editor.enable {
     programs.zed-editor = {
       enable = true;
-      extensions = [ "nix" "astro" "haskell" "nushell" "discord-presence" "html" ];
+      extensions = [
+        "nix"
+        "astro"
+        "haskell"
+        "nushell"
+        "discord-presence"
+        "html"
+      ];
       userSettings = {
         vim_mode = true;
       };

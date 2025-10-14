@@ -18,16 +18,19 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ (import rust-overlay )];
+          overlays = [ (import rust-overlay) ];
         };
 
         toolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = [ toolchain pkgs.openssl pkgs.pkg-config ];
+          buildInputs = [
+            toolchain
+            pkgs.openssl
+            pkgs.pkg-config
+          ];
         };
       }
     );
 }
-

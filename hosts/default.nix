@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.nixosConfigurations = 
+  flake.nixosConfigurations =
     let
       system = "x86_64-linux";
       pkgs = import inputs.nixpkgs {
@@ -16,21 +16,21 @@
           inputs.nur.overlays.default
         ];
       };
-    in 
-      ./.
-      |> builtins.readDir
-      |> builtins.attrNames
-      |> builtins.filter (name: name != "default.nix")
-      |> builtins.foldl' (
-        acc: hostName:
-        acc
-        // {
-          ${hostName} = inputs.nixpkgs.lib.nixosSystem (
-            import (./. + "/${hostName}/default.nix") {
-              inherit inputs pkgs;
-              hostName = hostName;
-            }
-          );
-        }
-      ) {};
+    in
+    ./.
+    |> builtins.readDir
+    |> builtins.attrNames
+    |> builtins.filter (name: name != "default.nix")
+    |> builtins.foldl' (
+      acc: hostName:
+      acc
+      // {
+        ${hostName} = inputs.nixpkgs.lib.nixosSystem (
+          import (./. + "/${hostName}/default.nix") {
+            inherit inputs pkgs;
+            hostName = hostName;
+          }
+        );
+      }
+    ) { };
 }

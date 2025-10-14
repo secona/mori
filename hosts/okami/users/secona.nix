@@ -105,7 +105,7 @@
         zed-editor.enable = true;
       };
 
-      tools =  {
+      tools = {
         burpsuite.enable = false;
         devenv.enable = true;
         direnv.enable = true;
@@ -116,20 +116,22 @@
         wireshark.enable = true;
       };
 
-      vcs = let
-        userName = "Vito Secona";
-        userEmail = "secona00@gmail.com";
-      in {
-        git = {
-          enable = true;
-          inherit userName userEmail;
-        };
+      vcs =
+        let
+          userName = "Vito Secona";
+          userEmail = "secona00@gmail.com";
+        in
+        {
+          git = {
+            enable = true;
+            inherit userName userEmail;
+          };
 
-        jujutsu = {
-          enable = true;
-          inherit userName userEmail;
+          jujutsu = {
+            enable = true;
+            inherit userName userEmail;
+          };
         };
-      };
     };
   };
 }

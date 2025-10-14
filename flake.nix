@@ -33,12 +33,26 @@
 
     # flake-parts
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # formatting
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
-      imports = [ ./hosts/default.nix ];
+
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        ./hosts/default.nix
+      ];
+
+      perSystem = {
+        treefmt.programs = {
+          nixfmt.enable = true;
+        };
+      };
     };
 }

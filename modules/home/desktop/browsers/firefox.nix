@@ -19,7 +19,7 @@
       };
     };
 
-    programs.firefox = 
+    programs.firefox =
       let
         extensionPackages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
@@ -28,12 +28,12 @@
         extensionSettings = {
           "uBlock0@raymondhill.net".settings = {
             selectedFilterLists = [
-             "ublock-filters"
-             "ublock-badware"
-             "ublock-privacy"
-             "ublock-unbreak"
-             "ublock-quick-fixes"
-           ];
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-unbreak"
+              "ublock-quick-fixes"
+            ];
           };
         };
       in
