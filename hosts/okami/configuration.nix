@@ -10,27 +10,30 @@
     useUserPackages = true;
   };
 
-  # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_6_15;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.loader = {
-    grub = {
-      enable = true;
-      useOSProber = true;
-      devices = [ "nodev" ];
-      efiSupport = true;
-      configurationLimit = 5;
-    };
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    loader = {
+      grub = {
+        enable = true;
+        useOSProber = true;
+        devices = [ "nodev" ];
+        efiSupport = true;
+        configurationLimit = 5;
+      };
 
-    efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-    "pipe-operators"
-  ];
-  nix.settings.auto-optimise-store = true;
-  nix.settings.trusted-users = [ "root" "secona" ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+    auto-optimise-store = true;
+    trusted-users = [ "root" "secona" ];
+  };
 
   time.timeZone = "Asia/Jakarta";
 
@@ -132,22 +135,18 @@
     enableDefaultPackages = true;
 
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.zed-mono
-
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       noto-fonts
-
       ubuntu-sans
-
+      nerd-fonts.ubuntu-mono
       roboto
     ];
 
     fontconfig = {
       enable = true;
-      defaultFonts.monospace = ["Zed Mono" "JetBrainsMono Nerd Font"];
+      defaultFonts.monospace = ["Ubuntu Mono"];
       defaultFonts.sansSerif = ["Ubuntu Sans" "Noto Sans"];
       defaultFonts.serif = ["Ubuntu Serif" "Noto Serif"];
     };
@@ -181,29 +180,10 @@
       wl-clipboard
       man-pages
       man-pages-posix
-
-      # mangohud
-      # protonup-qt
-      # lutris
-    ];
-
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-browser-integration
-      konsole
-      oxygen
-      okular
-      kwrited
-      elisa
-      ark
-      gwenview
-      spectacle
-      kate
-      khelpcenter
-      dolphin
-      dolphin-plugins
-      kwallet
-      kwallet-pam
-      kwalletmanager
+      dnsutils
+      inetutils
+      file
+      tree
     ];
   };
 
@@ -211,19 +191,9 @@
 
   programs = {
     wireshark.enable = true;
-
     dconf.enable = true;
-
     zsh.enable = true;
-
     nix-ld.enable = true;
-
-    steam = {
-      enable = false;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-    };
   };
 
   powerManagement = {
