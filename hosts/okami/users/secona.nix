@@ -52,7 +52,6 @@
 
       socials = {
         discord.enable = true;
-        zoom-us.enable = false;
       };
 
       docs = {
@@ -64,13 +63,9 @@
       media = {
         vlc.enable = true;
         obs-studio.enable = true;
-        miru.enable = true;
       };
 
       misc = {
-        anki.enable = true;
-        octave.enable = false;
-        jflap.enable = false;
         cisco-packet-tracer.enable = true;
       };
 
