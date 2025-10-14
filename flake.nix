@@ -30,46 +30,15 @@
     # NUR
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    # flake-parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs =
-    { nixpkgs, nixpkgs-unstable, nur, ... }@inputs:
-    let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            unstable = import nixpkgs-unstable {
-              system = prev.system;
-              config.allowUnfree = true;
-            };
-          })
-          nur.overlays.default
-        ];
-      };
-
-      hosts =
-        ./hosts
-        |> builtins.readDir
-        |> builtins.attrNames
-        |> builtins.foldl' (
-          acc: hostName:
-          acc
-          // {
-            nixosConfigurations = acc.nixosConfigurations // {
-              ${hostName} = nixpkgs.lib.nixosSystem (
-                import (./hosts + "/${hostName}/default.nix") {
-                  inherit inputs pkgs;
-                  hostName = hostName;
-                }
-              );
-            };
-          }
-        ) { nixosConfigurations = { }; };
-    in
-    hosts
-    // {
-      formatter.x86_64-linux = pkgs.nixfmt-rfc-style;
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ ./hosts/default.nix ];
     };
 }
