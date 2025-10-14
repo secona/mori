@@ -316,14 +316,28 @@ in
 
         servers.rust_analyzer = {
           enable = true;
+          package = pkgs.unstable.rust-analyzer;
           installCargo = false;
           installRustc = false;
-          package = pkgs.unstable.rust-analyzer;
 
           settings = {
             cargo.features = "all";
             diagnostics.disabled = [ "unlinked-file" ];
           };
+        };
+
+        servers.clangd = {
+          enable = true;
+          package = null;
+        };
+
+        servers.gopls = {
+          enable = true;
+          package = null;
+        };
+
+        servers.pyright = {
+          enable = true;
         };
 
         keymaps.extra = [

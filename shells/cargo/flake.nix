@@ -21,7 +21,7 @@
           overlays = [ (import rust-overlay )];
         };
 
-        toolchain = pkgs.rust-bin.beta.latest.default;
+        toolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
       in
       {
         devShells.default = pkgs.mkShell {

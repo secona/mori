@@ -54,6 +54,7 @@
               tap = "enabled";
               natural_scroll = "enabled";
               scroll_factor = "0.2";
+              accel_profile = "adaptive";
             };
 
             "type:keyboard" = {
@@ -65,7 +66,7 @@
 
           output = {
             "*" = {
-              bg = "${../../../../wallpapers/pixel-car.png} fill";
+              bg = "${../../../../wallpapers/reze-denji.jpg} fill";
             };
           };
 

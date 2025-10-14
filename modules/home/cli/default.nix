@@ -14,6 +14,7 @@
     ./tools/starship.nix
     ./tools/tmux.nix
     ./tools/yazi.nix
+    ./tools/zellij.nix
     ./tools/zoxide.nix
   ];
 }

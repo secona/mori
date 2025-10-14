@@ -30,6 +30,7 @@
     "pipe-operators"
   ];
   nix.settings.auto-optimise-store = true;
+  nix.settings.trusted-users = [ "root" "secona" ];
 
   time.timeZone = "Asia/Jakarta";
 
@@ -67,6 +68,8 @@
     xserver = {
       enable = true;
 
+      videoDrivers = [ "nvidia" ];
+
       xkb = {
         layout = "us";
         model = "pc105";
@@ -84,12 +87,21 @@
     printing.enable = true;
     blueman.enable = true;
     postgresql.enable = true;
+
+    gvfs.enable = true;
   };
 
   hardware = {
     graphics.enable = true;
     bluetooth.enable = true;
     pulseaudio.enable = false;
+    enableRedistributableFirmware = true;
+
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = true;
+    };
   };
 
   security = {
@@ -198,6 +210,8 @@
   documentation.dev.enable = true;
 
   programs = {
+    wireshark.enable = true;
+
     dconf.enable = true;
 
     zsh.enable = true;
@@ -216,17 +230,7 @@
     enable = true;
   };
 
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "powersave";
-      turbo = "never";
-    };
-  };
+  services.tlp.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

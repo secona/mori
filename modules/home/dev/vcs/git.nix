@@ -31,6 +31,13 @@
       userEmail = config.dev.vcs.git.userEmail;
       package = pkgs.gitFull;
 
+      delta = {
+        enable = true;
+        options = {
+          line-numbers = true;
+        };
+      };
+
       aliases = {
         a = "add";
         c = "commit";

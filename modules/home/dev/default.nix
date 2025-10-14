@@ -12,6 +12,7 @@
     ./tools/burpsuite.nix
     ./tools/devenv.nix
     ./tools/direnv.nix
+    ./tools/gemini-cli.nix
     ./tools/gh-dash.nix
     ./tools/lazygit.nix
     ./tools/postman.nix

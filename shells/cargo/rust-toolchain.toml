@@ -1,0 +1,16 @@
+[toolchain]
+channel = "nightly"
+profile = "minimal"
+components = [
+  "rustfmt",
+  "rustc",
+  "rustc-codegen-cranelift-preview",
+  "rust-analyzer",
+  "rust-src",
+  "cargo",
+  "clippy",
+  "miri",
+]
+targets = [
+  "x86_64-unknown-linux-gnu"
+]

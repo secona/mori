@@ -9,6 +9,7 @@
       "wheel"
       "docker"
       "wireshark"
+      "dialout"
     ];
   };
 
@@ -70,6 +71,7 @@
         anki.enable = true;
         octave.enable = false;
         jflap.enable = false;
+        cisco-packet-tracer.enable = true;
       };
 
       games = {
@@ -94,6 +96,7 @@
         starship.enable = true;
         tmux.enable = true;
         yazi.enable = true;
+        zellij.enable = true;
         zoxide.enable = true;
       };
     };
@@ -111,14 +114,15 @@
         burpsuite.enable = false;
         devenv.enable = true;
         direnv.enable = true;
+        gemini-cli.enable = true;
         gh-dash.enable = true;
         lazygit.enable = true;
         postman.enable = true;
-        wireshark.enable = false;
+        wireshark.enable = true;
       };
 
       vcs = let
-        userName = "secona";
+        userName = "Vito Secona";
         userEmail = "secona00@gmail.com";
       in {
         git = {

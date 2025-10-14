@@ -19,6 +19,7 @@
     ./media/vlc.nix
 
     ./misc/anki.nix
+    ./misc/cisco-packet-tracer.nix
     ./misc/jflap.nix
     ./misc/octave.nix
 

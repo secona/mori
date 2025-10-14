@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -16,6 +17,13 @@
 
     programs.lazygit = {
       enable = true;
+      settings = {
+        gui.nerdFontsVersion = 3;
+        git.paging = {
+          colorArg = "always";
+          pager = "${pkgs.delta}/bin/delta --dark --paging=never";
+        };
+      };
     };
   };
 }
