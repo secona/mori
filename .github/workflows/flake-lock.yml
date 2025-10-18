@@ -1,4 +1,4 @@
-name: Update flake.lock
+name: "flake.lock: update Nix dependencies"
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
@@ -6,6 +6,11 @@ on:
 
 jobs:
   lockfile:
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,6 +21,6 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         with:
           pr-assignees: secona
-          pr-title: "Update Nix flake inputs"
+          pr-title: "update Nix flake inputs"
           pr-labels: |
             deps
