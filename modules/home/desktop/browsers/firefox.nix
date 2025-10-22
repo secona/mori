@@ -49,36 +49,6 @@
               settings = extensionSettings;
             };
           };
-
-          person1 = {
-            id = 1;
-            name = "person1";
-            extensions = {
-              force = true;
-              packages = extensionPackages;
-              settings = extensionSettings;
-            };
-          };
-
-          person2 = {
-            id = 2;
-            name = "person2";
-            extensions = {
-              force = true;
-              packages = extensionPackages;
-              settings = extensionSettings;
-            };
-          };
-
-          person3 = {
-            id = 3;
-            name = "person3";
-            extensions = {
-              force = true;
-              packages = extensionPackages;
-              settings = extensionSettings;
-            };
-          };
         };
       };
   };

@@ -16,7 +16,7 @@
     gtk = {
       enable = true;
 
-      iconTheme = {
+      iconTheme = lib.mkDefault {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
       };
