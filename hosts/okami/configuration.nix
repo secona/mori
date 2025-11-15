@@ -93,6 +93,7 @@
     printing.enable = true;
     blueman.enable = true;
     postgresql.enable = true;
+    pulseaudio.enable = false;
 
     gvfs.enable = true;
   };
@@ -100,7 +101,6 @@
   hardware = {
     graphics.enable = true;
     bluetooth.enable = true;
-    pulseaudio.enable = false;
     enableRedistributableFirmware = true;
 
     nvidia = {
@@ -194,6 +194,10 @@
       inetutils
       file
       tree
+
+      xwayland-satellite
+      swaybg
+      waybar
     ];
   };
 
@@ -204,6 +208,7 @@
     dconf.enable = true;
     zsh.enable = true;
     nix-ld.enable = true;
+    niri.enable = true;
   };
 
   powerManagement = {

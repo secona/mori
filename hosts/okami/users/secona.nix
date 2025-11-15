@@ -52,6 +52,7 @@
 
       socials = {
         discord.enable = true;
+        zoom-us.enable = true;
       };
 
       docs = {

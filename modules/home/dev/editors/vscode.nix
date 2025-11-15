@@ -21,7 +21,7 @@
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc-icons
         catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
@@ -29,7 +29,7 @@
         vscjava.vscode-java-pack
         redhat.java
       ];
-      userSettings = {
+      profiles.default.userSettings = {
         "workbench.colorTheme" = "Catppuccin Mocha";
         "workbench.iconTheme" = "catppuccin-mocha";
       };

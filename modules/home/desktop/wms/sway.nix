@@ -66,7 +66,7 @@
 
           output = {
             "*" = {
-              bg = "${../../../../wallpapers/reze-denji.jpg} fill";
+              bg = "${../../../../wallpapers/reze.jpg} fill";
             };
           };
 

@@ -13,6 +13,6 @@
   };
 
   config = lib.mkIf config.dev.tools.devenv.enable {
-    home.packages = [ pkgs.devenv ];
+    home.packages = [ pkgs.unstable.devenv ];
   };
 }
