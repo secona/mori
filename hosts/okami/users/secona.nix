@@ -10,6 +10,8 @@
       "docker"
       "wireshark"
       "dialout"
+      "libvirtd"
+      "kvm"
     ];
   };
 
