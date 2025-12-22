@@ -27,20 +27,15 @@
 
     programs.git = {
       enable = true;
-      userName = config.dev.vcs.git.userName;
-      userEmail = config.dev.vcs.git.userEmail;
       package = pkgs.gitFull;
 
-      delta = {
-        enable = true;
-        options = {
-          line-numbers = true;
+      settings = {
+        user.name = config.dev.vcs.git.userName;
+        user.email = config.dev.vcs.git.userEmail;
+        aliases = {
+          a = "add";
+          c = "commit";
         };
-      };
-
-      aliases = {
-        a = "add";
-        c = "commit";
       };
     };
   };

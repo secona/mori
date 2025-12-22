@@ -19,10 +19,11 @@
       enable = true;
       settings = {
         gui.nerdFontsVersion = 3;
-        git.paging = {
-          colorArg = "always";
-          pager = "${pkgs.delta}/bin/delta --dark --paging=never";
-        };
+        git.pagers = [
+          {
+            pager = "${pkgs.delta}/bin/delta --dark --paging=never";
+          }
+        ];
       };
     };
   };

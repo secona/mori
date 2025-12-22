@@ -68,10 +68,6 @@
         obs-studio.enable = true;
       };
 
-      misc = {
-        cisco-packet-tracer.enable = true;
-      };
-
       games = {
         minecraft.enable = true;
       };
@@ -91,6 +87,7 @@
       tools = {
         bat.enable = true;
         carapace.enable = true;
+        delta.enable = true;
         eza.enable = true;
         starship.enable = true;
         tmux.enable = true;

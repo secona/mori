@@ -11,6 +11,7 @@
 
     ./tools/bat.nix
     ./tools/carapace.nix
+    ./tools/delta.nix
     ./tools/eza.nix
     ./tools/starship.nix
     ./tools/tmux.nix

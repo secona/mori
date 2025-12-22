@@ -63,7 +63,7 @@ in
           }
         ];
 
-      plugins.presence-nvim = {
+      plugins.presence = {
         enable = true;
       };
 
@@ -316,7 +316,7 @@ in
 
         servers.rust_analyzer = {
           enable = true;
-          package = pkgs.unstable.rust-analyzer;
+          package = null;
           installCargo = false;
           installRustc = false;
 
@@ -382,10 +382,12 @@ in
 
       plugins.lspsaga = {
         enable = true;
-        ui.border = "rounded";
-        ui.codeAction = null;
-        ui.actionfix = null;
-        lightbulb.enable = false;
+        settings = {
+          ui.border = "rounded";
+          ui.codeAction = null;
+          ui.actionfix = null;
+          lightbulb.enable = false;
+        };
       };
 
       plugins.fidget = {
@@ -426,34 +428,36 @@ in
           float_opts.border = "rounded";
           direction = "float";
           open_mapping = "[[<C-_>]]";
-          shell = "${pkgs.nushell}/bin/nu";
+          shell = "${pkgs.fish}/bin/fish";
         };
       };
 
       plugins.neo-tree = {
         enable = true;
-        enableGitStatus = true;
-        enableDiagnostics = true;
-        defaultComponentConfigs = {
-          icon = {
-            folderClosed = "";
-            folderOpen = "";
-            folderEmpty = "";
+        settings = {
+          enable_git_status = true;
+          enable_diagnostics = true;
+          default_component_configs = {
+            icon = {
+              folderClosed = "";
+              folderOpen = "";
+              folderEmpty = "";
+            };
+            git_status.symbols = {
+              untracked = "";
+              ignored = "";
+              unstaged = "󰄱";
+              staged = "";
+              conflict = "";
+            };
+            indent.with_expanders = true;
           };
-          gitStatus.symbols = {
-            untracked = "";
-            ignored = "";
-            unstaged = "󰄱";
-            staged = "";
-            conflict = "";
-          };
-          indent.withExpanders = true;
-        };
-        filesystem = {
-          filteredItems = {
-            hideDotfiles = false;
-            hideGitignored = false;
-            hideByName = [ ".git" ];
+          filesystem = {
+            filtered_items = {
+              hide_dotfiles = false;
+              hide_gitignored = false;
+              hide_by_name = [ ".git" ];
+            };
           };
         };
       };
@@ -467,6 +471,7 @@ in
         enable = true;
         settings = {
           mode = "topline";
+          max_lines = 15;
           on_attach = ''
             function()
               vim.cmd([[ hi TreesitterContextBottom gui=underline guisp=#cba6f7 ]])

@@ -22,17 +22,17 @@
       enable = true;
       package = pkgs.vscode;
       profiles.default.extensions = with pkgs.vscode-extensions; [
-        catppuccin.catppuccin-vsc-icons
-        catppuccin.catppuccin-vsc
+        # catppuccin.catppuccin-vsc-icons
+        # catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
         vscodevim.vim
         vscjava.vscode-java-pack
         redhat.java
       ];
-      profiles.default.userSettings = {
-        "workbench.colorTheme" = "Catppuccin Mocha";
-        "workbench.iconTheme" = "catppuccin-mocha";
-      };
+      # profiles.default.userSettings = {
+      #   "workbench.colorTheme" = "Catppuccin Mocha";
+      #   "workbench.iconTheme" = "catppuccin-mocha";
+      # };
     };
   };
 }
