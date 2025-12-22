@@ -3,6 +3,7 @@
   imports = [
     ./misc/fastfetch.nix
 
+    ./shells/fish.nix
     ./shells/nushell.nix
     ./shells/zsh.nix
 
