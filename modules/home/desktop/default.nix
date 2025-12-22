@@ -12,6 +12,7 @@
 
     ./launcher/wofi.nix
 
+    ./media/davinci-resolve.nix
     ./media/flameshot.nix
     ./media/miru.nix
     ./media/obs-studio.nix
