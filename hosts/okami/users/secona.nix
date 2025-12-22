@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   users.users.secona = {
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "secona";
     extraGroups = [
@@ -79,6 +79,7 @@
 
     cli = {
       shells = {
+        fish.enable = true;
         nushell.enable = true;
         zsh.enable = true;
       };

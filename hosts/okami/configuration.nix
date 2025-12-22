@@ -224,6 +224,7 @@
     zsh.enable = true;
     nix-ld.enable = true;
     niri.enable = true;
+    fish.enable = true;
   };
 
   programs.steam = {
