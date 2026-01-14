@@ -16,7 +16,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # catppuccin for ricing
-    catppuccin.url = "github:catppuccin/nix/v25.05";
+    catppuccin.url = "github:catppuccin/nix/v25.11";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     # home manager
