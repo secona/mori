@@ -530,6 +530,157 @@ in
 
       plugins.lualine = {
         enable = true;
+        settings = {
+          options = {
+            component_separators = "";
+            section_separators = "";
+            theme.__raw = ''
+              (function()
+                local catppuccin_colors = require("catppuccin.palettes").get_palette "mocha"
+                return {
+                  normal = { c = { fg = catppuccin_colors.text, bg = catppuccin_colors.base } },
+                  inactive = { c = { fg = catppuccin_colors.subtext0, bg = catppuccin_colors.mantle } },
+                }
+              end)()
+            '';
+          };
+          sections = {
+            lualine_a = [ ];
+            lualine_b = [ ];
+            lualine_y = [ ];
+            lualine_z = [ ];
+            lualine_c = [
+              {
+                component.__raw = "function() return '▊' end";
+                color = { fg = "#89b4fa"; }; # catppuccin.blue
+                padding = { left = 0; right = 1; };
+              }
+              {
+                component.__raw = "function() return '' end";
+                color.__raw = ''
+                  function()
+                    local catppuccin_colors = require("catppuccin.palettes").get_palette "mocha"
+                    local mode_color = {
+                      n = catppuccin_colors.red,
+                      i = catppuccin_colors.green,
+                      v = catppuccin_colors.blue,
+                      ['\x20'] = catppuccin_colors.blue,
+                      V = catppuccin_colors.blue,
+                      c = catppuccin_colors.mauve,
+                      no = catppuccin_colors.red,
+                      s = catppuccin_colors.orange,
+                      S = catppuccin_colors.orange,
+                      ic = catppuccin_colors.yellow,
+                      R = catppuccin_colors.mauve,
+                      Rv = catppuccin_colors.mauve,
+                      cv = catppuccin_colors.red,
+                      ce = catppuccin_colors.red,
+                      r = catppuccin_colors.cyan,
+                      rm = catppuccin_colors.cyan,
+                      ['r?'] = catppuccin_colors.cyan,
+                      ['!'] = catppuccin_colors.red,
+                      t = catppuccin_colors.red,
+                    }
+                    return { fg = mode_color[vim.fn.mode()] }
+                  end
+                '';
+                padding = { right = 1; };
+              }
+              {
+                component = "filesize";
+                cond.__raw = "function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end";
+              }
+              {
+                component = "filename";
+                cond.__raw = "function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end";
+                color = { fg = "#cba6f7"; gui = "bold"; }; # catppuccin.mauve
+              }
+              {
+                component = "location";
+              }
+              {
+                component = "progress";
+                color = { fg = "#cdd6f4"; gui = "bold"; }; # catppuccin.text
+              }
+              {
+                component = "diagnostics";
+                sources = [ "nvim_diagnostic" ];
+                symbols = { error = " "; warn = " "; info = " "; };
+                diagnostics_color = {
+                  error = { fg = "#f38ba8"; }; # catppuccin.red
+                  warn = { fg = "#f9e2af"; }; # catppuccin.yellow
+                  info = { fg = "#94e2d5"; }; # catppuccin.cyan
+                };
+              }
+              {
+                component.__raw = "function() return '%=' end";
+              }
+              {
+                component.__raw = ''
+                  function()
+                    local msg = "No Active Lsp"
+                    local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+                    local clients = vim.lsp.get_clients()
+                    if next(clients) == nil then
+                      return msg
+                    end
+                    for _, client in ipairs(clients) do
+                      local filetypes = client.config.filetypes
+                      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                        return client.name
+                      end
+                    end
+                    return msg
+                  end
+                '';
+                icon = " LSP:";
+                color = { fg = "#cdd6f4"; gui = "bold"; };
+              }
+            ];
+            lualine_x = [
+              {
+                component = "o:encoding";
+                fmt.__raw = "string.upper";
+                cond.__raw = "function() return vim.fn.winwidth(0) > 80 end";
+                color = { fg = "#a6e3a1"; gui = "bold"; }; # catppuccin.green
+              }
+              {
+                component = "fileformat";
+                fmt.__raw = "string.upper";
+                icons_enabled = false;
+                color = { fg = "#a6e3a1"; gui = "bold"; }; # catppuccin.green
+              }
+              {
+                component = "branch";
+                icon = "";
+                color = { fg = "#cba6f7"; gui = "bold"; }; # catppuccin.mauve
+              }
+              {
+                component = "diff";
+                symbols = { added = " "; modified = "󰝤 "; removed = " "; };
+                diff_color = {
+                  added = { fg = "#a6e3a1"; }; # catppuccin.green
+                  modified = { fg = "#fab387"; }; # catppuccin.orange
+                  removed = { fg = "#f38ba8"; }; # catppuccin.red
+                };
+                cond.__raw = "function() return vim.fn.winwidth(0) > 80 end";
+              }
+              {
+                component.__raw = "function() return '▊' end";
+                color = { fg = "#89b4fa"; }; # catppuccin.blue
+                padding = { left = 1; };
+              }
+            ];
+          };
+          inactive_sections = {
+            lualine_a = [ ];
+            lualine_b = [ ];
+            lualine_y = [ ];
+            lualine_z = [ ];
+            lualine_c = [ ];
+            lualine_x = [ ];
+          };
+        };
       };
 
       plugins.indent-blankline = {
