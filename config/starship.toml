@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭──](bold black) $username$hostname$directory$git_branch$git_commit$git_state$git_status$nix_shell$cmd_duration$fill $line_break\
+[╭──](bold black) $username$hostname$directory${custom.jj}${custom.git_branch}${custom.git_commit}${custom.git_state}${custom.git_status}$nix_shell$cmd_duration$fill$line_break\
 [╰](bold black) $character"""
 
 add_newline = true
@@ -24,10 +24,6 @@ format = " [ $path]($style)[$read_only]($read_only_style) "
 truncation_length = 4
 style = "bold lavender"
 read_only = ""
-
-[git_branch]
-format = " [$symbol $branch(:$remote_branch)]($style) "
-symbol = ""
 
 [nix_shell]
 format = ' [$symbol$state\[$name\]]($style) '
@@ -93,4 +89,73 @@ base = "#1e1e2e"
 crust = "#11111b"
 mantle = "#181825"
 
+[custom.jj]
+description = "The current jj status"
+when = "jj --ignore-working-copy root"
+symbol = " 🥋 "
+style = "bold lavender"
+command = '''
+jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+  separate(" ",
+    change_id.shortest(4),
+    bookmarks,
+    "|",
+    concat(
+      if(conflict, "💥"),
+      if(divergent, "🚧"),
+      if(hidden, "👻"),
+      if(immutable, "🔒"),
+    ),
+    raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
+    raw_escape_sequence("\x1b[1;32m") ++ coalesce(
+      truncate_end(29, description.first_line(), "…"),
+      "(no description set)",
+    ) ++ raw_escape_sequence("\x1b[0m"),
+  )
+'
+'''
 
+[git_branch]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_status]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[custom.git_branch]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_branch"
+description = "Only show git_branch if we're not in a jj repo"
+style = ""
+
+[custom.git_commit]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_commit"
+style = ""
+description = "Only show git_commit if we're not in a jj repo"
+
+[custom.git_state]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_state"
+style = ""
+description = "Only show git_state if we're not in a jj repo"
+
+[custom.git_status]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_status"
+style = ""
+description = "Only show git_status if we're not in a jj repo"
+
+[custom.git_metrics]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_metrics"
+description = "Only show git_metrics if we're not in a jj repo"
+style = ""
