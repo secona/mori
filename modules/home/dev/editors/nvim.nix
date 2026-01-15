@@ -134,17 +134,15 @@ in
           files = { enable = true; };
           pairs = { };
           pick = {
-            settings = {
-              mappings = {
-                move_down = "<C-j>";
-                move_up = "<C-k>";
-                scroll_down = "<C-d>";
-                scroll_up = "<C-u>";
-              };
-              window = {
-                config = {
-                  border = "rounded";
-                };
+            mappings = {
+              move_down = "<C-j>";
+              move_up = "<C-k>";
+              scroll_down = "<C-d>";
+              scroll_up = "<C-u>";
+            };
+            window = {
+              config = {
+                border = "rounded";
               };
             };
           };
