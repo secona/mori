@@ -1,13 +1,13 @@
 { ... }:
 {
   imports = [
-    ./dconf.nix
-    ./fish.nix
-    ./niri.nix
-    ./nix-ld.nix
-    ./steam.nix
-    ./virt-manager.nix
-    ./wireshark.nix
-    ./zsh.nix
+    ./games/steam.nix
+    ./shells/fish.nix
+    ./shells/zsh.nix
+    ./misc/dconf.nix
+    ./misc/nix-ld.nix
+    ./wms/niri.nix
+    ./virtualisation/virt-manager.nix
+    ./tools/wireshark.nix
   ];
 }
