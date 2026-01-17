@@ -124,14 +124,20 @@ in
           completion = {
             settings = {
               window = {
-                info = { border = "rounded"; };
-                signature = { border = "rounded"; };
+                info = {
+                  border = "rounded";
+                };
+                signature = {
+                  border = "rounded";
+                };
               };
             };
           };
           cursorword = { };
           icons = { };
-          files = { enable = true; };
+          files = {
+            enable = true;
+          };
           pairs = { };
           pick = {
             mappings = {
