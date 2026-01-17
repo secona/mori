@@ -64,14 +64,31 @@
     };
 
     programs = {
-      virt-manager.enable = true;
-      wireshark.enable = true;
-      dconf.enable = true;
-      zsh.enable = true;
-      nix-ld.enable = true;
-      niri.enable = true;
-      fish.enable = true;
-      steam.enable = true;
+      games = {
+        steam.enable = true;
+      };
+
+      shells = {
+        fish.enable = true;
+        zsh.enable = true;
+      };
+
+      misc = {
+        dconf.enable = true;
+        nix-ld.enable = true;
+      };
+
+      wms = {
+        niri.enable = true;
+      };
+
+      virtualisation = {
+        virt-manager.enable = true;
+      };
+
+      tools = {
+        wireshark.enable = true;
+      };
     };
   };
 
