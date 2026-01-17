@@ -7,6 +7,7 @@
     ./docs/libreoffice.nix
     ./docs/xournalpp.nix
     ./docs/zathura.nix
+    ./docs/zotero.nix
 
     ./files/nemo.nix
 
