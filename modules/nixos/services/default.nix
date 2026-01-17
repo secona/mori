@@ -10,5 +10,6 @@
     ./printing.nix
     ./tlp.nix
     ./xserver.nix
+    ./plasma6.nix
   ];
 }
