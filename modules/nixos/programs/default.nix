@@ -7,7 +7,6 @@
     ./misc/dconf.nix
     ./misc/nix-ld.nix
     ./wms/niri.nix
-    ./virtualisation/virt-manager.nix
     ./tools/wireshark.nix
   ];
 }
