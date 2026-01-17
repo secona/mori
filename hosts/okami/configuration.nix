@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./users/secona.nix
+    ../../modules/nixos
   ];
 
   home-manager = {
@@ -49,53 +50,29 @@
     networkmanager.enable = true;
   };
 
-  services = {
-    greetd = {
-      enable = false;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "greeter";
-        };
-      };
+  nixos = {
+    services = {
+      greetd.enable = false;
+      ly.enable = true;
+      xserver.enable = true;
+      audio.enable = true;
+      printing.enable = true;
+      blueman.enable = true;
+      postgresql.enable = true;
+      gvfs.enable = true;
+      tlp.enable = true;
     };
 
-    displayManager = {
-      enable = true;
-      ly = {
-        enable = true;
-        settings = {
-          animation = "matrix";
-        };
-      };
-      sessionPackages = with pkgs; [ sway ];
+    programs = {
+      virt-manager.enable = true;
+      wireshark.enable = true;
+      dconf.enable = true;
+      zsh.enable = true;
+      nix-ld.enable = true;
+      niri.enable = true;
+      fish.enable = true;
+      steam.enable = true;
     };
-
-    xserver = {
-      enable = true;
-
-      videoDrivers = [ "nvidia" ];
-
-      xkb = {
-        layout = "us";
-        model = "pc105";
-        variant = "";
-      };
-    };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
-    printing.enable = true;
-    blueman.enable = true;
-    postgresql.enable = true;
-    pulseaudio.enable = false;
-
-    gvfs.enable = true;
   };
 
   hardware = {
@@ -177,8 +154,6 @@
     };
   };
 
-  programs.virt-manager.enable = true;
-
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -211,27 +186,9 @@
 
   documentation.dev.enable = true;
 
-  programs = {
-    wireshark.enable = true;
-    dconf.enable = true;
-    zsh.enable = true;
-    nix-ld.enable = true;
-    niri.enable = true;
-    fish.enable = true;
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
   powerManagement = {
     enable = true;
   };
-
-  services.tlp.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
