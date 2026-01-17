@@ -82,13 +82,15 @@
         niri.enable = true;
       };
 
-      virtualisation = {
-        virt-manager.enable = true;
-      };
-
       tools = {
         wireshark.enable = true;
       };
+    };
+
+    virtualisation = {
+      docker.enable = true;
+      libvirtd.enable = true;
+      virt-manager.enable = true;
     };
   };
 
@@ -153,21 +155,6 @@
         "Ubuntu Serif"
         "Noto Serif"
       ];
-    };
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
-    };
-
-    libvirtd = {
-      enable = true;
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
-      };
     };
   };
 
