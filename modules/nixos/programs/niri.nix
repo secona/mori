@@ -13,5 +13,11 @@
 
   config = lib.mkIf config.nixos.programs.niri.enable {
     programs.niri.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      xwayland-satellite
+      swaybg
+      waybar
+    ];
   };
 }

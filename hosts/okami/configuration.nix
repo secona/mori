@@ -177,10 +177,6 @@
       inetutils
       file
       tree
-
-      xwayland-satellite
-      swaybg
-      waybar
     ];
   };
 
