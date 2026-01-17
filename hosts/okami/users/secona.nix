@@ -61,6 +61,7 @@
         libreoffice.enable = true;
         xournalpp.enable = true;
         zathura.enable = true;
+        zotero.enable = true;
       };
 
       media = {
