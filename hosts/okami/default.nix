@@ -9,6 +9,7 @@
 
   specialArgs = {
     inherit hostName;
+    inherit inputs;
   };
 
   modules = [
