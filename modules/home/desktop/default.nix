@@ -10,6 +10,7 @@
     ./docs/zotero.nix
 
     ./files/nemo.nix
+    ./files/dolphin.nix
 
     ./launcher/wofi.nix
 
