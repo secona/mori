@@ -34,12 +34,15 @@
 
     desktop = {
       wms = {
-        sway.enable = true;
       };
 
       ui = {
         gtk.enable = true;
         catppuccin.enable = true;
+      };
+
+      files = {
+        nemo.enable = true;
       };
 
       terminals = {
