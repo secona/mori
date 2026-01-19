@@ -1,6 +1,8 @@
-{ pkgs, hostName, ... }:
+{ inputs, pkgs, hostName, ... }:
 {
   imports = [
+    inputs.noctalia.nixosModules.default
+
     ./hardware-configuration.nix
     ./users/secona.nix
     ../../modules/nixos
