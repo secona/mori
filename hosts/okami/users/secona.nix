@@ -104,7 +104,6 @@
     dev = {
       editors = {
         nvim.enable = true;
-        cursor.enable = true;
         idea-ultimate.enable = false;
         vscode.enable = true;
         zed-editor.enable = true;
