@@ -62,7 +62,6 @@
       blueman.enable = true;
       postgresql.enable = true;
       gvfs.enable = true;
-      tlp.enable = true;
     };
 
     programs = {
@@ -107,6 +106,9 @@
       powerManagement.finegrained = true;
     };
   };
+
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   security = {
     rtkit.enable = true;
