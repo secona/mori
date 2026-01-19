@@ -42,7 +42,7 @@
       };
 
       files = {
-        nemo.enable = true;
+        dolphin.enable = true;
       };
 
       terminals = {
