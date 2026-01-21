@@ -392,6 +392,7 @@ in
           vim.keymap.set("n", "<Leader>fg", MiniPick.builtin.grep_live)
           vim.keymap.set("n", "<Leader>fb", Snacks.picker.buffers)
           vim.keymap.set("n", "<Leader>fh", Snacks.picker.help)
+          vim.keymap.set("n", "<Leader>ft", function() require("mini.files").open() end)
           vim.keymap.set("n", "<Leader>rf", Snacks.picker.lsp_references)
 
           -- Pickers
