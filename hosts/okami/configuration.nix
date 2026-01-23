@@ -1,4 +1,9 @@
-{ inputs, pkgs, hostName, ... }:
+{
+  inputs,
+  pkgs,
+  hostName,
+  ...
+}:
 {
   imports = [
     inputs.noctalia.nixosModules.default
@@ -62,6 +67,7 @@
       blueman.enable = true;
       postgresql.enable = true;
       gvfs.enable = true;
+      zerotierone.enable = true;
     };
 
     programs = {
