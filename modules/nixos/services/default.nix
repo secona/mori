@@ -11,5 +11,6 @@
     ./tlp.nix
     ./xserver.nix
     ./plasma6.nix
+    ./zerotierone.nix
   ];
 }
