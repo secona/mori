@@ -83,6 +83,7 @@
       misc = {
         dconf.enable = true;
         nix-ld.enable = true;
+        fcitx5.enable = true;
       };
 
       wms = {
