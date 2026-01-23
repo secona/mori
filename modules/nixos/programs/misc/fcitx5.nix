@@ -2,9 +2,14 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
+  imports = [
+    inputs.catppuccin.nixosModules.catppuccin
+  ];
+
   options.nixos.programs.misc.fcitx5 = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -20,6 +25,12 @@
         fcitx5-mozc
         fcitx5-gtk
       ];
+    };
+
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      fcitx5.enable = true;
     };
 
     environment.sessionVariables = {
