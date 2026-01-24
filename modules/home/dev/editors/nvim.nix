@@ -116,6 +116,10 @@ in
         enable = true;
       };
 
+      plugins.neoconf = {
+        enable = true;
+      };
+
       plugins.mini = {
         enable = true;
         mockDevIcons = true;
