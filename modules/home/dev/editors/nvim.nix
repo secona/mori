@@ -110,6 +110,60 @@ in
             action = "<CMD>bdelete<CR>";
             inherit options;
           }
+          {
+            mode = [ "n" "i" ];
+            key = "<F2>";
+            action = "<CMD>Lspsaga rename<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" "i" ];
+            key = "<C-Space>";
+            action = "<CMD>Lspsaga hover_doc<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>df";
+            action = "<CMD>Lspsaga goto_definition<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>dt";
+            action = "<CMD>Lspsaga goto_type_definition<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>pf";
+            action = "<CMD>Lspsaga peek_definition<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>pt";
+            action = "<CMD>Lspsaga peek_type_definition<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>ca";
+            action = "<CMD>Lspsaga code_action<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>ek";
+            action = "<CMD>Lspsaga diagnostic_jump_prev<Enter>";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>ej";
+            action = "<CMD>Lspsaga diagnostic_jump_next<Enter>";
+            inherit options;
+          }
         ];
 
       extraPlugins = [ pkgs.vimPlugins.neoconf-nvim ];
@@ -211,19 +265,10 @@ in
         };
       };
 
-      plugins.lsp = {
-        enable = true;
-
+      lsp = {
         servers.rust_analyzer = {
           enable = true;
           package = null;
-          installCargo = false;
-          installRustc = false;
-
-          settings = {
-            cargo.features = "all";
-            diagnostics.disabled = [ "unlinked-file" ];
-          };
         };
 
         servers.clangd = {
@@ -240,43 +285,7 @@ in
           enable = true;
         };
 
-        keymaps.extra = [
-          {
-            key = "<F2>";
-            action = "<CMD>Lspsaga rename<Enter>";
-          }
-          {
-            key = "<C-Space>";
-            action = "<CMD>Lspsaga hover_doc<Enter>";
-          }
-          {
-            key = "<Leader>df";
-            action = "<CMD>Lspsaga goto_definition<Enter>";
-          }
-          {
-            key = "<Leader>dt";
-            action = "<CMD>Lspsaga goto_type_definition<Enter>";
-          }
-          {
-            key = "<Leader>pf";
-            action = "<CMD>Lspsaga peek_definition<Enter>";
-          }
-          {
-            key = "<Leader>pt";
-            action = "<CMD>Lspsaga peek_type_definition<Enter>";
-          }
-          {
-            key = "<Leader>ca";
-            action = "<CMD>Lspsaga code_action<Enter>";
-          }
-          {
-            key = "<Leader>ek";
-            action = "<CMD>Lspsaga diagnostic_jump_prev<Enter>";
-          }
-          {
-            key = "<Leader>ej";
-            action = "<CMD>Lspsaga diagnostic_jump_next<Enter>";
-          }
+        keymaps = [
         ];
       };
 
