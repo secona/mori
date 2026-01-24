@@ -112,11 +112,12 @@ in
           }
         ];
 
-      plugins.presence = {
-        enable = true;
-      };
+      extraPlugins = [ pkgs.vimPlugins.neoconf-nvim ];
+      extraConfigLuaPre = ''
+        require("neoconf").setup()
+      '';
 
-      plugins.neoconf = {
+      plugins.presence = {
         enable = true;
       };
 
