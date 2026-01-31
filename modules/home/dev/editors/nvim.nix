@@ -25,12 +25,6 @@ in
       defaultEditor = true;
 
       extraConfigLua = ''
-        vim.keymap.set('i', '<C-j>', function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-j>" end, { expr = true })
-        vim.keymap.set('i', '<C-k>', function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-k>" end, { expr = true })
-        vim.keymap.set('i', '<Tab>', function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end, { expr = true })
-        vim.keymap.set('i', '<CR>', function() return vim.fn.pumvisible() == 1 and "<C-y>" or require('mini.pairs').cr() end, { expr = true })
-        vim.keymap.set('i', '<Esc>', function() return vim.fn.pumvisible() == 1 and "<C-e>" or "<Esc>" end, { expr = true })
-
         require('mini.files').setup({
           windows = {
             preview = true,
@@ -111,13 +105,19 @@ in
             inherit options;
           }
           {
-            mode = [ "n" "i" ];
+            mode = [
+              "n"
+              "i"
+            ];
             key = "<F2>";
             action = "<CMD>Lspsaga rename<Enter>";
             inherit options;
           }
           {
-            mode = [ "n" "i" ];
+            mode = [
+              "n"
+              "i"
+            ];
             key = "<C-Space>";
             action = "<CMD>Lspsaga hover_doc<Enter>";
             inherit options;
@@ -171,6 +171,69 @@ in
         require("neoconf").setup()
       '';
 
+      plugins.luasnip.enable = true;
+      plugins.lspkind.enable = true;
+      plugins.nvim-autopairs.enable = true;
+
+      plugins.cmp = {
+        enable = true;
+        settings = {
+          autoEnableSources = true;
+          sources = [
+            { name = "cmp_luasnip"; }
+            { name = "nvim_lsp"; }
+            { name = "buffer"; }
+            { name = "path"; }
+          ];
+          window = {
+            completion = {
+              border = "rounded";
+              scrollbar = true;
+            };
+            documentation = {
+              border = "rounded";
+            };
+          };
+          mapping.__raw = ''
+            cmp.mapping.preset.insert({
+              ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+              ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+              ["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  local entry = cmp.get_selected_entry()
+                  if not entry then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                  else
+                    cmp.confirm()
+                  end
+                else
+                  fallback()
+                end
+              end, { "i", "s" }),
+              ["<CR>"] = cmp.mapping({
+                i = function(fallback)
+                  if cmp.visible() and cmp.get_active_entry() then
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                  else
+                    fallback()
+                  end
+                end,
+                s = cmp.mapping.confirm({ select = true }),
+                c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+              }),
+              ["<C-Space>"] = cmp.mapping.complete(),
+            })
+          '';
+          snippet = {
+            expand = ''
+              function(args)
+                require("luasnip").lsp_expand(args.body)
+              end
+            '';
+          };
+        };
+      };
+
       plugins.presence = {
         enable = true;
       };
@@ -180,18 +243,6 @@ in
         mockDevIcons = true;
         modules = {
           comment = { };
-          completion = {
-            settings = {
-              window = {
-                info = {
-                  border = "rounded";
-                };
-                signature = {
-                  border = "rounded";
-                };
-              };
-            };
-          };
           cursorword = { };
           icons = { };
           files = {
@@ -388,6 +439,7 @@ in
             treesitter = true;
             treesitter_context = true;
             lsp_trouble = true;
+            cmp = true;
             rainbow_delimiters = true;
             which_key = true;
             fidget = true;
