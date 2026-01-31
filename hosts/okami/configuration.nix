@@ -126,26 +126,6 @@
     pam.services.swaylock = { };
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = false;
-    xdgOpenUsePortal = true;
-
-    config = {
-      common = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-      };
-    };
-
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
-  };
-
   fonts = {
     enableDefaultPackages = true;
 

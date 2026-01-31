@@ -21,5 +21,18 @@
       xwayland-satellite
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+      ];
+      config.niri = {
+        default = [
+          "gtk"
+        ];
+      };
+    };
   };
 }
