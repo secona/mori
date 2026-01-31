@@ -455,8 +455,8 @@ in
         enable = true;
         luaConfig.post = ''
           -- Telescope functionality
-          vim.keymap.set("n", "<Leader>ff", MiniPick.builtin.files)
-          vim.keymap.set("n", "<Leader>fg", MiniPick.builtin.grep_live)
+          vim.keymap.set("n", "<Leader>ff", Snacks.picker.files)
+          vim.keymap.set("n", "<Leader>fg", Snacks.picker.grep)
           vim.keymap.set("n", "<Leader>fb", Snacks.picker.buffers)
           vim.keymap.set("n", "<Leader>fh", Snacks.picker.help)
           vim.keymap.set("n", "<Leader>ft", function() require("mini.files").open() end)
