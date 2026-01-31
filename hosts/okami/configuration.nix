@@ -160,7 +160,6 @@
     };
 
     systemPackages = with pkgs; [
-      pulseaudio
       tldr
       unzip
       wget
