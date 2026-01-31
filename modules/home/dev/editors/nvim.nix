@@ -166,7 +166,10 @@ in
           }
         ];
 
-      extraPlugins = [ pkgs.vimPlugins.neoconf-nvim ];
+      extraPlugins = [
+        pkgs.vimPlugins.neoconf-nvim
+        pkgs.vimPlugins.vim-llvm
+      ];
       extraConfigLuaPre = ''
         require("neoconf").setup()
       '';
