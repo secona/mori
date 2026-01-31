@@ -54,7 +54,10 @@
 
   networking = {
     inherit hostName;
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+    };
   };
 
   nixos = {
