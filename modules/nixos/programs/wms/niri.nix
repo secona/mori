@@ -22,6 +22,7 @@
 
     environment.systemPackages = with pkgs; [
       xwayland-satellite
+      wl-mirror
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
