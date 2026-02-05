@@ -15,6 +15,7 @@
     ./tools/gemini-cli.nix
     ./tools/gh-dash.nix
     ./tools/lazygit.nix
+    ./tools/opencode.nix
     ./tools/postman.nix
     ./tools/wireshark.nix
 
