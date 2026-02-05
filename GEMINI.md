@@ -26,6 +26,13 @@ nix fmt
 
 By default, packages should be added to `modules/home` following the structure laid out.
 
+### Finding Options
+
+To see available Home Manager configuration options, run:
+```bash
+man home-configuration.nix
+```
+
 ## Git
 
 ### Commit Messages
