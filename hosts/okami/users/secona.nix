@@ -116,6 +116,7 @@
         gemini-cli.enable = true;
         gh-dash.enable = true;
         lazygit.enable = true;
+        opencode.enable = true;
         postman.enable = true;
         wireshark.enable = true;
       };
