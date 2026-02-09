@@ -278,9 +278,6 @@ in
               lsp = { };
             };
           };
-          tabline = {
-            show_icons = true;
-          };
         };
       };
 
@@ -460,7 +457,7 @@ in
           -- Telescope functionality
           vim.keymap.set("n", "<Leader>ff", Snacks.picker.files)
           vim.keymap.set("n", "<Leader>fg", Snacks.picker.grep)
-          vim.keymap.set("n", "<Leader>fb", Snacks.picker.buffers)
+          vim.keymap.set("n", "<Leader>ss", Snacks.picker.buffers)
           vim.keymap.set("n", "<Leader>fh", Snacks.picker.help)
           vim.keymap.set("n", "<Leader>ft", function() require("mini.files").open() end)
           vim.keymap.set("n", "<Leader>rf", Snacks.picker.lsp_references)
