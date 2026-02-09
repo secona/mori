@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }:
@@ -13,5 +14,7 @@
 
   config = lib.mkIf config.dev.tools.opencode.enable {
     programs.opencode.enable = true;
+    programs.opencode.package = pkgs.unstable.opencode;
+    programs.opencode.settings.theme = "catppuccin";
   };
 }
