@@ -164,6 +164,116 @@ in
             action = "<CMD>Lspsaga diagnostic_jump_next<Enter>";
             inherit options;
           }
+
+          # Snacks.nvim keymaps
+          {
+            mode = [ "n" ];
+            key = "<Leader>ff";
+            action.__raw = "Snacks.picker.files";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>fg";
+            action.__raw = "Snacks.picker.grep";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>ss";
+            action.__raw = "Snacks.picker.buffers";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>fh";
+            action.__raw = "Snacks.picker.help";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>ft";
+            action.__raw = ''function() require("mini.files").open() end'';
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>rf";
+            action.__raw = "Snacks.picker.lsp_references";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = ''<Leader>s"'';
+            action.__raw = "Snacks.picker.registers";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>s/";
+            action.__raw = "Snacks.picker.search_history";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>sc";
+            action.__raw = "Snacks.picker.commands";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>sd";
+            action.__raw = "Snacks.picker.diagnostics";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>su";
+            action.__raw = "Snacks.picker.undo";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>sj";
+            action.__raw = "Snacks.picker.jumps";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>:";
+            action.__raw = "Snacks.picker.command_history";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>gb";
+            action.__raw = "Snacks.picker.git_branches";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>gl";
+            action.__raw = "Snacks.picker.git_log";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>gs";
+            action.__raw = "Snacks.picker.git_status";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>gd";
+            action.__raw = "Snacks.picker.git_diff";
+            inherit options;
+          }
+          {
+            mode = [ "n" ];
+            key = "<Leader>lg";
+            action.__raw = "Snacks.lazygit.open";
+            inherit options;
+          }
         ];
 
       extraPlugins = [
@@ -453,33 +563,6 @@ in
 
       plugins.snacks = {
         enable = true;
-        luaConfig.post = ''
-          -- Telescope functionality
-          vim.keymap.set("n", "<Leader>ff", Snacks.picker.files)
-          vim.keymap.set("n", "<Leader>fg", Snacks.picker.grep)
-          vim.keymap.set("n", "<Leader>ss", Snacks.picker.buffers)
-          vim.keymap.set("n", "<Leader>fh", Snacks.picker.help)
-          vim.keymap.set("n", "<Leader>ft", function() require("mini.files").open() end)
-          vim.keymap.set("n", "<Leader>rf", Snacks.picker.lsp_references)
-
-          -- Pickers
-          vim.keymap.set("n", '<Leader>s"', Snacks.picker.registers)
-          vim.keymap.set("n", '<Leader>s/', Snacks.picker.search_history)
-          vim.keymap.set("n", '<Leader>sc', Snacks.picker.commands)
-          vim.keymap.set("n", '<Leader>sd', Snacks.picker.diagnostics)
-          vim.keymap.set("n", '<Leader>su', Snacks.picker.undo)
-          vim.keymap.set("n", '<Leader>sj', Snacks.picker.jumps)
-          vim.keymap.set("n", "<Leader>:",  Snacks.picker.command_history)
-
-          -- Git stuff
-          vim.keymap.set("n", "<Leader>gb", Snacks.picker.git_branches)
-          vim.keymap.set("n", "<Leader>gl", Snacks.picker.git_log)
-          vim.keymap.set("n", "<Leader>gs", Snacks.picker.git_status)
-          vim.keymap.set("n", "<Leader>gd", Snacks.picker.git_diff)
-
-          -- Others
-          vim.keymap.set("n", "<Leader>lg", Snacks.lazygit.open)
-        '';
       };
 
       plugins.indent-blankline = {
