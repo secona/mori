@@ -20,6 +20,8 @@
 
     programs.home-manager.enable = true;
 
+    xdg.mimeApps.enable = true;
+
     home = {
       username = "secona";
       homeDirectory = "/home/secona";
@@ -70,10 +72,15 @@
       media = {
         vlc.enable = true;
         obs-studio.enable = true;
+        loupe.enable = true;
       };
 
       games = {
         minecraft.enable = true;
+      };
+
+      misc = {
+        pinta.enable = true;
       };
     };
 

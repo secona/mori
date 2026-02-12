@@ -13,6 +13,13 @@
   };
 
   config = lib.mkIf config.desktop.media.vlc.enable {
+    xdg.mimeApps = {
+      defaultApplications = {
+        "audio/mp4" = "vlc.desktop";
+        "audio/mpeg" = "vlc.desktop";
+      };
+    };
+
     home.packages = [ pkgs.vlc ];
   };
 }

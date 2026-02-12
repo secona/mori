@@ -13,6 +13,24 @@
   };
 
   config = lib.mkIf config.desktop.browsers.firefox.enable {
+    xdg.mimeApps = {
+      defaultApplications = {
+        "application/xhtml+xml" = "firefox.desktop";
+        "application/x-extension-htm" = "firefox.desktop";
+        "application/x-extension-html" = "firefox.desktop";
+        "application/x-extension-shtml" = "firefox.desktop";
+        "application/x-extension-xht" = "firefox.desktop";
+        "application/x-extension-xhtml" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/chrome" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+        "x-scheme-handler/webcal" = "firefox.desktop";
+      };
+    };
+
     catppuccin.firefox.profiles = {
       default = {
         force = true;

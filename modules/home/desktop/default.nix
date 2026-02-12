@@ -16,6 +16,7 @@
 
     ./media/davinci-resolve.nix
     ./media/flameshot.nix
+    ./media/loupe.nix
     ./media/miru.nix
     ./media/obs-studio.nix
     ./media/spotify-player.nix
@@ -25,6 +26,7 @@
     ./misc/cisco-packet-tracer.nix
     ./misc/jflap.nix
     ./misc/octave.nix
+    ./misc/pinta.nix
 
     ./notifications/dunst.nix
     ./notifications/swaync.nix
