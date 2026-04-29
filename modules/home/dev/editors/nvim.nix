@@ -89,19 +89,19 @@ in
           {
             mode = "n";
             key = "<M-h>";
-            action = "<CMD>bprevious<CR>";
+            action = "<CMD>tabprev<CR>";
             inherit options;
           }
           {
             mode = "n";
             key = "<M-l>";
-            action = "<CMD>bnext<CR>";
+            action = "<CMD>tabnext<CR>";
             inherit options;
           }
           {
             mode = "n";
             key = "<M-c>";
-            action = "<CMD>bdelete<CR>";
+            action = "<CMD>tabclose<CR>";
             inherit options;
           }
           {
@@ -440,6 +440,10 @@ in
         servers.gopls = {
           enable = true;
           package = null;
+        };
+
+        servers.ts_ls = {
+          enable = true;
         };
 
         servers.pyright = {
