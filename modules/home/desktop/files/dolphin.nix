@@ -13,6 +13,10 @@
   };
 
   config = lib.mkIf config.desktop.files.dolphin.enable {
-    home.packages = with pkgs; [ kdePackages.dolphin ];
+    home.packages = with pkgs; [
+      kdePackages.dolphin
+      kdePackages.kio-extras
+      kdePackages.kservice
+    ];
   };
 }
