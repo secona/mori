@@ -22,6 +22,7 @@
       enable = true;
       package = pkgs.vscode;
       profiles.default.extensions = with pkgs.vscode-extensions; [
+        ms-vscode-remote.remote-ssh
         # catppuccin.catppuccin-vsc-icons
         # catppuccin.catppuccin-vsc
         jnoortheen.nix-ide
@@ -29,10 +30,12 @@
         vscjava.vscode-java-pack
         redhat.java
       ];
-      # profiles.default.userSettings = {
-      #   "workbench.colorTheme" = "Catppuccin Mocha";
-      #   "workbench.iconTheme" = "catppuccin-mocha";
-      # };
+      profiles.default.userSettings = {
+        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
+        "editor.fontLigatures" = true;
+        # "workbench.colorTheme" = "Catppuccin Mocha";
+        # "workbench.iconTheme" = "catppuccin-mocha";
+      };
     };
   };
 }
