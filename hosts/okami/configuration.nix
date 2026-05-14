@@ -94,6 +94,7 @@
       };
 
       tools = {
+        openvpn.enable = true;
         wireshark.enable = true;
       };
     };
