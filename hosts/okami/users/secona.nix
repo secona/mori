@@ -49,7 +49,7 @@
 
       terminals = {
         kitty.enable = true;
-        ghostty.enable = true;
+        ghostty.enable = false;
       };
 
       browsers = {
@@ -124,7 +124,7 @@
         lazygit.enable = true;
         opencode.enable = true;
         postman.enable = true;
-        wireshark.enable = true;
+        wireshark.enable = false;
       };
 
       vcs =

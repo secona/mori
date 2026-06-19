@@ -75,7 +75,7 @@
 
     programs = {
       games = {
-        steam.enable = true;
+        steam.enable = false;
       };
 
       shells = {
@@ -95,7 +95,7 @@
 
       tools = {
         openvpn.enable = true;
-        wireshark.enable = true;
+        wireshark.enable = false;
       };
     };
 
