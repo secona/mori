@@ -13,6 +13,6 @@
   };
 
   config = lib.mkIf config.dev.tools.gemini-cli.enable {
-    home.packages = [ pkgs.unstable.gemini-cli ];
+    home.packages = [ pkgs.unstable.antigravity-cli ];
   };
 }
