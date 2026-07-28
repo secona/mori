@@ -15,12 +15,19 @@
   config = lib.mkIf config.dev.editors.zed-editor.enable {
     programs.zed-editor = {
       enable = true;
+      package = pkgs.unstable.zed-editor;
+      extraPackages = with pkgs.unstable; [
+        php
+        phpactor
+      ];
       extensions = [
         "nix"
         "astro"
         "haskell"
         "nushell"
         "discord-presence"
+        "vue"
+        "php"
         "html"
       ];
       userSettings = {
