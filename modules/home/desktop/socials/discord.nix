@@ -13,6 +13,9 @@
   };
 
   config = lib.mkIf config.desktop.socials.discord.enable {
-    home.packages = [ pkgs.discord ];
+    programs.discord = {
+      enable = true;
+      package = pkgs.unstable.discord;
+    };
   };
 }
