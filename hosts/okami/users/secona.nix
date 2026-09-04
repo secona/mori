@@ -49,7 +49,6 @@
 
       terminals = {
         kitty.enable = true;
-        ghostty.enable = false;
       };
 
       browsers = {
@@ -116,7 +115,6 @@
       };
 
       tools = {
-        burpsuite.enable = false;
         devenv.enable = true;
         gemini-cli.enable = true;
         gh-dash.enable = true;
@@ -124,7 +122,6 @@
         opencode.enable = true;
         codex.enable = true;
         postman.enable = true;
-        wireshark.enable = false;
       };
 
       vcs =
