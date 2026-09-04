@@ -10,6 +10,7 @@
 
     ./tools/bruno.nix
     ./tools/burpsuite.nix
+    ./tools/codex.nix
     ./tools/devenv.nix
     ./tools/direnv.nix
     ./tools/gemini-cli.nix
