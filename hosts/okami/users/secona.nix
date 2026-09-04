@@ -123,6 +123,7 @@
         gh-dash.enable = true;
         lazygit.enable = true;
         opencode.enable = true;
+        codex.enable = true;
         postman.enable = true;
         wireshark.enable = false;
       };
