@@ -73,6 +73,7 @@
         vlc.enable = true;
         obs-studio.enable = true;
         loupe.enable = true;
+        spotify-player.enable = true;
       };
 
       games = {
