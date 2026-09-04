@@ -25,6 +25,7 @@
         fcitx5-mozc
         fcitx5-gtk
       ];
+      fcitx5.waylandFrontend = true;
     };
 
     catppuccin = {
