@@ -7,6 +7,40 @@
 }:
 let
   nixvim = config.lib.nixvim;
+
+  uithesis = pkgs.stdenvNoCC.mkDerivation {
+    pname = "uithesis";
+    version = "unstable-2026-08-21";
+
+    src = pkgs.fetchFromGitLab {
+      owner = "ichlaffterlalu";
+      repo = "latex-ta-ui";
+      rev = "18a63e59242a9f74dc9ae4ed4f538b7318a1ffed";
+      hash = "sha256-V7kflaahn/9IMW38SRibqDFGpqJ6jPdhJcbpTfujDU8=";
+    };
+
+    outputs = [ "tex" ];
+    nativeBuildInputs = [ pkgs.texliveBasic ];
+
+    preHook = ''
+      out="''${tex-}"
+    '';
+
+    buildPhase = ''
+      runHook preBuild
+      tex uithesis.ins
+      runHook postBuild
+    '';
+
+    installPhase = ''
+      runHook preInstall
+      install -Dm644 uithesis.cls -t "$tex/tex/latex/uithesis"
+      install -Dm644 internals/*.png -t "$tex/tex/latex/uithesis"
+      runHook postInstall
+    '';
+  };
+
+  texlive = pkgs.texliveFull.withPackages (_: [ uithesis ]);
 in
 {
   imports = [ inputs.nixvim.homeModules.nixvim ];
@@ -452,7 +486,7 @@ in
 
       plugins.vimtex = {
         enable = true;
-        texlivePackage = pkgs.texliveFull;
+        texlivePackage = texlive;
       };
 
       plugins.lspsaga = {
