@@ -450,6 +450,11 @@ in
         ];
       };
 
+      plugins.vimtex = {
+        enable = true;
+        texlivePackage = pkgs.texliveFull;
+      };
+
       plugins.lspsaga = {
         enable = true;
         settings = {
