@@ -66,7 +66,6 @@
         libreoffice.enable = true;
         xournalpp.enable = true;
         zathura.enable = true;
-        zotero.enable = true;
       };
 
       media = {
@@ -119,7 +118,6 @@
       tools = {
         burpsuite.enable = false;
         devenv.enable = true;
-        direnv.enable = true;
         gemini-cli.enable = true;
         gh-dash.enable = true;
         lazygit.enable = true;
