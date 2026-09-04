@@ -25,7 +25,6 @@
         "astro"
         "haskell"
         "nushell"
-        "discord-presence"
         "vue"
         "php"
         "html"

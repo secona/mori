@@ -347,10 +347,6 @@ in
         };
       };
 
-      plugins.presence = {
-        enable = true;
-      };
-
       plugins.mini = {
         enable = true;
         mockDevIcons = true;
