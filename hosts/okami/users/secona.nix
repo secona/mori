@@ -115,6 +115,7 @@
         devenv.enable = true;
         lazygit.enable = true;
         codex.enable = true;
+        pi.enable = true;
       };
 
       vcs =
