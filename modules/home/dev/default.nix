@@ -18,6 +18,7 @@
     ./tools/lazygit.nix
     ./tools/nsys-ui.nix
     ./tools/opencode.nix
+    ./tools/pi.nix
     ./tools/postman.nix
     ./tools/wireshark.nix
 
