@@ -21,7 +21,6 @@
           animation = "matrix";
         };
       };
-      sessionPackages = with pkgs; [ sway ];
     };
   };
 }
