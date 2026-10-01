@@ -66,9 +66,9 @@
       ly.enable = true;
       xserver.enable = true;
       audio.enable = true;
-      printing.enable = true;
+      # printing.enable = true;
       blueman.enable = true;
-      postgresql.enable = true;
+      # postgresql.enable = true;
       gvfs.enable = true;
       zerotierone.enable = true;
     };
@@ -80,7 +80,7 @@
 
       shells = {
         fish.enable = true;
-        zsh.enable = true;
+        # zsh.enable = true;
       };
 
       misc = {
@@ -94,15 +94,15 @@
       };
 
       tools = {
-        openvpn.enable = true;
+        # openvpn.enable = true;
         wireshark.enable = false;
       };
     };
 
     virtualisation = {
       docker.enable = true;
-      libvirtd.enable = true;
-      virt-manager.enable = true;
+      # libvirtd.enable = true;
+      # virt-manager.enable = true;
     };
   };
 
