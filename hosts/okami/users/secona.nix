@@ -57,37 +57,35 @@
       };
 
       socials = {
-        discord.enable = true;
-        zoom-us.enable = true;
+        # discord.enable = true;
+        # zoom-us.enable = true;
       };
 
       docs = {
         libreoffice.enable = true;
-        xournalpp.enable = true;
+        # xournalpp.enable = true;
         zathura.enable = true;
       };
 
       media = {
         vlc.enable = true;
         obs-studio.enable = true;
-        loupe.enable = true;
-        spotify-player.enable = true;
+        # loupe.enable = true;
       };
 
       games = {
-        minecraft.enable = true;
+        # minecraft.enable = true;
       };
 
       misc = {
-        pinta.enable = true;
+        # pinta.enable = true;
       };
     };
 
     cli = {
       shells = {
         fish.enable = true;
-        nushell.enable = true;
-        zsh.enable = true;
+        # zsh.enable = true;
       };
 
       monitoring = {
@@ -110,18 +108,13 @@
       editors = {
         nvim.enable = true;
         idea-ultimate.enable = false;
-        vscode.enable = true;
         zed-editor.enable = true;
       };
 
       tools = {
         devenv.enable = true;
-        gemini-cli.enable = true;
-        gh-dash.enable = true;
         lazygit.enable = true;
-        opencode.enable = true;
         codex.enable = true;
-        postman.enable = true;
       };
 
       vcs =
