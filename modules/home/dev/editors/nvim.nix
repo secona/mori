@@ -467,6 +467,11 @@ in
           package = null;
         };
 
+        servers.tblgen_lsp_server = {
+          enable = true;
+          package = null;
+        };
+
         servers.gopls = {
           enable = true;
           package = null;
@@ -539,8 +544,8 @@ in
 
       plugins.treesitter = {
         enable = true;
-        grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
-        settings.indent.enable = true;
+        highlight.enable = true;
+        indent.enable = true;
       };
 
       plugins.treesitter-context = {
