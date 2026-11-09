@@ -14,6 +14,6 @@
 
   config = lib.mkIf config.dev.tools.codex.enable {
     programs.codex.enable = true;
-    programs.codex.package = pkgs.unstable.codex;
+    programs.codex.package = pkgs.llm-agents.codex;
   };
 }

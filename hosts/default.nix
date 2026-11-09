@@ -5,6 +5,7 @@ let
     inherit system;
     config.allowUnfree = true;
     overlays = [
+      inputs.llm-agents.overlays.shared-nixpkgs
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
