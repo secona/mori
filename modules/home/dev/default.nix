@@ -21,6 +21,7 @@
     ./tools/pi.nix
     ./tools/postman.nix
     ./tools/wireshark.nix
+    ./tools/zeal.nix
 
     ./vcs/git.nix
     ./vcs/jujutsu.nix
