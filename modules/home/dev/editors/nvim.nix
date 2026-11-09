@@ -472,6 +472,11 @@ in
           package = null;
         };
 
+        servers.mlir_lsp_server = {
+          enable = true;
+          package = null;
+        };
+
         servers.gopls = {
           enable = true;
           package = null;
