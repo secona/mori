@@ -16,6 +16,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    # TryGlasses website
+    tryglasses-web.url = "path:/home/secona/src/github/secona/tryglasses-web";
+
     # nixos hardware for hardware configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

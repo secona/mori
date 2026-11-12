@@ -7,11 +7,17 @@
 {
   imports = [
     inputs.noctalia.nixosModules.default
+    inputs.tryglasses-web.nixosModules.default
 
     ./hardware-configuration.nix
     ./users/secona.nix
     ../../modules/nixos
   ];
+
+  services.tryglasses-web = {
+    enable = true;
+    port = 9001;
+  };
 
   home-manager = {
     useGlobalPkgs = true;

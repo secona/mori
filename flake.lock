@@ -274,6 +274,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1794042290,
+        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -372,7 +388,8 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "nur": "nur",
-        "treefmt-nix": "treefmt-nix_3"
+        "treefmt-nix": "treefmt-nix_3",
+        "tryglasses-web": "tryglasses-web"
       }
     },
     "systems": {
@@ -481,6 +498,21 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "tryglasses-web": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1794229187,
+        "narHash": "sha256-L8490ISn39mGIXkDXBf4jueO9YQ5vY4vb05n3SEqQLY=",
+        "path": "/home/secona/src/github/secona/tryglasses-web",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/secona/src/github/secona/tryglasses-web",
+        "type": "path"
       }
     }
   },
